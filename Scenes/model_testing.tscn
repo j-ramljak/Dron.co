@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b435mixmpbswu"]
+
+[ext_resource type="Material" uid="uid://byav3un4bh6s6" path="res://shared/materials/palette_color.tres" id="1_a1imu"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sxrkb"]
+
+[node name="ModelTesting" type="Node3D"]
+
+[node name="Plane" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_sxrkb")
+surface_material_override/0 = ExtResource("1_a1imu")
+
+[node name="Models" type="Node3D" parent="."]
