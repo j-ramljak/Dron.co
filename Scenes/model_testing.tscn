@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b435mixmpbswu"]
+[gd_scene load_steps=23 format=3 uid="uid://b435mixmpbswu"]
 
 [ext_resource type="PackedScene" uid="uid://dj53ujh0j7e4f" path="res://entities/static/tiles/concrete_flat.blend" id="1_bit84"]
 [ext_resource type="PackedScene" uid="uid://cguehnmru4c0w" path="res://entities/static/tiles/road_I.blend" id="1_g1etx"]
@@ -14,6 +14,13 @@
 [ext_resource type="PackedScene" uid="uid://da3u7yhnojww4" path="res://entities/static/tiles/road_T.blend" id="12_6er7t"]
 [ext_resource type="PackedScene" uid="uid://lb1hp0itsj5" path="res://entities/static/tiles/road_X.blend" id="13_smwl3"]
 [ext_resource type="PackedScene" uid="uid://bbppm46dve601" path="res://entities/static/tiles/grass_C.blend" id="14_2m4r1"]
+[ext_resource type="PackedScene" uid="uid://radt6r2bli3o" path="res://entities/static/tiles/parking_C.blend" id="15_pq3oj"]
+[ext_resource type="PackedScene" uid="uid://4a3juj8qxco0" path="res://entities/static/tiles/parking_I.blend" id="16_3hlcq"]
+[ext_resource type="PackedScene" uid="uid://wkyjomr56eti" path="res://entities/static/tiles/parking_L.blend" id="17_6er7t"]
+[ext_resource type="PackedScene" uid="uid://8oaxykj4gq1d" path="res://entities/static/tiles/parking_R.blend" id="18_smwl3"]
+[ext_resource type="PackedScene" uid="uid://cm2gcc8cfa55b" path="res://entities/static/tiles/road_I_half.blend" id="19_056of"]
+[ext_resource type="PackedScene" uid="uid://couws5kwnt7or" path="res://entities/static/tiles/roundabout.blend" id="20_igg7m"]
+[ext_resource type="PackedScene" uid="uid://csjaue24a882n" path="res://entities/static/tiles/grass_L2.blend" id="21_wp83t"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sxrkb"]
 
@@ -29,7 +36,7 @@ mesh = SubResource("PlaneMesh_sxrkb")
 [node name="concrete_flat3" parent="Tilesets" instance=ExtResource("1_bit84")]
 
 [node name="concrete_tiles3" parent="Tilesets" instance=ExtResource("2_2m4r1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11)
+transform = Transform3D(0.99992365, 0, -0.012356617, 0, 1, 0, 0.012356617, 0, 0.99992365, 0, 0, 11)
 
 [node name="grass_I23" parent="Tilesets" instance=ExtResource("3_h6k3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 11)
@@ -66,6 +73,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, -44)
 
 [node name="grass_C3" parent="Tilesets" instance=ExtResource("14_2m4r1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -44)
+
+[node name="parking_C3" parent="Tilesets" instance=ExtResource("15_pq3oj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, 11)
+
+[node name="parking_I3" parent="Tilesets" instance=ExtResource("16_3hlcq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, 0)
+
+[node name="parking_L3" parent="Tilesets" instance=ExtResource("17_6er7t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, -11)
+
+[node name="parking_R3" parent="Tilesets" instance=ExtResource("18_smwl3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0, -22)
+
+[node name="road_I_half3" parent="Tilesets" instance=ExtResource("19_056of")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 43, 0, -33)
+
+[node name="roundabout3" parent="Tilesets" instance=ExtResource("20_igg7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0, 32)
 
 [node name="Demo" type="Node3D" parent="."]
 
@@ -113,3 +138,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -33)
 
 [node name="road_I_zebra6" parent="Demo" instance=ExtResource("10_pq3oj")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20, 0, -43)
+
+[node name="grass_L23" parent="." instance=ExtResource("21_wp83t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -55)
