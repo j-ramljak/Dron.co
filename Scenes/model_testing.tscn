@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b435mixmpbswu"]
+[gd_scene load_steps=32 format=3 uid="uid://b435mixmpbswu"]
 
 [ext_resource type="PackedScene" uid="uid://dj53ujh0j7e4f" path="res://entities/static/tiles/concrete_flat.blend" id="1_bit84"]
 [ext_resource type="PackedScene" uid="uid://cguehnmru4c0w" path="res://entities/static/tiles/road_I.blend" id="1_g1etx"]
@@ -21,15 +21,47 @@
 [ext_resource type="PackedScene" uid="uid://cm2gcc8cfa55b" path="res://entities/static/tiles/road_I_half.blend" id="19_056of"]
 [ext_resource type="PackedScene" uid="uid://couws5kwnt7or" path="res://entities/static/tiles/roundabout.blend" id="20_igg7m"]
 [ext_resource type="PackedScene" uid="uid://csjaue24a882n" path="res://entities/static/tiles/grass_L2.blend" id="21_wp83t"]
+[ext_resource type="PackedScene" uid="uid://copy006bpdy4a" path="res://entities/static/buildings/building_corner_1.blend" id="22_wp83t"]
+[ext_resource type="PackedScene" uid="uid://c4iljy7dp6d75" path="res://entities/static/buildings/building_corner_2.blend" id="23_s4ydn"]
+[ext_resource type="PackedScene" uid="uid://b06406qk42ohx" path="res://entities/static/buildings/building_corner_3.blend" id="24_smkq4"]
+[ext_resource type="PackedScene" uid="uid://kxaboy72ytbt" path="res://entities/static/buildings/building_square_1.blend" id="25_7p5of"]
+[ext_resource type="PackedScene" uid="uid://cd3la15qhh85h" path="res://entities/static/buildings/building_square_2.blend" id="26_4edcp"]
+[ext_resource type="PackedScene" uid="uid://cca2qo2yh0lb7" path="res://entities/static/buildings/building_square_3.blend" id="27_a4tqq"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sxrkb"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h871b"]
+sky_top_color = Color(0.38431373, 0.45490196, 0.54901963, 1)
+sky_horizon_color = Color(0.9365661, 0.9718602, 1.018919, 1)
+ground_bottom_color = Color(0.38431373, 0.45490196, 0.54901963, 1)
+ground_horizon_color = Color(0.9365661, 0.9718602, 1.018919, 1)
+
+[sub_resource type="Sky" id="Sky_vj3oa"]
+sky_material = SubResource("ProceduralSkyMaterial_h871b")
+
+[sub_resource type="Environment" id="Environment_pwya5"]
+background_mode = 2
+sky = SubResource("Sky_vj3oa")
+tonemap_mode = 2
+ssao_enabled = true
+ssao_power = 6.657411
+fog_depth_curve = 3.605
+
 [node name="ModelTesting" type="Node3D"]
 
-[node name="Plane" type="MeshInstance3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
-visible = false
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(0.34202015, -0.87609774, 0.339816, 0, 0.36162463, 0.93232375, -0.9396926, -0.31887352, 0.12368291, 0, 22.469349, 0)
+shadow_enabled = true
+
+[node name="Plane" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, -0.1, 0)
 mesh = SubResource("PlaneMesh_sxrkb")
+skeleton = NodePath("../..")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_pwya5")
 
 [node name="Tilesets" type="Node3D" parent="."]
 
@@ -92,6 +124,9 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 43, 
 [node name="roundabout3" parent="Tilesets" instance=ExtResource("20_igg7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0, 32)
 
+[node name="grass_L23" parent="Tilesets" instance=ExtResource("21_wp83t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -55)
+
 [node name="Demo" type="Node3D" parent="."]
 
 [node name="road_L3" parent="Demo" instance=ExtResource("11_3hlcq")]
@@ -139,5 +174,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -33)
 [node name="road_I_zebra6" parent="Demo" instance=ExtResource("10_pq3oj")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20, 0, -43)
 
-[node name="grass_L23" parent="." instance=ExtResource("21_wp83t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -55)
+[node name="Buildings" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 34)
+
+[node name="building_corner_13" parent="Buildings" instance=ExtResource("22_wp83t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 53)
+
+[node name="concrete_tiles4" parent="Buildings/building_corner_13" instance=ExtResource("2_2m4r1")]
+
+[node name="building_corner_23" parent="Buildings" instance=ExtResource("23_s4ydn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 53)
+
+[node name="concrete_tiles5" parent="Buildings/building_corner_23" instance=ExtResource("2_2m4r1")]
+
+[node name="building_corner_33" parent="Buildings" instance=ExtResource("24_smkq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 53)
+
+[node name="concrete_tiles6" parent="Buildings/building_corner_33" instance=ExtResource("2_2m4r1")]
+
+[node name="building_square_13" parent="Buildings" instance=ExtResource("25_7p5of")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 53)
+
+[node name="concrete_tiles7" parent="Buildings/building_square_13" instance=ExtResource("2_2m4r1")]
+
+[node name="building_square_23" parent="Buildings" instance=ExtResource("26_4edcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 53)
+
+[node name="concrete_tiles8" parent="Buildings/building_square_23" instance=ExtResource("2_2m4r1")]
+
+[node name="building_square_33" parent="Buildings" instance=ExtResource("27_a4tqq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 53)

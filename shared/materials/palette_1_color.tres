@@ -1,8 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://byav3un4bh6s6"]
 
-[ext_resource type="Texture2D" uid="uid://vjuwtqc8q2d4" path="res://shared/textures/palette_1.png" id="1_iepfu"]
+[ext_resource type="Texture2D" uid="uid://vjuwtqc8q2d4" path="res://shared/textures/palettes/palette_1.png" id="1_iepfu"]
 
 [resource]
-shading_mode = 2
-diffuse_mode = 3
 albedo_texture = ExtResource("1_iepfu")
