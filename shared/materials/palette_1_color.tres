@@ -3,4 +3,5 @@
 [ext_resource type="Texture2D" uid="uid://vjuwtqc8q2d4" path="res://shared/textures/palettes/palette_1.png" id="1_iepfu"]
 
 [resource]
+diffuse_mode = 3
 albedo_texture = ExtResource("1_iepfu")
