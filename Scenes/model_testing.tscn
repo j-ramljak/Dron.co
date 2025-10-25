@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b435mixmpbswu"]
+[gd_scene load_steps=40 format=3 uid="uid://b435mixmpbswu"]
 
 [ext_resource type="PackedScene" uid="uid://dj53ujh0j7e4f" path="res://entities/static/tiles/concrete_flat.blend" id="1_bit84"]
 [ext_resource type="PackedScene" uid="uid://cguehnmru4c0w" path="res://entities/static/tiles/road_I.blend" id="1_g1etx"]
@@ -32,6 +32,9 @@
 [ext_resource type="PackedScene" uid="uid://cca2qo2yh0lb7" path="res://entities/static/buildings/building_square_3.blend" id="27_a4tqq"]
 [ext_resource type="PackedScene" uid="uid://bp5rpywmu0g1" path="res://entities/static/buildings/building_small_1.blend" id="31_a4tqq"]
 [ext_resource type="PackedScene" uid="uid://d3ok8fh38utkc" path="res://entities/static/buildings/building_small_2.blend" id="32_h871b"]
+[ext_resource type="PackedScene" uid="uid://8r6rfx62yr7c" path="res://entities/static/buildings/building_deadend_1.blend" id="33_pwya5"]
+[ext_resource type="PackedScene" uid="uid://ddb43gtdpjnm1" path="res://entities/static/buildings/building_square_4.blend" id="34_syjbb"]
+[ext_resource type="PackedScene" uid="uid://yjwfoog0vf8u" path="res://entities/static/buildings/building_corner_4.blend" id="35_romn6"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sxrkb"]
 
@@ -230,3 +233,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, 53)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 53)
 
 [node name="concrete_tiles4" parent="Buildings/building_small_23" instance=ExtResource("2_2m4r1")]
+
+[node name="building_deadend_13" parent="Buildings" instance=ExtResource("33_pwya5")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, -59, 0, 53)
+
+[node name="concrete_tiles3" parent="Buildings/building_deadend_13" instance=ExtResource("2_2m4r1")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="building_square_43" parent="Buildings" instance=ExtResource("34_syjbb")]
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -72, 0, 53)
+
+[node name="concrete_tiles4" parent="Buildings/building_square_43" instance=ExtResource("2_2m4r1")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 0, 0, 0)
+
+[node name="building_corner_43" parent="Buildings" instance=ExtResource("35_romn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85, 0, 53)
+
+[node name="concrete_tiles3" parent="Buildings/building_corner_43" instance=ExtResource("2_2m4r1")]
