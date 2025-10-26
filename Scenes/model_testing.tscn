@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://b435mixmpbswu"]
+[gd_scene load_steps=46 format=3 uid="uid://b435mixmpbswu"]
 
 [ext_resource type="PackedScene" uid="uid://dj53ujh0j7e4f" path="res://entities/static/tiles/concrete_flat.blend" id="1_bit84"]
 [ext_resource type="PackedScene" uid="uid://cguehnmru4c0w" path="res://entities/static/tiles/road_I.blend" id="1_g1etx"]
@@ -36,6 +36,11 @@
 [ext_resource type="PackedScene" uid="uid://cca2qo2yh0lb7" path="res://entities/static/buildings/orange_corner.blend" id="34_jnd8d"]
 [ext_resource type="PackedScene" uid="uid://ddb43gtdpjnm1" path="res://entities/static/buildings/brown_straight.blend" id="35_2lfkq"]
 [ext_resource type="PackedScene" uid="uid://kxaboy72ytbt" path="res://entities/static/buildings/blue_corner.blend" id="36_ad1c5"]
+[ext_resource type="PackedScene" uid="uid://3syo3xwwfk7o" path="res://entities/static/buildings/gray_half_corner.blend" id="37_j3a3r"]
+[ext_resource type="PackedScene" uid="uid://btrqs2yv1clrc" path="res://entities/static/buildings/gray_half.blend" id="38_30q7w"]
+[ext_resource type="PackedScene" uid="uid://crkkxv3oooo7t" path="res://entities/static/buildings/red_corner_short.blend" id="39_ho4r7"]
+[ext_resource type="PackedScene" uid="uid://djshu155mwrrh" path="res://entities/static/buildings/red_straight.blend" id="40_ho4r7"]
+[ext_resource type="PackedScene" uid="uid://bc3hmqgfn1w8x" path="res://entities/static/buildings/blue_tall.blend" id="41_d8h0g"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sxrkb"]
 
@@ -230,3 +235,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 60)
 
 [node name="blue_corner" parent="." instance=ExtResource("36_ad1c5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 0, 60)
+
+[node name="gray_half_corner" parent="." instance=ExtResource("37_j3a3r")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 20, 0, 100)
+
+[node name="gray_half" parent="." instance=ExtResource("38_30q7w")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 20, 0, 120)
+
+[node name="red_corner_short" parent="." instance=ExtResource("39_ho4r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+
+[node name="red_straight" parent="." instance=ExtResource("40_ho4r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 120)
+
+[node name="blue_tall" parent="." instance=ExtResource("41_d8h0g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 0, 80)
