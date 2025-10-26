@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://8r6rfx62yr7c"
-path="res://.godot/imported/building_deadend_1.blend-019bf02ee8e34f5fb7fb79031355a321.scn"
+uid="uid://yjwfoog0vf8u"
+path="res://.godot/imported/yellow_deadend.blend-1785744ba70caf48254205e3cdd02415.scn"
 
 [deps]
 
-source_file="res://entities/static/buildings/building_deadend_1.blend"
-dest_files=["res://.godot/imported/building_deadend_1.blend-019bf02ee8e34f5fb7fb79031355a321.scn"]
+source_file="res://entities/static/buildings/yellow_deadend.blend"
+dest_files=["res://.godot/imported/yellow_deadend.blend-1785744ba70caf48254205e3cdd02415.scn"]
 
 [params]
 

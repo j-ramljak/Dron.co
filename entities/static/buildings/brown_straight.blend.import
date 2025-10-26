@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cguehnmru4c0w"
-path="res://.godot/imported/road_I.blend-c4a55323e3a5dd368174c9ed0c0612c5.scn"
+uid="uid://ddb43gtdpjnm1"
+path="res://.godot/imported/brown_straight.blend-abfd8adafce2ceb30dbf412d40afc47e.scn"
 
 [deps]
 
-source_file="res://entities/static/tiles/road_I.blend"
-dest_files=["res://.godot/imported/road_I.blend-c4a55323e3a5dd368174c9ed0c0612c5.scn"]
+source_file="res://entities/static/buildings/brown_straight.blend"
+dest_files=["res://.godot/imported/brown_straight.blend-abfd8adafce2ceb30dbf412d40afc47e.scn"]
 
 [params]
 

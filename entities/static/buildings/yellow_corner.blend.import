@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cca2qo2yh0lb7"
-path="res://.godot/imported/building_square_3.blend-ab67b1000cdd7153b01fa3fae573b722.scn"
+uid="uid://8r6rfx62yr7c"
+path="res://.godot/imported/yellow_corner.blend-5ba0e40a709e3b7ecbddac8fc225619b.scn"
 
 [deps]
 
-source_file="res://entities/static/buildings/building_square_3.blend"
-dest_files=["res://.godot/imported/building_square_3.blend-ab67b1000cdd7153b01fa3fae573b722.scn"]
+source_file="res://entities/static/buildings/yellow_corner.blend"
+dest_files=["res://.godot/imported/yellow_corner.blend-5ba0e40a709e3b7ecbddac8fc225619b.scn"]
 
 [params]
 

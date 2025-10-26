@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cd3la15qhh85h"
-path="res://.godot/imported/building_square_2.blend-fc7b51bfeb7fbb5b9d6e9c65a648f194.scn"
+path="res://.godot/imported/green_straight.blend-24893bf9ba3c278e0e52f2bdc05917b9.scn"
 
 [deps]
 
-source_file="res://entities/static/buildings/building_square_2.blend"
-dest_files=["res://.godot/imported/building_square_2.blend-fc7b51bfeb7fbb5b9d6e9c65a648f194.scn"]
+source_file="res://entities/static/buildings/green_straight.blend"
+dest_files=["res://.godot/imported/green_straight.blend-24893bf9ba3c278e0e52f2bdc05917b9.scn"]
 
 [params]
 

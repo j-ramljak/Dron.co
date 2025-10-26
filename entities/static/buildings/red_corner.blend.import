@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://yjwfoog0vf8u"
-path="res://.godot/imported/building_corner_4.blend-d1cb82e03cc5554da66cbdaa262d73bd.scn"
+uid="uid://d3ok8fh38utkc"
+path="res://.godot/imported/red_corner.blend-a0fe11b3c721e8072e87dd4d89688d30.scn"
 
 [deps]
 
-source_file="res://entities/static/buildings/building_corner_4.blend"
-dest_files=["res://.godot/imported/building_corner_4.blend-d1cb82e03cc5554da66cbdaa262d73bd.scn"]
+source_file="res://entities/static/buildings/red_corner.blend"
+dest_files=["res://.godot/imported/red_corner.blend-a0fe11b3c721e8072e87dd4d89688d30.scn"]
 
 [params]
 
