@@ -1,45 +1,57 @@
 extends CharacterBody3D
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-const JOYSTICK_LOOK_SENSITIVITY = 2.0
+@export var SPEED = 50.0
+@export var JOYSTICK_LOOK_SENSITIVITY = 2.0
+@export var FRICTION = 0.9
+@export var TILT_STRENGTH = 0.2
+@export var TILT_SMOOTHNESS = 4.0
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
-var acceleration_x=0
-var acceleration_y=0
-var acceleration_z=0
+
+var acceleration := Vector3.ZERO
+
 func _physics_process(delta: float) -> void:
-
-	# Add the gravity.
-	#if not is_on_floor():
-		#velocity += get_gravity() * delta
-
-	# Movement input
+	# Movement
 	var input_dir := Input.get_vector("go_left", "go_right", "go_front", "go_back")
-	
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		acceleration_x= direction.x * SPEED
-		acceleration_z= direction.z * SPEED
+
+	if direction != Vector3.ZERO:
+		acceleration.x = direction.x * SPEED
+		acceleration.z = direction.z * SPEED
 	else:
-		acceleration_x= 0.01
-		acceleration_z = 0.0
-	var a=sqrt(acceleration_x**2+acceleration_z**2)
-	velocity.x += acceleration_x * delta
-	velocity.z += acceleration_z * delta
-	
-	#trenje
-	velocity.x*=0.98
-	velocity.z*=0.98
-	
+		acceleration.x = 0.0
+		acceleration.z = 0.0
+
+	# Rotation (yaw)
 	var look_input := Input.get_axis("rotate_left", "rotate_right")
-	var throttle_input := Input.get_axis("go_up", "go_down")
-	
-	if abs(look_input) > 0.05:  
+	if abs(look_input) > 0.05:
 		rotate_y(-look_input * JOYSTICK_LOOK_SENSITIVITY * delta)
-		
-	if abs(throttle_input) > 0.1:  
-		velocity.y=-throttle_input*10
-		
+
+	# Throttle (up/down)
+	var throttle_input := Input.get_axis("go_up", "go_down")
+	if abs(throttle_input) > 0.05:
+		acceleration.y = -throttle_input * SPEED
+	else:
+		acceleration.y = 0.0
+	
+	# Velocity
+	velocity += acceleration * delta
+	velocity *= FRICTION
+	
+	# Hover effect
+	position.y += sin(Time.get_ticks_msec() / 500.0) / 1000.0
+
 	move_and_slide()
+
+	# Rotation effect
+	if direction != Vector3.ZERO:
+		var local_dir := global_transform.basis.inverse() * direction
+		var target_rot_x = local_dir.z * TILT_STRENGTH
+		var target_rot_z = -local_dir.x * TILT_STRENGTH
+
+		rotation.x = lerp(rotation.x, target_rot_x, TILT_SMOOTHNESS * delta)
+		rotation.z = lerp(rotation.z, target_rot_z, TILT_SMOOTHNESS * delta)
+	else:
+		rotation.x = lerp(rotation.x, 0.0, TILT_SMOOTHNESS * delta)
+		rotation.z = lerp(rotation.z, 0.0, TILT_SMOOTHNESS * delta)
