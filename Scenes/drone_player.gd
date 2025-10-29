@@ -6,12 +6,10 @@ extends CharacterBody3D
 @export var TILT_STRENGTH = 0.2
 @export var TILT_SMOOTHNESS = 4.0
 
-@onready var head = $Head
-@onready var camera = $Head/Camera3D
-
 var acceleration := Vector3.ZERO
 
 func _physics_process(delta: float) -> void:
+	
 	# Movement
 	var input_dir := Input.get_vector("go_left", "go_right", "go_front", "go_back")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
