@@ -6,16 +6,24 @@
 - Simulacija
 	- [x] kontrole
 	    - [x] kontroler
-	    - [ ] tipkovnica
-	- [x] letjenje
-    - [ ] detekcija kolizije
-	- [ ] animacija
-	    - [ ] rotiranje propelera
-	    - [ ] glatke kontrole
-	        - [x] kamera
-	        - [ ] translacija
-	        - [ ] rotacija
-	    - [ ] naginjanje pri kretanju/skretanju
+	    - [x] tipkovnica
+    - [x] detekcija kolizije
+    - [ ] simulacija paketa
+    - [ ] vjetar
+- Audio i viuzalni efekti
+    - [ ] Vizualni
+        - [ ] rotiranje propelera
+        - [x] glatke kontrole
+            - [x] kamera
+            - [x] translacija
+            - [x] rotacija
+        - [ ] naginjanje pri kretanju/skretanju
+        - [ ] Korisničko sučelje
+            - [ ] Baterija
+            - [ ] Title screen
+            - [ ] Death screen
+    - [ ] Audio
+        - [ ] Zvuk motora drona
 - Modeliranje
     - [ ] za grad
         - [x] podloge grada
@@ -26,15 +34,17 @@
         - [ ] raspored grada
 	- [ ] za igranje
         - [ ] model drona
+        - [ ] modeli paketa
         - [ ] prepreke za dron
         - [ ] postaja za dron
 - Igra
 	- [ ] dostavljanje paketa
 	- [ ] tajmer
+	- [ ] baterija
+	- [ ] navigacija igraća
 	- [ ] granice mape
 	- [ ] death mechanic
-	- [ ] scoreboard?
-	- [ ] punjenje baterije?
+	- [ ] punjenje baterije
 - Dokumentacija
 	- [ ] Plan projekta
 	- [ ] Tehnička dokumentacija
@@ -61,20 +71,23 @@ gantt
         3. sastanak tima                                : milestone, 31-10-2025, 0d
 
     section Kontrolne točke
-        Određena tema projekta                          : milestone, 14-10-2025, 0d
-        Kraj planiranja projekta                        : milestone, 20-10-2025, 0d
+        Određena tema projekta : milestone, 14-10-2025, 0d
+        Implementacija kontrole : milestone, 
+        Kraj planiranja projekta : milestone, 20-10-2025, 0d
+        Implementirana fizika drona : milestone, 
+        Završeno modeliranje drona i grada : milestone, 20-12-2025, 0d
+        Dizajniran tlocrt grada : milestone, 
 
 	section Dokumentacija
-		Osmišljavanje teme                              : 07-10-2025, 7d
-        Plan projekta                                   : 27-10-2025, until rok1
-        Tehnička dokumentacija                          : 10-01-2026, until rok2
-        Razrada plana projekta                          : 10-01-2026, until rok2
+		Osmišljavanje teme : 07-10-2025, 7d
+        Plan projekta : 27-10-2025, until rok1
+        Tehnička dokumentacija : after rok1, until rok2
+        Razrada plana projekta : 10-01-2026, until rok2
 
     section Simulacija
-        Kontrole i letjenje                             : 27-10-2025, 14d
-        Detekcija kolizije                              : 7d
-        Animacije                                       : 30d
-        ...                                             : 7d
+        Kontrole i letjenje : 27-10-2025, 14d
+        Detekcija kolizije : 7d
+        Animacije : 30d
 
     section Modeliranje
         Građevine                                       : 20-10-2025, 29-10-2025
@@ -82,12 +95,10 @@ gantt
         Model drona                                     : 7d
         Detalji grada                                   : 03-11-2025, 21d
         Raspored grada                                  : 7d
-        ...                                             : 7d
 
     section Igra
         Funkcionalnost dostave paketa                   : 10-11-2025, 14d
         Tajmer                                          : 7d
-        ...                                             : 7d
 		
 ```
 
