@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c8518p5fip7jw"]
 
-[ext_resource type="Script" uid="uid://dxh6075hoaryl" path="res://Scenes/drone_player.gd" id="1_3aqr0"]
-[ext_resource type="Script" uid="uid://b88vb72lvdw38" path="res://Scenes/camera_controller.gd" id="2_7ixqd"]
+[ext_resource type="Script" uid="uid://dxh6075hoaryl" path="res://entities/dynamic/drone/drone_player.gd" id="1_3aqr0"]
+[ext_resource type="Script" uid="uid://b88vb72lvdw38" path="res://entities/dynamic/drone/camera_controller.gd" id="2_7ixqd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_3aqr0"]
 
@@ -26,9 +26,9 @@ top_level = true
 script = ExtResource("2_7ixqd")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraController"]
-transform = Transform3D(1, 0, 0, 0, 0.9781476, 0.2079117, 0, -0.2079117, 0.9781476, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9781476, 0.2079117, 0, -0.2079117, 0.9781476, 0.0052723885, -2.3841858e-07, 0.010622501)
 shape = SubResource("SeparationRayShape3D_7ixqd")
-spring_length = 10.0
+spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraController/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 9.999998)
