@@ -3,21 +3,22 @@
 
 ---
 
+### Lista funkcionalnosti
+
 - Simulacija
 	- [x] kontrole
 	    - [x] kontroler
 	    - [x] tipkovnica
-    - [x] detekcija kolizije
+    - [x] kolizija
     - [ ] simulacija paketa
     - [ ] vjetar
-- Audio i viuzalni efekti
+- Efekti
     - [ ] Vizualni
         - [ ] rotiranje propelera
-        - [x] glatke kontrole
-            - [x] kamera
-            - [x] translacija
-            - [x] rotacija
-        - [ ] naginjanje pri kretanju/skretanju
+        - [x] responzivne kontrole
+            - [x] glatka kamera
+            - [x] glatko kretanje
+            - [x] naginjanje pri kretanju/skretanju
         - [ ] Korisničko sučelje
             - [ ] Baterija
             - [ ] Title screen
@@ -28,9 +29,15 @@
     - [ ] za grad
         - [x] podloge grada
         - [x] građevine
-        - [ ] okolina grada (brda)?
-        - [ ] drveća
-        - [ ] detalji
+        - [ ] drveća/grmlje
+        - [ ] detalji grada
+            - [ ] ulična rasvjeta
+            - [ ] prometni znakovi
+            - [ ] semafor
+            - [ ] kante i kontejneri za smeće
+            - [ ] štandovi
+            - [ ] klupe
+            - [ ] ...
         - [ ] raspored grada
 	- [ ] za igranje
         - [ ] model drona
@@ -39,17 +46,32 @@
         - [ ] postaja za dron
 - Igra
 	- [ ] dostavljanje paketa
-	- [ ] tajmer
-	- [ ] baterija
-	- [ ] navigacija igraća
-	- [ ] granice mape
+        - [ ] mjesto pokupljanja paketa
+        - [ ] točke dostavljanja paketa
 	- [ ] death mechanic
-	- [ ] punjenje baterije
+        - [ ] sudar
+        - [ ] prazna baterija
+	    - [ ] granice mape ("no signal")
+	- [ ] mjerenje vremena dostavljanja paketa
+	- [ ] baterija
+        - [ ] pražnjenje baterije
+	    - [ ] punjenje baterije
+	- [ ] navigacija igraća
+	    - [ ] markeri za dostavu
 - Dokumentacija
 	- [ ] Plan projekta
 	- [ ] Tehnička dokumentacija
 
 ---
+
+### Linkovi
+
+> Alat za Gantt: https://mermaid.js.org/syntax/gantt.html
+
+> Alat za WBS: https://online.visual-paradigm.com/diagrams/features/work-breakdown-structure-software/
+
+---
+
 
 ```mermaid
 gantt
@@ -69,41 +91,38 @@ gantt
         2. sastanak tima                                : milestone, 14-10-2025, 0d
         2. sastanak s mentoricom                        : milestone, 14-10-2025, 0d
         3. sastanak tima                                : milestone, 31-10-2025, 0d
+        3. sastanak s mentoricom                        : milestone, 07-11-2025, 0d
 
     section Kontrolne točke
         Određena tema projekta : milestone, 14-10-2025, 0d
-        Implementacija kontrole : milestone, 
-        Kraj planiranja projekta : milestone, 20-10-2025, 0d
-        Implementirana fizika drona : milestone, 
-        Završeno modeliranje drona i grada : milestone, 20-12-2025, 0d
-        Dizajniran tlocrt grada : milestone, 
+        Implementirana kontrola drona : milestone, after s1, 0d
+        Završeno modeliranje drona i grada : milestone, after m1, 0d
+        Dizajniran tlocrt grada : milestone, after m2, 0d
+        Implementirana funkcionalnost igre : milestone, after i3, 0d
+        Završetak praktične implementacije projekta : milestone, after s3 m3 i3, 0d
+        Završetak dokumentacije projekta : milestone, after d3 d4, 0d
 
 	section Dokumentacija
-		Osmišljavanje teme : 07-10-2025, 7d
-        Plan projekta : 27-10-2025, until rok1
-        Tehnička dokumentacija : after rok1, until rok2
-        Razrada plana projekta : 10-01-2026, until rok2
+		Osmišljavanje teme : d1, 07-10-2025, 7d
+        Plan projekta : d2, 14-10-2025, until rok1
+        Tehnička dokumentacija : d3, after rok1, 23-01-2026
+        Razrada plana projekta : d4, 10-01-2026, 23-01-2026
 
-    section Simulacija
-        Kontrole i letjenje : 27-10-2025, 14d
-        Detekcija kolizije : 7d
-        Animacije : 30d
+    section Simulacija i efekti
+        Kontrole i letjenje : s1, 27-10-2025, 21d
+        Simulacija nošenja pakete : s2, after s1, 21d
+        Audio i vizualni efekti : s3, after s2, 21d
 
     section Modeliranje
-        Građevine                                       : 20-10-2025, 29-10-2025
-        Drveća                                          : 7d
-        Model drona                                     : 7d
-        Detalji grada                                   : 03-11-2025, 21d
-        Raspored grada                                  : 7d
+        Izgradnja 3D modela : m1, 20-10-2025, 21-12-2025
+        Raspored grada : m2, after m1, 7d
+        Integracija sa funkcionalnosti igre: m3, after m2, 7d
 
     section Igra
-        Funkcionalnost dostave paketa                   : 10-11-2025, 14d
-        Tajmer                                          : 7d
-		
+        Funkcionalnost dostave paketa : i1, 10-11-2025, 21d
+        Funkcionalnost baterije i punjenja : i2, after i1, 14d
+        Početak, završetak, resetiranje igre : i3, after i2, 14d
 ```
-
->[!NOTE]
->https://mermaid.js.org/syntax/gantt.html
 
 ---
 
