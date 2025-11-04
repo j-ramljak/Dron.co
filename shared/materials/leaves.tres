@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bgn0tm6ch6grl"]
+
+[ext_resource type="Texture2D" uid="uid://bfnbv0whf153j" path="res://shared/textures/leaf_alpha.png" id="1_j7f7q"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 2
+diffuse_mode = 3
+albedo_color = Color(0.7237791, 0.88627857, 0.36872625, 1)
+albedo_texture = ExtResource("1_j7f7q")
+disable_receive_shadows = true
+distance_fade_mode = 2
