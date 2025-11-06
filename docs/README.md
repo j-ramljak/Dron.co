@@ -74,9 +74,16 @@
 
 
 ```mermaid
+---
+config:
+  theme: dark
+  // gantt:
+    // useWidth: 1000
+---
 gantt
     title Gantogram
     dateFormat DD-MM-YYYY
+    todayMarker on
 
     section Semestar
         Početak semestra                                : milestone, 29-09-2025, 0d
