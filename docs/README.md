@@ -3,7 +3,7 @@
 
 ---
 
-### Lista funkcionalnosti
+### Funkcionalnosti
 
 - Simulacija
 	- [x] kontrole
@@ -66,12 +66,15 @@
 
 ### Linkovi
 
-> Alat za Gantt: https://mermaid.js.org/syntax/gantt.html
+> Alat za Gantt: https://www.mermaidchart.com/play?utm_source=mermaid_live_editor
+
+> Dokumentacija za Mermaid: https://mermaid.js.org/syntax/gantt.html
 
 > Alat za WBS: https://online.visual-paradigm.com/diagrams/features/work-breakdown-structure-software/
 
 ---
 
+### Gantogram v1.0 (za planiranje)
 
 ```mermaid
 ---
@@ -81,7 +84,6 @@ config:
     // useWidth: 1000
 ---
 gantt
-    title Gantogram
     dateFormat DD-MM-YYYY
     todayMarker on
 
@@ -100,36 +102,108 @@ gantt
         3. sastanak tima                                : milestone, 31-10-2025, 0d
         3. sastanak s mentoricom                        : milestone, 07-11-2025, 0d
 
-    section Kontrolne točke
-        Određena tema projekta : milestone, 14-10-2025, 0d
-        Implementirana kontrola drona : milestone, after s1, 0d
-        Završeno modeliranje drona i grada : milestone, after m1, 0d
-        Dizajniran tlocrt grada : milestone, after m2, 0d
-        Implementirana funkcionalnost igre : milestone, after i3, 0d
-        Završetak praktične implementacije projekta : milestone, after s3 m3 i3, 0d
-        Završetak dokumentacije projekta : milestone, after d3 d4, 0d
+	section Dokumentacija
+		Osmišljavanje teme : d1, 07-10-2025, 7d
+        Određena tema projekta : milestone, 0d
+        Plan projekta : 14-11-2025
+        Određen plan projekta : milestone, 0d
+        Tehnička dokumentacija : 23-01-2026
+        Razrada plana projekta : d4, 10-01-2026, 23-01-2026
+        Završetak dokumentacije projekta : milestone, 0d
+
+    section Simulacija i efekti
+        Kontrole i letjenje : 27-10-2025, 14d
+        Implementirana kontrola drona : milestone, 0d
+        Simulacija nošenja paketa : 14d
+        Audio i vizualni efekti : 21d
+        Završetak simulacija i efekta : milestone, 0d
+
+    section Modeliranje
+        Modeli detalja grada : 01-11-2025, 30d
+        Model drona : 7d
+        Raspored grada : 14d
+        Dizajniran tlocrt grada : milestone, 0d
+
+        Modeli građevina : 20-10-2025, 25d
+        Modeli drveća : 10d
+        Modeli za funkcionalnost igre : 20d
+        Završeno modeliranje : milestone, 0d
+        Optimizacija modela : 7d
+
+    section Igra
+        Funkcionalnost dostave paketa : i1, 10-11-2025, 14d
+        Funkcionalnost baterije i punjenja : i2, after i1, 14d
+        Početak, završetak, resetiranje igre : i3, after i2, 14d
+        Integracija modela, fizike i logike u Godot : 14d
+        Implementirana funkcionalnost igre : milestone, 0d
+        Testiranje : 14d
+```
+
+---
+
+### Gantogram v2.0 (za dokument)
+
+>[!NOTE]
+>Upute za export grafa u sliku
+>
+>1. Kopirati source kod grafa (sve unutar "mermaid" bloka)
+>2. https://www.mermaidchart.com/play?utm_source=mermaid_live_editor
+>3. `theme: neutral`
+>4. Export
+
+```mermaid
+---
+config:
+  theme: dark
+  gantt:
+    useWidth: 1200
+---
+gantt
+    dateFormat DD-MM-YYYY
+    todayMarker off
 
 	section Dokumentacija
 		Osmišljavanje teme : d1, 07-10-2025, 7d
-        Plan projekta : d2, 14-10-2025, until rok1
-        Tehnička dokumentacija : d3, after rok1, 23-01-2026
+        Određena tema projekta : milestone, 0d
+        Plan projekta : 14-11-2025
+        Određen plan projekta : milestone, 0d
+        Tehnička dokumentacija : 23-01-2026
         Razrada plana projekta : d4, 10-01-2026, 23-01-2026
+        Završetak dokumentacije projekta : milestone, 0d
 
     section Simulacija i efekti
-        Kontrole i letjenje : s1, 27-10-2025, 21d
-        Simulacija nošenja pakete : s2, after s1, 21d
-        Audio i vizualni efekti : s3, after s2, 21d
+        Kontrole i letjenje : 27-10-2025, 14d
+        Implementirana kontrola drona : milestone, 0d
+        Simulacija nošenja paketa : 14d
+        Audio i vizualni efekti : 21d
+        Završetak simulacija i efekta : milestone, 0d
 
     section Modeliranje
-        Izgradnja 3D modela : m1, 20-10-2025, 21-12-2025
-        Raspored grada : m2, after m1, 7d
-        Integracija sa funkcionalnosti igre: m3, after m2, 7d
+        Modeli detalja grada : 01-11-2025, 30d
+        Model drona : 7d
+        Raspored grada : 14d
+        Dizajniran tlocrt grada : milestone, 0d
+
+        Modeli građevina : 20-10-2025, 25d
+        Modeli drveća : 10d
+        Modeli za funkcionalnost igre : 20d
+        Završeno modeliranje : milestone, 0d
+        Optimizacija modela : 7d
 
     section Igra
-        Funkcionalnost dostave paketa : i1, 10-11-2025, 21d
+        Funkcionalnost dostave paketa : i1, 10-11-2025, 14d
         Funkcionalnost baterije i punjenja : i2, after i1, 14d
         Početak, završetak, resetiranje igre : i3, after i2, 14d
+        Integracija modela, fizike i logike u Godot : 14d
+        Implementirana funkcionalnost igre : milestone, 0d
+        Testiranje : 14d
 ```
+
+---
+
+### WBS Dijagram
+
+![wbs](wbs.png)
 
 ---
 
