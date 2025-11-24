@@ -4,9 +4,7 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l6mv8"]
 
-[node name="RigidBody3D" type="RigidBody3D"]
-mass = 1.5
-linear_damp = 5.0
+[node name="Package" type="RigidBody3D" groups=["Package"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_20frs")

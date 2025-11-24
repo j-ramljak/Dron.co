@@ -3,12 +3,14 @@
 [ext_resource type="Script" uid="uid://dxh6075hoaryl" path="res://entities/dynamic/drone/drone_player.gd" id="1_3aqr0"]
 [ext_resource type="Script" uid="uid://b88vb72lvdw38" path="res://entities/dynamic/drone/camera_controller.gd" id="2_7ixqd"]
 [ext_resource type="PackedScene" uid="uid://b4wxyehd0lwnj" path="res://entities/dynamic/drone/model.blend" id="2_twc11"]
-[ext_resource type="PackedScene" uid="uid://dfhgdsmnp5dhn" path="res://entities/static/package/package.tscn" id="4_mny65"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mny65"]
 size = Vector3(2.3044434, 0.50219727, 1.982666)
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_7ixqd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mny65"]
+height = 2.465332
 
 [node name="DroneBody3D" type="CharacterBody3D"]
 collision_layer = 3
@@ -39,12 +41,18 @@ transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 9.999
 [node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Hook"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.21569562, 0)
 node_a = NodePath("../..")
-node_b = NodePath("../../RigidBody3D")
 exclude_nodes_from_collision = false
 angular_limit_x/enabled = false
-angular_limit_x/damping = 4.0
 angular_limit_y/enabled = false
 angular_limit_z/enabled = false
 
-[node name="RigidBody3D" parent="." groups=["Package"] instance=ExtResource("4_mny65")]
-transform = Transform3D(0.99994624, 0, 0.01036707, 0, 1, 0, -0.01036707, 0, 0.99994624, 0, -0.8888247, 0)
+[node name="Marker" type="Marker3D" parent="Hook"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0082762, 0)
+
+[node name="Hook area" type="Area3D" parent="Hook"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hook/Hook area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0290527, 0)
+shape = SubResource("CapsuleShape3D_mny65")
+
+[connection signal="body_entered" from="Hook/Hook area" to="." method="_on_hook_area_body_entered"]

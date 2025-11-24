@@ -10,6 +10,10 @@ extends CharacterBody3D
 var acceleration := Vector3.ZERO
 
 
+#HOOK
+@onready var marker = $Hook/Marker
+@onready var joint = $Hook/Generic6DOFJoint3D
+
 
 func _physics_process(delta: float) -> void:
 	
@@ -79,4 +83,22 @@ func push_pushables(delta: float) -> void:
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		pass
+		deattach()
+		
+
+
+
+func _on_hook_area_body_entered(body):
+	if body is RigidBody3D and not joint.node_b and body.is_in_group("Package"):
+		attach(body)
+		
+		
+func attach(body:RigidBody3D):
+		body.global_position = marker.global_position
+		joint.set_node_b(body.get_path())
+	
+func deattach():
+	if not joint.node_b:
+		return
+	$Hook/Generic6DOFJoint3D.set_node_b("")
+	

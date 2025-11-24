@@ -398,5 +398,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 10)
 [node name="brown_corner" parent="." instance=ExtResource("34_dnhof")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -30, 0, 30)
 
-[node name="RigidBody3D" parent="." instance=ExtResource("45_kqrg6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5602074, 0)
+[node name="Package3" parent="." instance=ExtResource("45_kqrg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2440553, 3.5602074, 0)
+
+[node name="Package" parent="." instance=ExtResource("45_kqrg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.732386, 2.3070674, 0)
+
+[node name="Package2" parent="." instance=ExtResource("45_kqrg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0096474, 7.22201)
