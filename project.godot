@@ -26,7 +26,10 @@ folder_colors={
 "res://materials/": "yellow",
 "res://models/": "orange",
 "res://scenes/": "red",
-"res://shared/": "yellow",
+"res://shared/": "gray",
+"res://shared/materials/": "green",
+"res://shared/scripts/": "teal",
+"res://shared/textures/": "blue",
 "res://textures/": "green"
 }
 

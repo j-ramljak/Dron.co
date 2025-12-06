@@ -1,0 +1,70 @@
+[gd_scene load_steps=23 format=3 uid="uid://7xwr1bl0xorn"]
+
+[ext_resource type="PackedScene" uid="uid://cbfywfk1k06su" path="res://entities/static/floors/1_road_I.glb" id="1_7l84s"]
+[ext_resource type="PackedScene" uid="uid://2q6c2e6xhkgw" path="res://entities/static/floors/2_road_I_bus.glb" id="2_jqu5u"]
+[ext_resource type="PackedScene" uid="uid://b6ynkoa6qoeqc" path="res://entities/static/floors/3_road_I_zebra.glb" id="3_pbbam"]
+[ext_resource type="PackedScene" uid="uid://blar5ien322cw" path="res://entities/static/floors/4_road_L.glb" id="4_wqt3w"]
+[ext_resource type="PackedScene" uid="uid://b4d3q6vtvlcsy" path="res://entities/static/floors/5_road_T.glb" id="5_aqetg"]
+[ext_resource type="PackedScene" uid="uid://bgx5bkvskr38h" path="res://entities/static/floors/6_road_X.glb" id="6_0bpsf"]
+[ext_resource type="PackedScene" uid="uid://bynh2avojodwy" path="res://entities/static/floors/7_grass_C.glb" id="7_disi6"]
+[ext_resource type="PackedScene" uid="uid://byorsy8cqjf47" path="res://entities/static/floors/8_grass_I.glb" id="8_0vxvt"]
+[ext_resource type="PackedScene" uid="uid://dwoyfqgfe38c3" path="res://entities/static/floors/9_grass_I2.glb" id="9_0v67c"]
+[ext_resource type="PackedScene" uid="uid://r25dft780t7m" path="res://entities/static/floors/10_grass_L.glb" id="10_gem1n"]
+[ext_resource type="PackedScene" uid="uid://xsi8gp1eeap6" path="res://entities/static/floors/11_grass_L2.glb" id="11_turr1"]
+[ext_resource type="PackedScene" uid="uid://dqenieqkw1h5e" path="res://entities/static/floors/12_grass_O.glb" id="12_uldfr"]
+[ext_resource type="PackedScene" uid="uid://chlx3c5j3gdef" path="res://entities/static/floors/13_grass_U.glb" id="13_kdxi1"]
+[ext_resource type="PackedScene" uid="uid://f3rf14oo3edg" path="res://entities/static/floors/14_concrete_flat.glb" id="14_p4h1p"]
+[ext_resource type="PackedScene" uid="uid://b8c4vrad8c7dv" path="res://entities/static/floors/15_concrete_ornate.glb" id="15_adurc"]
+[ext_resource type="PackedScene" uid="uid://dybsg7o2efbpa" path="res://entities/static/floors/16_concrete_path.glb" id="16_sj8wg"]
+[ext_resource type="PackedScene" uid="uid://cvey5sbc0p5db" path="res://entities/static/floors/17_concrete_tiles.glb" id="17_qobd4"]
+[ext_resource type="PackedScene" uid="uid://dpfyryyajsh8u" path="res://entities/static/floors/18_parking_C.glb" id="18_x1cyf"]
+[ext_resource type="PackedScene" uid="uid://bra4fh72vvj46" path="res://entities/static/floors/19_parking_I.glb" id="19_bmp58"]
+[ext_resource type="PackedScene" uid="uid://bo030c4k7rpjp" path="res://entities/static/floors/20_parking_L.glb" id="20_yfrsl"]
+[ext_resource type="PackedScene" uid="uid://d1bne5irjp2hj" path="res://entities/static/floors/21_parking_R.glb" id="21_6j1mi"]
+[ext_resource type="PackedScene" uid="uid://bq1wsggni81ta" path="res://entities/static/floors/22_roundabout.glb" id="22_l4j37"]
+
+[node name="TileMeshLibrary" type="Node3D"]
+
+[node name="1_road_I2" parent="." instance=ExtResource("1_7l84s")]
+
+[node name="2_road_I_bus2" parent="." instance=ExtResource("2_jqu5u")]
+
+[node name="3_road_I_zebra2" parent="." instance=ExtResource("3_pbbam")]
+
+[node name="4_road_L2" parent="." instance=ExtResource("4_wqt3w")]
+
+[node name="5_road_T2" parent="." instance=ExtResource("5_aqetg")]
+
+[node name="6_road_X2" parent="." instance=ExtResource("6_0bpsf")]
+
+[node name="7_grass_C2" parent="." instance=ExtResource("7_disi6")]
+
+[node name="8_grass_I2" parent="." instance=ExtResource("8_0vxvt")]
+
+[node name="9_grass_I22" parent="." instance=ExtResource("9_0v67c")]
+
+[node name="10_grass_L2" parent="." instance=ExtResource("10_gem1n")]
+
+[node name="11_grass_L22" parent="." instance=ExtResource("11_turr1")]
+
+[node name="12_grass_O2" parent="." instance=ExtResource("12_uldfr")]
+
+[node name="13_grass_U2" parent="." instance=ExtResource("13_kdxi1")]
+
+[node name="14_concrete_flat2" parent="." instance=ExtResource("14_p4h1p")]
+
+[node name="15_concrete_ornate2" parent="." instance=ExtResource("15_adurc")]
+
+[node name="16_concrete_path2" parent="." instance=ExtResource("16_sj8wg")]
+
+[node name="17_concrete_tiles2" parent="." instance=ExtResource("17_qobd4")]
+
+[node name="18_parking_C2" parent="." instance=ExtResource("18_x1cyf")]
+
+[node name="19_parking_I2" parent="." instance=ExtResource("19_bmp58")]
+
+[node name="20_parking_L2" parent="." instance=ExtResource("20_yfrsl")]
+
+[node name="21_parking_R2" parent="." instance=ExtResource("21_6j1mi")]
+
+[node name="22_roundabout2" parent="." instance=ExtResource("22_l4j37")]
