@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://rmbm2tujnepm"]
+[gd_scene load_steps=9 format=3 uid="uid://rmbm2tujnepm"]
 
 [ext_resource type="PackedScene" uid="uid://c8518p5fip7jw" path="res://entities/dynamic/drone/drone_body_3d.tscn" id="1_jjgbg"]
+[ext_resource type="Shader" uid="uid://yqo4v1j6du5j" path="res://shared/materials/outline.gdshader" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://2qydddknolyo" path="res://scenes/town.tscn" id="2_0wfyh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7u77a"]
@@ -23,6 +24,18 @@ ssil_normal_rejection = 0.0
 fog_mode = 1
 fog_density = 1.0
 
+[sub_resource type="QuadMesh" id="QuadMesh_sugp2"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
+render_priority = 0
+shader = ExtResource("1_sugp2")
+shader_parameter/normal_threshold = 2.0
+shader_parameter/depth_threshold = 0.05
+shader_parameter/depth_artifact_correction_coef = 2.0
+shader_parameter/outline_color = Color(0.15127608, 0.15127608, 0.15127608, 1)
+
 [node name="Main" type="Node3D"]
 
 [node name="Environment" type="Node3D" parent="."]
@@ -31,10 +44,15 @@ fog_density = 1.0
 environment = SubResource("Environment_bo1nx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(-0.8660254, -0.4330128, 0.25000003, 0, 0.49999994, 0.8660255, -0.5000001, 0.75, -0.43301263, 0, 0, 0)
+transform = Transform3D(-0.50603384, -0.6098892, 0.6098892, 0, 0.70710677, 0.70710677, -0.8625136, 0.35781994, -0.35781994, 0, 0, 0)
 light_angular_distance = 2.0
 shadow_enabled = true
 directional_shadow_blend_splits = true
+
+[node name="OutlineEffect" type="MeshInstance3D" parent="Environment"]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_sugp2")
+surface_material_override/0 = SubResource("ShaderMaterial_tbgi4")
 
 [node name="Town" parent="." instance=ExtResource("2_0wfyh")]
 
