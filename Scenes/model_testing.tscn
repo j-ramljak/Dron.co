@@ -1,8 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bn7xtrgqo3gag"]
+[gd_scene load_steps=14 format=3 uid="uid://bn7xtrgqo3gag"]
 
 [ext_resource type="PackedScene" uid="uid://rgglxthlrbva" path="res://entities/static/foliage/1_green_large-col.glb" id="1_e2kgr"]
 [ext_resource type="PackedScene" uid="uid://c24loji1h7agr" path="res://entities/static/foliage/2_green_medium-col.glb" id="2_s6a1a"]
 [ext_resource type="PackedScene" uid="uid://dxgn61xlixg5b" path="res://entities/static/foliage/3_green_small-col.glb" id="3_hcvxx"]
+[ext_resource type="PackedScene" uid="uid://cfawf0f634a00" path="res://entities/static/foliage/4_green_tiny-col.glb" id="4_tctfw"]
+[ext_resource type="PackedScene" uid="uid://do66rg226vdwh" path="res://entities/static/foliage/5_orange_large-col.glb" id="5_bit84"]
+[ext_resource type="PackedScene" uid="uid://dvp6muneofhfj" path="res://entities/static/foliage/6_orange_medium-col.glb" id="6_2m4r1"]
+[ext_resource type="PackedScene" uid="uid://bftigqls7pqjk" path="res://entities/static/foliage/7_orange_small-col.glb" id="7_h6k3l"]
+[ext_resource type="PackedScene" uid="uid://ve7w7abkdt63" path="res://entities/static/foliage/8_orange_tiny-col.glb" id="8_q888p"]
+[ext_resource type="PackedScene" uid="uid://db7w0nr3quk4r" path="res://entities/static/foliage/9_blue_large-col.glb" id="9_3ds1s"]
+[ext_resource type="PackedScene" uid="uid://3408cbarjc2e" path="res://entities/static/foliage/10_blue_medium-col.glb" id="10_d8om2"]
+[ext_resource type="PackedScene" uid="uid://d05fn0whk4msw" path="res://entities/static/foliage/11_blue_small-col.glb" id="11_acxp2"]
+[ext_resource type="PackedScene" uid="uid://cxqjdwje68ts6" path="res://entities/static/foliage/12_blue_tiny-col.glb" id="12_kmqqd"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4bumx"]
 size = Vector2(100, 100)
@@ -13,10 +22,37 @@ size = Vector2(100, 100)
 mesh = SubResource("PlaneMesh_4bumx")
 
 [node name="1_green_large" parent="." instance=ExtResource("1_e2kgr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 10)
 
 [node name="2_green_medium" parent="." instance=ExtResource("2_s6a1a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10)
 
 [node name="3_green_small" parent="." instance=ExtResource("3_hcvxx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10)
+
+[node name="4_green_tiny" parent="." instance=ExtResource("4_tctfw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 10)
+
+[node name="5_orange_large" parent="." instance=ExtResource("5_bit84")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -10)
+
+[node name="6_orange_medium" parent="." instance=ExtResource("6_2m4r1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10)
+
+[node name="7_orange_small" parent="." instance=ExtResource("7_h6k3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10)
+
+[node name="8_orange_tiny" parent="." instance=ExtResource("8_q888p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -10)
+
+[node name="9_blue_large" parent="." instance=ExtResource("9_3ds1s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -30)
+
+[node name="10_blue_medium" parent="." instance=ExtResource("10_d8om2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -30)
+
+[node name="11_blue_small" parent="." instance=ExtResource("11_acxp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -30)
+
+[node name="12_blue_tiny" parent="." instance=ExtResource("12_kmqqd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -30)
