@@ -5,3 +5,5 @@
 [resource]
 diffuse_mode = 3
 albedo_texture = ExtResource("1_iepfu")
+subsurf_scatter_strength = 1.0
+proximity_fade_distance = 10.0

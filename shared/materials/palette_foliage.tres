@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cu7h6lcr65gxa"]
+
+[ext_resource type="Texture2D" uid="uid://vjuwtqc8q2d4" path="res://shared/textures/palette.png" id="1_2fgeq"]
+
+[resource]
+shading_mode = 2
+diffuse_mode = 3
+albedo_texture = ExtResource("1_2fgeq")
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 1.0
+disable_receive_shadows = true
+proximity_fade_distance = 10.0

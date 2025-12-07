@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bn7xtrgqo3gag"]
+
+[ext_resource type="PackedScene" uid="uid://rgglxthlrbva" path="res://entities/static/foliage/1_green_large-col.glb" id="1_e2kgr"]
+[ext_resource type="PackedScene" uid="uid://c24loji1h7agr" path="res://entities/static/foliage/2_green_medium-col.glb" id="2_s6a1a"]
+[ext_resource type="PackedScene" uid="uid://dxgn61xlixg5b" path="res://entities/static/foliage/3_green_small-col.glb" id="3_hcvxx"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4bumx"]
+size = Vector2(100, 100)
+
+[node name="ModelTesting" type="Node3D"]
+
+[node name="Plane" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_4bumx")
+
+[node name="1_green_large" parent="." instance=ExtResource("1_e2kgr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="2_green_medium" parent="." instance=ExtResource("2_s6a1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 10)
+
+[node name="3_green_small" parent="." instance=ExtResource("3_hcvxx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 10)
