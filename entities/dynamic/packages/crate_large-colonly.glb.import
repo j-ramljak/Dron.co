@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cuwfgy7muyhyo"
-path="res://.godot/imported/box_large.glb-a521e5bbc9a6d9a46d21a6a078592d21.scn"
+uid="uid://cqsi5iqivhknp"
+path="res://.godot/imported/crate_large-colonly.glb-bc2bbee8987659968fbf6790bf69e1f0.scn"
 
 [deps]
 
-source_file="res://entities/static/packages/box_large.glb"
-dest_files=["res://.godot/imported/box_large.glb-a521e5bbc9a6d9a46d21a6a078592d21.scn"]
+source_file="res://entities/dynamic/packages/crate_large-colonly.glb"
+dest_files=["res://.godot/imported/crate_large-colonly.glb-bc2bbee8987659968fbf6790bf69e1f0.scn"]
 
 [params]
 

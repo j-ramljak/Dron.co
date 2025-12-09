@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dwgxij5ls8cu0"
-path="res://.godot/imported/crate_large.glb-5ca86734e59deca913e9d9f446a9a07b.scn"
+uid="uid://bfnwsaainrw3i"
+path="res://.godot/imported/charger_model.glb-33c8c9fe3cf980262d50f35f251432e5.scn"
 
 [deps]
 
-source_file="res://entities/static/packages/crate_large.glb"
-dest_files=["res://.godot/imported/crate_large.glb-5ca86734e59deca913e9d9f446a9a07b.scn"]
+source_file="res://entities/dynamic/stations/charger_model.glb"
+dest_files=["res://.godot/imported/charger_model.glb-33c8c9fe3cf980262d50f35f251432e5.scn"]
 
 [params]
 
