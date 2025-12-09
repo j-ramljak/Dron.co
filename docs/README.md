@@ -28,13 +28,13 @@
     - [ ] detalji grada (ulična rasvjeta, semafori, štandovi, klupe, vozila...) `[?]`
     - [ ] raspored grada `[?]`
     - [ ] model drona `[?]`
+	- [ ] oznake dostave (neki nacin da se zna kamo treba dostaviti) `[martin]`
 - Gameplay
 	- [ ] dostavljanje paketa `[?]`
-    - [ ] korisničko sučelje (title screen, baterija, vrijeme, death screen) `[martin]`
-	- [ ] baterija `[martin]`
+    - [ ] korisničko sučelje (title screen, baterija, vrijeme, death screen) `[martin, ...]`
+	- [x] baterija (pražnjenje, postaja za punjenje) `[martin]`
 	- [ ] štopanje dostavljanja paketa `[?]`
 	- [ ] death mechanic (sudar, prazna baterija, granice mape "no signal") `[?]`
-	- [ ] oznake dostave (neki nacin da se zna kamo treba dostaviti) `[martin]`
 - Dokumentacija 
 	- [x] Plan projekta
 	- [ ] Tehnička dokumentacija
@@ -49,6 +49,7 @@
 </summary>
 
 > [!NOTE]
+>
 > Alati
 > - Alat za Gantt: https://www.mermaidchart.com/play?utm_source=mermaid_live_editor
 > - Dokumentacija za Mermaid: https://mermaid.js.org/syntax/gantt.html
@@ -72,8 +73,6 @@
 ---
 config:
   theme: dark
-  // gantt:
-    // useWidth: 1000
 ---
 gantt
     dateFormat DD-MM-YYYY
@@ -94,6 +93,7 @@ gantt
         3. sastanak tima                                : milestone, 31-10-2025, 0d
         3. sastanak s mentoricom                        : milestone, 07-11-2025, 0d
 ```
+
 ```mermaid
 ---
 config:
@@ -144,11 +144,10 @@ gantt
 
 >[!NOTE]
 > Upute za export grafa u sliku
->
->1. Kopirati source kod grafa (sve unutar "mermaid" bloka)
->2. https://www.mermaidchart.com/play?utm_source=mermaid_live_editor
->3. `theme: neutral`
->4. Export
+> 1. Kopirati source kod grafa (sve unutar "mermaid" bloka)
+> 2. https://www.mermaidchart.com/play?utm_source=mermaid_live_editor
+> 3. `theme: neutral`
+> 4. Export
 
 
 </details>
