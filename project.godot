@@ -14,6 +14,10 @@ config/name="Dron.co"
 run/main_scene="uid://rmbm2tujnepm"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
+[display]
+
+window/size/mode=2
+
 [editor_plugins]
 
 enabled=PackedStringArray()
@@ -29,6 +33,10 @@ folder_colors={
 "res://shared/": "yellow",
 "res://textures/": "green"
 }
+
+[global_group]
+
+Package=""
 
 [input]
 

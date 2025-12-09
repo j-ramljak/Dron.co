@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://b435mixmpbswu"]
+[gd_scene load_steps=59 format=3 uid="uid://b435mixmpbswu"]
 
 [ext_resource type="PackedScene" uid="uid://dj53ujh0j7e4f" path="res://entities/static/tiles/concrete_flat.blend" id="1_bit84"]
 [ext_resource type="PackedScene" uid="uid://cguehnmru4c0w" path="res://entities/static/tiles/road_I.blend" id="1_g1etx"]
@@ -51,6 +51,9 @@
 [ext_resource type="PackedScene" uid="uid://743ymas5kson" path="res://entities/static/buildings/green_tall.blend" id="49_bl20m"]
 [ext_resource type="PackedScene" uid="uid://cv07lajcdku8f" path="res://entities/static/buildings/blue_straight.blend" id="50_37nrt"]
 [ext_resource type="PackedScene" uid="uid://3b30n5ftrwrg" path="res://entities/static/buildings/blue_short.blend" id="51_cveu1"]
+[ext_resource type="PackedScene" uid="uid://c8518p5fip7jw" path="res://entities/dynamic/drone/drone_body_3d.tscn" id="52_1ambk"]
+[ext_resource type="PackedScene" uid="uid://1sb87ldpclf1" path="res://entities/static/package/package_spawn_point.tscn" id="52_hxcbl"]
+[ext_resource type="PackedScene" uid="uid://dfhgdsmnp5dhn" path="res://entities/static/package/package.tscn" id="54_jkahc"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sxrkb"]
 
@@ -290,3 +293,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 46)
 
 [node name="blue_short" parent="Buildings" instance=ExtResource("51_cveu1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 26)
+
+[node name="Package Spawn Point" parent="." instance=ExtResource("52_hxcbl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77829504, 0)
+
+[node name="DroneBody3D" parent="." instance=ExtResource("52_1ambk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.297655, 5.147946, 0)
+motion_mode = 1
+
+[node name="RigidBody3D" parent="." instance=ExtResource("54_jkahc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.688233, 3.9808726, 0)

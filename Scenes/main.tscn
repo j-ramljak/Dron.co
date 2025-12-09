@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://rmbm2tujnepm"]
+[gd_scene load_steps=49 format=3 uid="uid://rmbm2tujnepm"]
 
 [ext_resource type="PackedScene" uid="uid://cguehnmru4c0w" path="res://entities/static/tiles/road_I.blend" id="1_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://c8518p5fip7jw" path="res://entities/dynamic/drone/drone_body_3d.tscn" id="1_jjgbg"]
@@ -44,6 +44,7 @@
 [ext_resource type="PackedScene" uid="uid://cd3la15qhh85h" path="res://entities/static/buildings/green_straight.blend" id="42_cjqg0"]
 [ext_resource type="PackedScene" uid="uid://bqa8eridjvs3h" path="res://entities/static/buildings/orange_inset.blend" id="43_vchkt"]
 [ext_resource type="PackedScene" uid="uid://743ymas5kson" path="res://entities/static/buildings/green_tall.blend" id="44_txyw0"]
+[ext_resource type="PackedScene" uid="uid://dfhgdsmnp5dhn" path="res://entities/static/package/package.tscn" id="45_kqrg6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7u77a"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -362,7 +363,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -40,
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -40, 0, -40)
 
 [node name="DroneBody3D" parent="." instance=ExtResource("1_jjgbg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 3.248664, -9.949757)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.2581186, -11.640816)
 
 [node name="gray_straight" parent="." instance=ExtResource("20_2cjbq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 40)
@@ -396,3 +397,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 10)
 
 [node name="brown_corner" parent="." instance=ExtResource("34_dnhof")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -30, 0, 30)
+
+[node name="Package3" parent="." instance=ExtResource("45_kqrg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2440553, 3.5602074, 0)
+
+[node name="Package" parent="." instance=ExtResource("45_kqrg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.732386, 2.3070674, 0)
+
+[node name="Package2" parent="." instance=ExtResource("45_kqrg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0096474, 7.22201)

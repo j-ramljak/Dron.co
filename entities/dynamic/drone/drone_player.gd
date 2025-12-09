@@ -3,10 +3,17 @@ extends CharacterBody3D
 @export var SPEED = 50.0
 @export var JOYSTICK_LOOK_SENSITIVITY = 2.0
 @export var FRICTION = 0.9
+
 @export var TILT_STRENGTH = 0.2
 @export var TILT_SMOOTHNESS = 4.0
 
 var acceleration := Vector3.ZERO
+
+
+#HOOK
+@onready var marker = $Hook/Marker
+@onready var joint = $Hook/Generic6DOFJoint3D
+
 
 func _physics_process(delta: float) -> void:
 	
@@ -40,7 +47,8 @@ func _physics_process(delta: float) -> void:
 	# Hover effect
 	position.y += sin(Time.get_ticks_msec() / 500.0) / 1000.0
 
-	move_and_slide()
+	push_pushables(delta)
+
 
 	# Rotation effect
 	if direction != Vector3.ZERO:
@@ -53,3 +61,44 @@ func _physics_process(delta: float) -> void:
 	else:
 		rotation.x = lerp(rotation.x, 0.0, TILT_SMOOTHNESS * delta)
 		rotation.z = lerp(rotation.z, 0.0, TILT_SMOOTHNESS * delta)
+	
+	
+	move_and_slide()
+	
+	
+func push_pushables(delta: float) -> void:
+	var col := get_last_slide_collision()
+
+	if col:
+		var col_collider := col.get_collider()
+		var col_position := col.get_position()
+
+		if not col_collider is RigidBody3D or col_collider.is_in_group("Package"):
+			return
+				
+		var push_direction := -col.get_normal()
+		var push_position = col_position - col_collider.global_position
+		col_collider.apply_impulse(push_direction * 30 * delta, push_position)
+
+
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		deattach()
+		
+
+
+
+func _on_hook_area_body_entered(body):
+	if body is RigidBody3D and not joint.node_b and body.is_in_group("Package"):
+		attach(body)
+		
+		
+func attach(body:RigidBody3D):
+		body.global_position = marker.global_position
+		joint.set_node_b(body.get_path())
+	
+func deattach():
+	if not joint.node_b:
+		return
+	$Hook/Generic6DOFJoint3D.set_node_b("")
+	
