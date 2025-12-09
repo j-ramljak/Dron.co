@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8518p5fip7jw"]
+[gd_scene load_steps=11 format=3 uid="uid://c8518p5fip7jw"]
 
 [ext_resource type="Script" uid="uid://dxh6075hoaryl" path="res://entities/dynamic/drone/drone_player.gd" id="1_3aqr0"]
 [ext_resource type="Script" uid="uid://b88vb72lvdw38" path="res://entities/dynamic/drone/camera_controller.gd" id="2_7ixqd"]
 [ext_resource type="PackedScene" uid="uid://b4wxyehd0lwnj" path="res://entities/dynamic/drone/model.blend" id="2_twc11"]
+[ext_resource type="Script" uid="uid://cks2ue7muwtvh" path="res://entities/dynamic/drone/components/hook_component.gd" id="4_mny65"]
+[ext_resource type="Script" uid="uid://bih338kktsyyh" path="res://entities/dynamic/drone/components/movement_component.gd" id="5_aw4du"]
+[ext_resource type="Script" uid="uid://epe38kg0move" path="res://entities/dynamic/drone/components/death_component.gd" id="5_i2hpc"]
+[ext_resource type="Script" uid="uid://cxoc3pwns64mr" path="res://entities/dynamic/drone/components/battery_component.gd" id="6_lakys"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mny65"]
 size = Vector3(2.3044434, 0.50219727, 1.982666)
@@ -17,16 +21,33 @@ collision_layer = 3
 motion_mode = 1
 script = ExtResource("1_3aqr0")
 
-[node name="model" parent="." instance=ExtResource("2_twc11")]
+[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("DRONE")]
+script = ExtResource("5_aw4du")
+DRONE = NodePath("..")
+
+[node name="HookComponent" type="Node" parent="." node_paths=PackedStringArray("MARKER", "JOINT")]
+script = ExtResource("4_mny65")
+MARKER = NodePath("../Hook/Marker")
+JOINT = NodePath("../Hook/Generic6DOFJoint3D")
+
+[node name="BatteryComponent" type="Node" parent="."]
+script = ExtResource("6_lakys")
+
+[node name="DeathComponent" type="Node" parent="." node_paths=PackedStringArray("DRONE")]
+script = ExtResource("5_i2hpc")
+DRONE = NodePath("..")
+
+[node name="Model" parent="." instance=ExtResource("2_twc11")]
 transform = Transform3D(-2, 0, -3.019916e-07, 0, 2, 0, 3.019916e-07, 0, -2, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0227983, 0)
 shape = SubResource("BoxShape3D_mny65")
 
-[node name="CameraController" type="Node3D" parent="."]
+[node name="CameraController" type="Node3D" parent="." node_paths=PackedStringArray("MOVEMENT_COMPONENT")]
 top_level = true
 script = ExtResource("2_7ixqd")
+MOVEMENT_COMPONENT = NodePath("../MovementComponent")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraController"]
 transform = Transform3D(1, 0, 0, 0, 0.9781476, 0.2079117, 0, -0.2079117, 0.9781476, 0.0052723885, -2.3841858e-07, 0.010622501)
@@ -55,4 +76,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0082762, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0290527, 0)
 shape = SubResource("CapsuleShape3D_mny65")
 
-[connection signal="body_entered" from="Hook/Hook area" to="." method="_on_hook_area_body_entered"]
+[connection signal="body_entered" from="Hook/Hook area" to="HookComponent" method="_on_hook_area_body_entered"]

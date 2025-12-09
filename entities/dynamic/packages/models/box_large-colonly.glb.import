@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cogkrpjkylm6q"
-path="res://.godot/imported/box_large-colonly.glb-55af910b831770f3c4b36a7ac89e344c.scn"
+path="res://.godot/imported/box_large-colonly.glb-eae329d385cf0346fbb2173cc23a63bc.scn"
 
 [deps]
 
-source_file="res://entities/dynamic/packages/box_large-colonly.glb"
-dest_files=["res://.godot/imported/box_large-colonly.glb-55af910b831770f3c4b36a7ac89e344c.scn"]
+source_file="res://entities/dynamic/packages/models/box_large-colonly.glb"
+dest_files=["res://.godot/imported/box_large-colonly.glb-eae329d385cf0346fbb2173cc23a63bc.scn"]
 
 [params]
 
