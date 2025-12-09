@@ -10,39 +10,32 @@
 </summary>
 
 - Simulacija
-	- [x] kontrole
-	    - [x] kontroler
-	    - [x] tipkovnica
-    - [x] kolizija
-    - [ ] nošenje paketa
-    - [ ] efekt vjetra
+	- [x] letjenje (kontroler, tipkovnica) `[leon, stjepan]`
+    - [x] kolizija `[leon, stjepan]`
+    - [x] nošenje paketa `[jakov]`
+    - [ ] efekt vjetra `[?]`
 - Efekti
-    - [x] "responzivne" kontrole
-        - glatka kamera, glatko kretanje, naginjanje pri kretanju/skretanju
-    - [ ] Korisničko sučelje
-        - title screen, baterija, vrijeme, death screen
-    - [ ] rotiranje propelera
-    - [ ] Audio efekti
-    - [x] Post processing efekt (za stil)
+    - [x] "responzivne" kontrole (smooth kamera, smooth kretanje, naginjanje pri kretanju) `[stjepan]`
+    - [x] stilski efekti (post processing, nebo) `[martin]`
+    - [ ] rotiranje propelera `[?]`
+    - [ ] audio efekti (dron, alarm, pokupljanje paketa...) `[?]`
 - Modeliranje
-    - [x] podloge grada
-    - [x] građevine
-    - [ ] drveća/grmlje
-    - [ ] detalji grada
-        - (ulična rasvjeta, prometni znakovi, semafor, kante i kontejneri za smeće, štandovi, klupe, vozila,...)
-    - [ ] raspored grada
-    - [ ] model drona
-    - [ ] modeli paketa
-    - [ ] postaja, punjač, prepreke
-- Gameplay mechanics
-	- [ ] dostavljanje paketa
-	- [ ] mjerenje vremena dostavljanja paketa
-	- [ ] baterija
-	- [ ] death mechanic
-        - sudar, prazna baterija, granice mape ("no signal")
-	- [ ] oznake dostave
-	    - neki nacin da se zna kamo treba dostaviti
-- Dokumentacija
+    - [x] podloge grada `[martin]`
+    - [x] građevine `[martin]`
+    - [x] drveća `[martin]`
+    - [x] modeli paketa `[martin]`
+    - [x] glavna postaja, punjač `[martin]`
+    - [ ] detalji grada (ulična rasvjeta, semafori, štandovi, klupe, vozila...) `[?]`
+    - [ ] raspored grada `[?]`
+    - [ ] model drona `[?]`
+- Gameplay
+	- [ ] dostavljanje paketa `[?]`
+    - [ ] korisničko sučelje (title screen, baterija, vrijeme, death screen) `[martin]`
+	- [ ] baterija `[martin]`
+	- [ ] štopanje dostavljanja paketa `[?]`
+	- [ ] death mechanic (sudar, prazna baterija, granice mape "no signal") `[?]`
+	- [ ] oznake dostave (neki nacin da se zna kamo treba dostaviti) `[martin]`
+- Dokumentacija 
 	- [x] Plan projekta
 	- [ ] Tehnička dokumentacija
 </details>
@@ -61,8 +54,9 @@
 > - Dokumentacija za Mermaid: https://mermaid.js.org/syntax/gantt.html
 > - Alat za WBS: https://online.visual-paradigm.com/diagrams/features/work-breakdown-structure-software/
 > 
-> Third party stvari
+> Assets
 > - Outline shader (MIT Lisence): https://godotshaders.com/shader/sobel-outline-shader/
+> - Skybox (Royalty Free License): https://freestylized.com/skybox/sky_22/
 
 </details>
 
@@ -149,7 +143,7 @@ gantt
 ```
 
 >[!NOTE]
->Upute za export grafa u sliku
+> Upute za export grafa u sliku
 >
 >1. Kopirati source kod grafa (sve unutar "mermaid" bloka)
 >2. https://www.mermaidchart.com/play?utm_source=mermaid_live_editor
