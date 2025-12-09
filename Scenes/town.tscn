@@ -1,0 +1,64 @@
+[gd_scene load_steps=12 format=3 uid="uid://2qydddknolyo"]
+
+[ext_resource type="MeshLibrary" uid="uid://ltwn0egw2emn" path="res://entities/static/mesh_library/tree_mesh_library.tres" id="3_ms2es"]
+[ext_resource type="PackedScene" uid="uid://bxla0ipmb0khh" path="res://entities/dynamic/stations/headquarters_model.glb" id="4_eruj1"]
+[ext_resource type="PackedScene" uid="uid://bfnwsaainrw3i" path="res://entities/dynamic/stations/charger_model.glb" id="5_1jyyf"]
+[ext_resource type="PackedScene" uid="uid://cogkrpjkylm6q" path="res://entities/dynamic/packages/box_large-colonly.glb" id="6_po04c"]
+[ext_resource type="PackedScene" uid="uid://8ijacxccr6og" path="res://entities/dynamic/packages/box_medium-colonly.glb" id="7_u4arb"]
+[ext_resource type="PackedScene" uid="uid://bcmwg525k0r0e" path="res://entities/dynamic/packages/box_small-colonly.glb" id="8_icc4n"]
+[ext_resource type="PackedScene" uid="uid://cqsi5iqivhknp" path="res://entities/dynamic/packages/crate_large-colonly.glb" id="9_b0eaf"]
+[ext_resource type="PackedScene" uid="uid://bv6puopfxxcsd" path="res://entities/dynamic/packages/crate_medium-colonly.glb" id="10_uutfq"]
+[ext_resource type="PackedScene" uid="uid://dc4tso6bi8mxw" path="res://entities/dynamic/packages/crate_small-colonly.glb" id="11_b00ts"]
+[ext_resource type="MeshLibrary" uid="uid://jm8koq3bc4ac" path="res://entities/static/mesh_library/building_mesh_library.tres" id="43_me5gh"]
+[ext_resource type="MeshLibrary" uid="uid://shb3s2x2xvvn" path="res://entities/static/mesh_library/floor_mesh_library.tres" id="44_212ta"]
+
+[node name="Town" type="Node3D"]
+
+[node name="BuildingGridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("43_me5gh")
+cell_size = Vector3(10, 10, 10)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(7, 0, 655388, 9, 0, 655388, 12, 0, 1048622, 13, 1, 1048622, 12, 1, 1048622, 11, 1, 1048622, 6, 2, 1048622, 65534, 2, 655384, 65534, 1, 655385, 65533, 2, 1048603, 65534, 65534, 1441803, 65534, 65535, 655368, 65533, 65535, 1048592, 65531, 0, 1441801, 65531, 65535, 10, 65532, 1, 12, 65531, 1, 7, 65531, 3, 1048591, 65531, 4, 1048579, 65532, 3, 655364, 65532, 2, 1048587, 65534, 4, 5, 65535, 4, 2, 0, 4, 14, 1, 4, 11, 2, 4, 17, 0, 2, 655361, 0, 1, 4, 1, 1, 2, 2, 1, 19, 2, 2, 655366, 1, 2, 655370, 1, 65534, 655378, 0, 65534, 1048597, 2, 65534, 655369, 2, 65533, 24, 0, 65533, 655367, 65534, 65532, 1441815, 65534, 65533, 1441818, 65533, 65533, 655380, 65533, 65532, 1048589, 65531, 65532, 655360, 65531, 65533, 655361)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="FloorGridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("44_212ta")
+cell_size = Vector3(10, 10, 10)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65535, 0, 5, 65535, 1, 2, 65535, 2, 1, 65534, 3, 1441794, 65533, 3, 3, 0, 3, 1048578, 1, 3, 1048576, 2, 3, 1048576, 0, 0, 1048578, 65534, 0, 1441794, 65533, 0, 1048576, 65532, 65535, 0, 65532, 65534, 1441795, 65531, 65533, 655376, 65535, 65535, 655362, 65535, 65534, 655382, 65535, 65533, 655361, 0, 65532, 1048576, 1, 65532, 1441794, 2, 65532, 1048576, 65532, 65533, 12, 65532, 0, 1048579, 65535, 65532, 3, 65535, 3, 1048580, 0, 65535, 16, 65534, 2, 13, 65534, 1, 13, 65533, 1, 1441806, 65532, 1, 1441808, 65531, 1, 13, 65531, 0, 13, 65531, 65535, 13, 65531, 65534, 1048578, 65531, 2, 1441806, 65531, 3, 1441808, 65531, 4, 1441808, 65532, 2, 13, 65533, 2, 13, 65531, 65532, 655376, 65532, 65532, 655372, 65533, 65532, 13, 65534, 65532, 13, 65534, 65533, 13, 65534, 65534, 13, 65534, 65535, 13, 65533, 65535, 13, 65533, 65534, 14, 65533, 65533, 13, 0, 65533, 13, 1, 65533, 1441808, 1, 65534, 13, 2, 65534, 13, 2, 65533, 13, 2, 2, 13, 2, 1, 13, 1, 1, 13, 0, 1, 13, 0, 2, 13, 1, 2, 13, 2, 4, 13, 1, 4, 13, 0, 4, 13, 65535, 4, 13, 65534, 4, 13, 65533, 4, 655360, 65532, 3, 13, 65532, 4, 1441803, 1, 0, 1441816, 2, 0, 1441817, 0, 65534, 655377, 1, 65535, 1441811, 2, 65535, 1441812, 65529, 65534, 1441813, 2, 65529, 655369, 1, 65529, 1048584, 0, 65529, 1048602, 65535, 65529, 1441801, 2, 65530, 8, 1, 65530, 655388, 0, 65530, 1441823, 65535, 65530, 655368, 2, 65531, 1048585, 1, 65531, 1441818, 0, 65531, 1441800, 65535, 65531, 9, 65521, 65531, 13, 65521, 65532, 13, 65521, 65533, 13, 65521, 65534, 13, 65521, 65535, 13, 65522, 65531, 13, 65522, 65532, 16, 65522, 65533, 16, 65522, 65534, 16, 65522, 65535, 13, 65523, 65531, 13, 65523, 65532, 16, 65523, 65533, 14, 65523, 65534, 16, 65523, 65535, 13, 65524, 65531, 13, 65524, 65532, 16, 65524, 65533, 16, 65524, 65534, 16, 65524, 65535, 13, 65525, 65531, 13, 65525, 65532, 13, 65525, 65533, 13, 65525, 65534, 13, 65525, 65535, 13)
+}
+
+[node name="TreeGridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("3_ms2es")
+cell_size = Vector3(2.5, 2.5, 2.5)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(4, 65510, 655362, 0, 65510, 655363, 8, 65511, 1441795, 5, 65511, 1441796, 65534, 65511, 1441793, 65535, 65513, 1441802, 65533, 65513, 655367, 8, 65514, 1441797, 0, 65516, 655365, 65533, 65516, 655371, 10, 65517, 1441792, 3, 65517, 1441794)
+}
+
+[node name="headquarters_model2" parent="." instance=ExtResource("4_eruj1")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -125, 0, -35)
+
+[node name="charger_model2" parent="." instance=ExtResource("5_1jyyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -135, 0, -25)
+
+[node name="box_large" parent="." instance=ExtResource("6_po04c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -126.61312, 0.8500007, -18.854038)
+
+[node name="box_medium" parent="." instance=ExtResource("7_u4arb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125.61399, 0.60000026, -21.576168)
+
+[node name="box_small" parent="." instance=ExtResource("8_icc4n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -123.818825, 0.5999998, -19.10536)
+
+[node name="crate_large" parent="." instance=ExtResource("9_b0eaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.244774, 0.85000026, -26.210466)
+
+[node name="crate_medium" parent="." instance=ExtResource("10_uutfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120.59976, 0.60000026, -23.9284)
+
+[node name="crate_small" parent="." instance=ExtResource("11_b00ts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -118.35833, 0.60000026, -21.822643)

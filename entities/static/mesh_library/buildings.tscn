@@ -1,0 +1,88 @@
+[gd_scene load_steps=29 format=3 uid="uid://b5p4x2uj8504y"]
+
+[ext_resource type="PackedScene" uid="uid://84vds6pdsqsg" path="res://entities/static/buildings/01_blue_corner.glb" id="1_ly16d"]
+[ext_resource type="PackedScene" uid="uid://b7i2pyb8b4ya2" path="res://entities/static/buildings/02_blue_short.glb" id="2_1piw4"]
+[ext_resource type="PackedScene" uid="uid://bjb75eiwkxj3y" path="res://entities/static/buildings/03_blue_straight.glb" id="3_y458v"]
+[ext_resource type="PackedScene" uid="uid://dxew7vyxiu3s2" path="res://entities/static/buildings/04_blue_tall.glb" id="4_mequ0"]
+[ext_resource type="PackedScene" uid="uid://m0lsog2rmosf" path="res://entities/static/buildings/05_brown_corner.glb" id="5_id816"]
+[ext_resource type="PackedScene" uid="uid://n21br5otyhaj" path="res://entities/static/buildings/06_brown_half.glb" id="6_f06np"]
+[ext_resource type="PackedScene" uid="uid://2cbfwncjxgcj" path="res://entities/static/buildings/07_brown_straight.glb" id="7_42m1c"]
+[ext_resource type="PackedScene" uid="uid://cg413vtfldg3l" path="res://entities/static/buildings/08_brown_tall.glb" id="8_e2ad1"]
+[ext_resource type="PackedScene" uid="uid://c031pl3xprna4" path="res://entities/static/buildings/09_gray_corner.glb" id="9_sm3m3"]
+[ext_resource type="PackedScene" uid="uid://cs8ut5au2ve04" path="res://entities/static/buildings/10_gray_half.glb" id="10_s4fft"]
+[ext_resource type="PackedScene" uid="uid://cwa1xqdobt7xw" path="res://entities/static/buildings/11_gray_half_corner.glb" id="11_6imhd"]
+[ext_resource type="PackedScene" uid="uid://62a3umndbjgb" path="res://entities/static/buildings/12_gray_straight.glb" id="12_iyde7"]
+[ext_resource type="PackedScene" uid="uid://44de8thyh6do" path="res://entities/static/buildings/13_green_half.glb" id="13_6agwk"]
+[ext_resource type="PackedScene" uid="uid://bi6ixkvofmtwt" path="res://entities/static/buildings/14_green_short.glb" id="14_1agfb"]
+[ext_resource type="PackedScene" uid="uid://65u1fqqbrvm6" path="res://entities/static/buildings/15_green_straight.glb" id="15_ofrgn"]
+[ext_resource type="PackedScene" uid="uid://bth21pdjyd8bb" path="res://entities/static/buildings/16_green_tall.glb" id="16_j8c8t"]
+[ext_resource type="PackedScene" uid="uid://cjn3fsnx7biur" path="res://entities/static/buildings/17_orange_corner.glb" id="17_la64j"]
+[ext_resource type="PackedScene" uid="uid://2acn04yirsqc" path="res://entities/static/buildings/18_orange_inset.glb" id="18_7k3yn"]
+[ext_resource type="PackedScene" uid="uid://jehptrqau4ci" path="res://entities/static/buildings/19_orange_straight.glb" id="19_46k2g"]
+[ext_resource type="PackedScene" uid="uid://cbcplr1tmg7fw" path="res://entities/static/buildings/20_orange_tall.glb" id="20_p5m01"]
+[ext_resource type="PackedScene" uid="uid://y7y02832we8g" path="res://entities/static/buildings/21_red_corner.glb" id="21_xicxt"]
+[ext_resource type="PackedScene" uid="uid://d05jlbgi68lrt" path="res://entities/static/buildings/22_red_half.glb" id="22_fwucl"]
+[ext_resource type="PackedScene" uid="uid://dou2hf0bml36i" path="res://entities/static/buildings/23_red_short.glb" id="23_kvpmi"]
+[ext_resource type="PackedScene" uid="uid://77j1xtjouqpw" path="res://entities/static/buildings/24_red_tall.glb" id="24_pyjnk"]
+[ext_resource type="PackedScene" uid="uid://bdtjttfyb08cl" path="res://entities/static/buildings/25_yellow_corner.glb" id="25_kboxp"]
+[ext_resource type="PackedScene" uid="uid://dkckvr6xdiwal" path="res://entities/static/buildings/26_yellow_deadend.glb" id="26_g7s00"]
+[ext_resource type="PackedScene" uid="uid://bq088l2g0ulvw" path="res://entities/static/buildings/27_yellow_half.glb" id="27_6utc0"]
+[ext_resource type="PackedScene" uid="uid://djk2voeyvdfpj" path="res://entities/static/buildings/28_yellow_straight.glb" id="28_uk1sg"]
+
+[node name="BuildingMeshLibrary" type="Node3D"]
+
+[node name="01_blue_corner2" parent="." instance=ExtResource("1_ly16d")]
+
+[node name="02_blue_short2" parent="." instance=ExtResource("2_1piw4")]
+
+[node name="03_blue_straight2" parent="." instance=ExtResource("3_y458v")]
+
+[node name="04_blue_tall2" parent="." instance=ExtResource("4_mequ0")]
+
+[node name="05_brown_corner2" parent="." instance=ExtResource("5_id816")]
+
+[node name="06_brown_half2" parent="." instance=ExtResource("6_f06np")]
+
+[node name="07_brown_straight2" parent="." instance=ExtResource("7_42m1c")]
+
+[node name="08_brown_tall2" parent="." instance=ExtResource("8_e2ad1")]
+
+[node name="09_gray_corner2" parent="." instance=ExtResource("9_sm3m3")]
+
+[node name="10_gray_half2" parent="." instance=ExtResource("10_s4fft")]
+
+[node name="11_gray_half_corner2" parent="." instance=ExtResource("11_6imhd")]
+
+[node name="12_gray_straight2" parent="." instance=ExtResource("12_iyde7")]
+
+[node name="13_green_half2" parent="." instance=ExtResource("13_6agwk")]
+
+[node name="14_green_short2" parent="." instance=ExtResource("14_1agfb")]
+
+[node name="15_green_straight2" parent="." instance=ExtResource("15_ofrgn")]
+
+[node name="16_green_tall2" parent="." instance=ExtResource("16_j8c8t")]
+
+[node name="17_orange_corner2" parent="." instance=ExtResource("17_la64j")]
+
+[node name="18_orange_inset2" parent="." instance=ExtResource("18_7k3yn")]
+
+[node name="19_orange_straight2" parent="." instance=ExtResource("19_46k2g")]
+
+[node name="20_orange_tall2" parent="." instance=ExtResource("20_p5m01")]
+
+[node name="21_red_corner2" parent="." instance=ExtResource("21_xicxt")]
+
+[node name="22_red_half2" parent="." instance=ExtResource("22_fwucl")]
+
+[node name="23_red_short2" parent="." instance=ExtResource("23_kvpmi")]
+
+[node name="24_red_tall2" parent="." instance=ExtResource("24_pyjnk")]
+
+[node name="25_yellow_corner2" parent="." instance=ExtResource("25_kboxp")]
+
+[node name="26_yellow_deadend2" parent="." instance=ExtResource("26_g7s00")]
+
+[node name="27_yellow_half2" parent="." instance=ExtResource("27_6utc0")]
+
+[node name="28_yellow_straight2" parent="." instance=ExtResource("28_uk1sg")]
