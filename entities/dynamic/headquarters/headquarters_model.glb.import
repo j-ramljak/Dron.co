@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bfnwsaainrw3i"
-path="res://.godot/imported/charger_model.glb-33c8c9fe3cf980262d50f35f251432e5.scn"
+uid="uid://bxla0ipmb0khh"
+path="res://.godot/imported/headquarters_model.glb-5bc3aaa7b715b85d64a4ffb20efb2cc1.scn"
 
 [deps]
 
-source_file="res://entities/dynamic/stations/charger_model.glb"
-dest_files=["res://.godot/imported/charger_model.glb-33c8c9fe3cf980262d50f35f251432e5.scn"]
+source_file="res://entities/dynamic/headquarters/headquarters_model.glb"
+dest_files=["res://.godot/imported/headquarters_model.glb-5bc3aaa7b715b85d64a4ffb20efb2cc1.scn"]
 
 [params]
 

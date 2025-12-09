@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://2qydddknolyo"]
 
 [ext_resource type="MeshLibrary" uid="uid://ltwn0egw2emn" path="res://entities/static/mesh_library/tree_mesh_library.tres" id="3_ms2es"]
-[ext_resource type="PackedScene" uid="uid://bxla0ipmb0khh" path="res://entities/dynamic/stations/headquarters_model.glb" id="4_eruj1"]
-[ext_resource type="PackedScene" uid="uid://bfnwsaainrw3i" path="res://entities/dynamic/stations/charger_model.glb" id="5_1jyyf"]
+[ext_resource type="PackedScene" uid="uid://bxla0ipmb0khh" path="res://entities/dynamic/headquarters/headquarters_model.glb" id="4_eruj1"]
+[ext_resource type="PackedScene" uid="uid://bfnwsaainrw3i" path="res://entities/dynamic/charger/charger_model.glb" id="5_1jyyf"]
 [ext_resource type="PackedScene" uid="uid://cogkrpjkylm6q" path="res://entities/dynamic/packages/models/box_large-colonly.glb" id="6_po04c"]
 [ext_resource type="PackedScene" uid="uid://8ijacxccr6og" path="res://entities/dynamic/packages/models/box_medium-colonly.glb" id="7_u4arb"]
 [ext_resource type="PackedScene" uid="uid://bcmwg525k0r0e" path="res://entities/dynamic/packages/models/box_small-colonly.glb" id="8_icc4n"]

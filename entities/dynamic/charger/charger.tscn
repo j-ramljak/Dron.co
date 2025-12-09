@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwcadry5m8pfg"]
+
+[ext_resource type="PackedScene" uid="uid://bfnwsaainrw3i" path="res://entities/dynamic/charger/charger_model.glb" id="1_1lnes"]
+[ext_resource type="Script" uid="uid://doyn6fw43psie" path="res://entities/dynamic/charger/charger.gd" id="1_eaosl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eaosl"]
+size = Vector3(3, 3, 3)
+
+[node name="Charger" type="Node3D"]
+script = ExtResource("1_eaosl")
+
+[node name="RechargeIncrementTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="Model" parent="." instance=ExtResource("1_1lnes")]
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.531436, 6.105882, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_eaosl")
+
+[connection signal="timeout" from="RechargeIncrementTimer" to="." method="_on_recharge_increment_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://twj7xifekd1h"
-path="res://.godot/imported/MovementComponent.png-bd38b9e14fa41e3068a65f8e504a5091.ctex"
+uid="uid://ccbbjeh4unk6k"
+path="res://.godot/imported/SmoothCameraComponent.png-5830fa59ef640046100013d0521bce1c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/dynamic/drone/components/MovementComponent.png"
-dest_files=["res://.godot/imported/MovementComponent.png-bd38b9e14fa41e3068a65f8e504a5091.ctex"]
+source_file="res://entities/dynamic/drone/components/SmoothCameraComponent.png"
+dest_files=["res://.godot/imported/SmoothCameraComponent.png-5830fa59ef640046100013d0521bce1c.ctex"]
 
 [params]
 
