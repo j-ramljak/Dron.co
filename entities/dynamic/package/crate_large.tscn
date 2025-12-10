@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqsdepxh2vggh"]
+
+[ext_resource type="Script" uid="uid://cvcrfgjrnvr4o" path="res://entities/dynamic/package/package_3d.gd" id="1_t4dfr"]
+[ext_resource type="PackedScene" uid="uid://c1vs3locrp5vf" path="res://entities/dynamic/package/crate_large.glb" id="2_m6fss"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_64kgk"]
+points = PackedVector3Array(-0.994666, -0.75, -0.9949038, 0.9998045, 0.74588495, 1, -0.9997611, 0.74588495, 1, 0.9998045, 0.74588495, -1, 0.9947094, -0.75, 0.9949038, -0.9997611, 0.74588495, -1, -0.994666, -0.75, 0.9949038, 0.9947094, -0.75, -0.9949038)
+
+[node name="CrateLarge" type="RigidBody3D" groups=["Package"]]
+script = ExtResource("1_t4dfr")
+
+[node name="Model" parent="." instance=ExtResource("2_m6fss")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_64kgk")

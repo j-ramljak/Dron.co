@@ -1,11 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqqe6q4gfbchu"]
+[gd_scene load_steps=18 format=3 uid="uid://cqqe6q4gfbchu"]
 
 [ext_resource type="Script" uid="uid://dng6ihkug1pk8" path="res://shared/scripts/exit_app.gd" id="1_6jwji"]
 [ext_resource type="PackedScene" uid="uid://c8518p5fip7jw" path="res://entities/dynamic/drone/drone_body_3d.tscn" id="1_d4sxq"]
-[ext_resource type="PackedScene" uid="uid://jfu5xsoq7sjv" path="res://entities/dynamic/packages/box_large.tscn" id="2_a8t18"]
-[ext_resource type="PackedScene" uid="uid://dfhgdsmnp5dhn" path="res://entities/static/package/package.tscn" id="3_6jwji"]
-[ext_resource type="PackedScene" uid="uid://4hnmjoye7dw1" path="res://entities/dynamic/interface/ui.tscn" id="5_vtib0"]
+[ext_resource type="PackedScene" uid="uid://4hnmjoye7dw1" path="res://entities/dynamic/ui/ui.tscn" id="5_vtib0"]
 [ext_resource type="PackedScene" uid="uid://dwcadry5m8pfg" path="res://entities/dynamic/charger/charger.tscn" id="6_3q7ta"]
+[ext_resource type="PackedScene" uid="uid://jfu5xsoq7sjv" path="res://entities/dynamic/package/box_large.tscn" id="7_1fn86"]
+[ext_resource type="PackedScene" uid="uid://dskhfpxgdfoav" path="res://entities/dynamic/headquarters/headquarters.tscn" id="7_gmkdt"]
+[ext_resource type="PackedScene" uid="uid://d0tn8qiossuxl" path="res://entities/dynamic/delivery_point/delivery_point_model.glb" id="8_tevn3"]
+[ext_resource type="PackedScene" uid="uid://r7ulet2wfct2" path="res://entities/dynamic/package/box_medium.tscn" id="8_v33bw"]
+[ext_resource type="PackedScene" uid="uid://4gntuksh08vs" path="res://entities/dynamic/package/box_small.tscn" id="9_w64ti"]
+[ext_resource type="PackedScene" uid="uid://bhi424kc8x0h1" path="res://entities/dynamic/package/crate_medium.tscn" id="9_y8xq7"]
+[ext_resource type="PackedScene" uid="uid://cqsdepxh2vggh" path="res://entities/dynamic/package/crate_large.tscn" id="10_uud1g"]
+[ext_resource type="PackedScene" uid="uid://ctu34kfwf7fh6" path="res://entities/dynamic/package/crate_small.tscn" id="12_j8hlx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6jwji"]
 sky_horizon_color = Color(0.6847476, 0.70199764, 0.7259976, 1)
@@ -25,12 +31,6 @@ size = Vector2(100, 100)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6jwji"]
 data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
-
-[sub_resource type="BoxMesh" id="BoxMesh_6jwji"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_vtib0"]
-size = Vector3(2, 2, 2)
 
 [node name="GameLogicTesting" type="Node3D"]
 script = ExtResource("1_6jwji")
@@ -59,21 +59,34 @@ shape = SubResource("ConcavePolygonShape3D_6jwji")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07488084, 1.6735791, 0.038583517)
 
 [node name="Charger" parent="." instance=ExtResource("6_3q7ta")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 10)
 
-[node name="BoxLarge" parent="." instance=ExtResource("2_a8t18")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3218384, 1.2416053, 6.1153245)
+[node name="Headquarters" parent="." instance=ExtResource("7_gmkdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -15)
 
-[node name="Package" parent="." instance=ExtResource("3_6jwji")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.265831, 1.0658431, -0.24605316)
+[node name="delivery_point_model" parent="." instance=ExtResource("8_tevn3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.302574, 4.7683716e-07, -1.9727707)
+cast_shadow = 0
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9720423, -6.192874)
+[node name="BoxLarge" parent="." instance=ExtResource("7_1fn86")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5106268, 0.7499998, -12.620582)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
-mesh = SubResource("BoxMesh_6jwji")
+[node name="BoxMedium" parent="." instance=ExtResource("8_v33bw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0112963, 0.49999988, -12.698692)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-shape = SubResource("BoxShape3D_vtib0")
+[node name="BoxSmall" parent="." instance=ExtResource("9_w64ti")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.465185, 0.50000083, -12.300109)
+
+[node name="CrateLarge" parent="." instance=ExtResource("10_uud1g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4942498, 0.75000083, -18.19654)
+
+[node name="CrateMedium" parent="." instance=ExtResource("9_y8xq7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0006714, 0.49999988, -18.055115)
+
+[node name="CrateSmall" parent="." instance=ExtResource("12_j8hlx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.285006, 0.49999988, -17.511112)
+
+[node name="CrateSmall2" parent="." instance=ExtResource("12_j8hlx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.563898, 4.6595244, -17.546045)
 
 [connection signal="charge_change" from="DroneBody3D" to="UI" method="update_charge"]

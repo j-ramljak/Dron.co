@@ -13,7 +13,8 @@ func _input(event):
 		deattach()
 
 func _on_hook_area_body_entered(body: Node3D) -> void:
-	if body is RigidBody3D and not JOINT.node_b and body.is_in_group("Package"):
+	#if body is RigidBody3D and not JOINT.node_b and body.is_in_group("Package"):
+	if body is Package3D and not JOINT.node_b: # provjera klase Package3D umjesto grupe Package
 		attach(body)
 		
 func attach(body: RigidBody3D):
