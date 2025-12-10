@@ -28,7 +28,7 @@
     - [ ] detalji grada (ulična rasvjeta, semafori, štandovi, klupe, vozila...) `[?]`
     - [ ] raspored grada `[?]`
     - [ ] model drona `[?]`
-	- [ ] oznake dostave (neki nacin da se zna kamo treba dostaviti) `[martin]`
+	- [x] oznake dostave (neki nacin da se zna kamo treba dostaviti) `[martin]`
 - Gameplay
 	- [ ] dostavljanje paketa `[?]`
     - [ ] korisničko sučelje (title screen, baterija, vrijeme, death screen) `[martin, ...]`
@@ -48,8 +48,6 @@
 ### Linkovi
 </summary>
 
-> [!NOTE]
->
 > Alati
 > - Alat za Gantt: https://www.mermaidchart.com/play?utm_source=mermaid_live_editor
 > - Dokumentacija za Mermaid: https://mermaid.js.org/syntax/gantt.html
@@ -142,13 +140,11 @@ gantt
         Testiranje : 14d
 ```
 
->[!NOTE]
 > Upute za export grafa u sliku
 > 1. Kopirati source kod grafa (sve unutar "mermaid" bloka)
 > 2. https://www.mermaidchart.com/play?utm_source=mermaid_live_editor
 > 3. `theme: neutral`
 > 4. Export
-
 
 </details>
 
