@@ -1,73 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://rmbm2tujnepm"]
+[gd_scene load_steps=6 format=3 uid="uid://rmbm2tujnepm"]
 
 [ext_resource type="PackedScene" uid="uid://c8518p5fip7jw" path="res://entities/dynamic/drone/drone_body_3d.tscn" id="1_jjgbg"]
-[ext_resource type="Texture2D" uid="uid://b1v8an61uwair" path="res://shared/textures/sky_2k.png" id="1_jyhfs"]
-[ext_resource type="Shader" uid="uid://yqo4v1j6du5j" path="res://shared/materials/outline.gdshader" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://dng6ihkug1pk8" path="res://shared/scripts/exit_app.gd" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://2qydddknolyo" path="res://scenes/town.tscn" id="2_0wfyh"]
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tbgi4"]
-panorama = ExtResource("1_jyhfs")
-
-[sub_resource type="Sky" id="Sky_jjgbg"]
-sky_material = SubResource("PanoramaSkyMaterial_tbgi4")
-
-[sub_resource type="Environment" id="Environment_bo1nx"]
-background_mode = 2
-sky = SubResource("Sky_jjgbg")
-ambient_light_sky_contribution = 0.75
-tonemap_mode = 3
-ssao_enabled = true
-ssao_intensity = 5.0
-ssil_radius = 25.0
-ssil_normal_rejection = 0.0
-glow_strength = 1.12
-glow_blend_mode = 0
-fog_enabled = true
-fog_mode = 1
-fog_sun_scatter = 0.1
-fog_density = 1.0
-fog_aerial_perspective = 1.0
-fog_sky_affect = 0.0
-fog_depth_begin = 0.0
-fog_depth_end = 512.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_sugp2"]
-flip_faces = true
-size = Vector2(2, 2)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
-render_priority = 0
-shader = ExtResource("1_sugp2")
-shader_parameter/outline_color = Color(0.15127608, 0.15127608, 0.15127608, 1)
-shader_parameter/normal_outline_width = 1.0
-shader_parameter/normal_threshold = 0.75
-shader_parameter/normal_fade_start = 25.0
-shader_parameter/normal_fade_end = 10.0
-shader_parameter/depth_outline_width = 1.0
-shader_parameter/depth_threshold = 0.05
-shader_parameter/depth_artifact_correction_coef = 2.0
+[ext_resource type="PackedScene" uid="uid://cag2lm8kquc2p" path="res://entities/dynamic/environment/game_environment.tscn" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://4hnmjoye7dw1" path="res://entities/dynamic/ui/user_interface.tscn" id="5_tbgi4"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_tbgi4")
 
-[node name="Environment" type="Node3D" parent="."]
+[node name="Environment" parent="." instance=ExtResource("2_jyhfs")]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
-environment = SubResource("Environment_bo1nx")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(0.35673797, 0.66058224, -0.66058224, 0, 0.7071067, 0.7071067, 0.9342044, -0.25225183, 0.25225183, 0, 0, 0)
-light_angular_distance = 2.0
-shadow_enabled = true
-directional_shadow_blend_splits = true
-
-[node name="OutlineEffect" type="MeshInstance3D" parent="Environment"]
-extra_cull_margin = 16384.0
-mesh = SubResource("QuadMesh_sugp2")
-surface_material_override/0 = SubResource("ShaderMaterial_tbgi4")
-
-[node name="Town" parent="." instance=ExtResource("2_0wfyh")]
+[node name="UserInterface" parent="." instance=ExtResource("5_tbgi4")]
 
 [node name="DroneBody3D" parent="." instance=ExtResource("1_jjgbg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.625, 3.249, -5.66)
+
+[node name="Town" parent="." instance=ExtResource("2_0wfyh")]
+
+[connection signal="graphics_high" from="UserInterface" to="Environment" method="set_graphics_high"]
+[connection signal="graphics_low" from="UserInterface" to="Environment" method="set_graphics_low"]
+[connection signal="charge_change" from="DroneBody3D" to="UserInterface" method="update_charge"]

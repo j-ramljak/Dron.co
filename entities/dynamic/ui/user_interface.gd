@@ -1,5 +1,11 @@
+@icon("./UserInterface.png")
 extends Control
+class_name UserInterface
 
+signal graphics_high()
+signal graphics_low()
+
+@export_group("Private")
 @export var HUD: Control
 @export var MAIN_MENU: Control
 @export var GAME_OVER: Control
@@ -22,3 +28,9 @@ func close_game_over():
 
 func quit():
 	get_tree().quit()
+
+func set_graphics(value):
+	if !value:
+		graphics_high.emit()
+	else:
+		graphics_low.emit()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://4hnmjoye7dw1"]
 
-[ext_resource type="Script" uid="uid://bbtbfxm835u15" path="res://entities/dynamic/ui/ui.gd" id="1_gxmva"]
-[ext_resource type="Theme" uid="uid://buup0s46ek5dt" path="res://entities/dynamic/ui/ui.tres" id="4_0x5m7"]
+[ext_resource type="Script" uid="uid://bbtbfxm835u15" path="res://entities/dynamic/ui/user_interface.gd" id="1_gxmva"]
+[ext_resource type="Theme" uid="uid://buup0s46ek5dt" path="res://entities/dynamic/ui/theme_general.tres" id="4_0x5m7"]
 [ext_resource type="Texture2D" uid="uid://baa4jp7hyvge8" path="res://entities/dynamic/ui/textures/dark_background.png" id="4_qlmyo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nakgj"]
@@ -53,7 +53,7 @@ shadow_color = Color(0, 0, 0, 0.49803922)
 shadow_size = 1
 shadow_offset = Vector2(4, 4)
 
-[node name="UI" type="Control" node_paths=PackedStringArray("HUD", "MAIN_MENU", "GAME_OVER", "CHARGE_DISPLAY")]
+[node name="UserInterface" type="Control" node_paths=PackedStringArray("HUD", "MAIN_MENU", "GAME_OVER", "CHARGE_DISPLAY")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -114,10 +114,15 @@ layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "Exit"
 
-[node name="CheckButton" type="CheckButton" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="QualityButton" type="CheckButton" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "Low Quality"
+
+[node name="TempButton" type="Button" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "Temp"
 
 [node name="Control2" type="Control" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -219,7 +224,7 @@ size_flags_horizontal = 3
 [node name="ChargeValue" type="Label" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/BoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
-text = "x"
+text = "0"
 horizontal_alignment = 2
 
 [node name="GameOver" type="Control" parent="."]
@@ -407,5 +412,6 @@ theme_override_font_sizes/font_size = 48
 text = "START"
 
 [connection signal="pressed" from="HUD/PanelContainer/MarginContainer/HBoxContainer/QuitButton" to="." method="quit"]
+[connection signal="toggled" from="HUD/PanelContainer/MarginContainer/HBoxContainer/QualityButton" to="." method="set_graphics"]
 [connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/CloseButton" to="." method="close_game_over"]
 [connection signal="pressed" from="MainMenu/StartButton" to="." method="close_main_menu"]
