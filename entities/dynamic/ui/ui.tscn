@@ -1,11 +1,59 @@
-[gd_scene load_steps=3 format=3 uid="uid://4hnmjoye7dw1"]
+[gd_scene load_steps=10 format=3 uid="uid://4hnmjoye7dw1"]
 
 [ext_resource type="Script" uid="uid://bbtbfxm835u15" path="res://entities/dynamic/ui/ui.gd" id="1_gxmva"]
+[ext_resource type="Theme" uid="uid://buup0s46ek5dt" path="res://entities/dynamic/ui/ui.tres" id="4_0x5m7"]
+[ext_resource type="Texture2D" uid="uid://baa4jp7hyvge8" path="res://entities/dynamic/ui/textures/dark_background.png" id="4_qlmyo"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_gxmva"]
-font_size = 32
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nakgj"]
+bg_color = Color(0.0627451, 0.08235294, 0.09019608, 1)
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
 
-[node name="UI" type="Control" node_paths=PackedStringArray("CHARGE_DISPLAY")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g22m1"]
+bg_color = Color(0.1764706, 0.20784314, 0.22352941, 1)
+border_width_left = 4
+border_color = Color(0.9529412, 0.4745098, 0.078431375, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.49803922)
+shadow_size = 1
+shadow_offset = Vector2(4, 4)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0x5m7"]
+bg_color = Color(0.1764706, 0.20784314, 0.22352941, 1)
+border_width_top = 2
+border_color = Color(0.24313726, 0.28235295, 0.3019608, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.49803922)
+shadow_size = 1
+shadow_offset = Vector2(4, 4)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlmyo"]
+bg_color = Color(0.84705883, 0.15294118, 0.39607844, 1)
+shadow_color = Color(0, 0, 0, 0.49803922)
+shadow_size = 1
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cel8s"]
+bg_color = Color(0.24313726, 0.28235295, 0.3019608, 1)
+border_width_top = 4
+border_color = Color(0, 0, 0, 0.49803922)
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mebh3"]
+bg_color = Color(0.9529412, 0.4745098, 0.078431375, 1)
+shadow_color = Color(0, 0, 0, 0.49803922)
+shadow_size = 1
+shadow_offset = Vector2(4, 4)
+
+[node name="UI" type="Control" node_paths=PackedStringArray("HUD", "MAIN_MENU", "GAME_OVER", "CHARGE_DISPLAY")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,37 +61,351 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gxmva")
-CHARGE_DISPLAY = NodePath("CenterContainer/MarginContainer/BoxContainer/ChargeValue")
+HUD = NodePath("HUD")
+MAIN_MENU = NodePath("MainMenu")
+GAME_OVER = NodePath("GameOver")
+CHARGE_DISPLAY = NodePath("HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/BoxContainer/ChargeValue")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="HUD" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -74.0
-offset_top = -45.0
-offset_right = 74.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+[node name="PanelContainer" type="PanelContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 49.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nakgj")
 
-[node name="BoxContainer" type="BoxContainer" parent="CenterContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PanelContainer2" type="PanelContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g22m1")
+
+[node name="MarginContainer2" type="MarginContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer2"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "Dron.co"
+
+[node name="QuitButton" type="Button" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "Exit"
+
+[node name="CheckButton" type="CheckButton" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "Low Quality"
+
+[node name="Control2" type="Control" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer4" type="PanelContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_0x5m7")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0x5m7")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer4"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="BoxContainer" type="BoxContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer4/MarginContainer"]
+custom_minimum_size = Vector2(171.685, 0)
 layout_mode = 2
 
-[node name="ChargeText" type="Label" parent="CenterContainer/MarginContainer/BoxContainer"]
+[node name="Label" type="Label" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer4/MarginContainer/BoxContainer"]
 layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "Time: "
+
+[node name="Control" type="Control" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer4/MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer4/MarginContainer/BoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "00:00"
+horizontal_alignment = 2
+
+[node name="PanelContainer3" type="PanelContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_0x5m7")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0x5m7")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="BoxContainer" type="BoxContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3/MarginContainer"]
+custom_minimum_size = Vector2(171.685, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3/MarginContainer/BoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "Delivered:"
+
+[node name="Control" type="Control" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3/MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3/MarginContainer/BoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "0"
+horizontal_alignment = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_0x5m7")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0x5m7")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="BoxContainer" type="BoxContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(171.685, 0)
+layout_mode = 2
+
+[node name="ChargeText" type="Label" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
 text = "Charge: "
-label_settings = SubResource("LabelSettings_gxmva")
 
-[node name="ChargeValue" type="Label" parent="CenterContainer/MarginContainer/BoxContainer"]
+[node name="Control" type="Control" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/BoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChargeValue" type="Label" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
 text = "x"
-label_settings = SubResource("LabelSettings_gxmva")
+horizontal_alignment = 2
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_qlmyo")
+
+[node name="PanelContainer" type="PanelContainer" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -328.0
+offset_top = -67.0
+offset_right = 328.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_0x5m7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOver/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+theme_override_colors/font_color = Color(0.84705883, 0.15294118, 0.39607844, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 48
+text = "GAME OVER"
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+
+[node name="HorizontalPanel" type="Panel" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qlmyo")
+
+[node name="PanelContainer" type="PanelContainer" parent="GameOver/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cel8s")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "[game_over_message]"
+
+[node name="Control" type="Control" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RestartButton" type="Button" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("4_0x5m7")
+text = "Restart
+"
+
+[node name="CloseButton" type="Button" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("4_0x5m7")
+text = "Close"
+
+[node name="MainMenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundTexture" type="TextureRect" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_qlmyo")
+
+[node name="TitleLabel" type="Label" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -162.0
+offset_top = -212.0
+offset_right = 162.0
+offset_bottom = -99.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_0x5m7")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6901961)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 112
+text = "DRON.CO"
+
+[node name="HorizontalPanel" type="Panel" parent="MainMenu"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.177
+anchor_top = 0.5
+anchor_right = 0.823
+anchor_bottom = 0.5
+offset_left = 0.09599304
+offset_top = -86.985
+offset_right = -0.0960083
+offset_bottom = -82.985
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mebh3")
+
+[node name="StartButton" type="Button" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = -28.5
+offset_right = 135.0
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_0x5m7")
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 48
+text = "START"
+
+[connection signal="pressed" from="HUD/PanelContainer/MarginContainer/HBoxContainer/QuitButton" to="." method="quit"]
+[connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/CloseButton" to="." method="close_game_over"]
+[connection signal="pressed" from="MainMenu/StartButton" to="." method="close_main_menu"]
