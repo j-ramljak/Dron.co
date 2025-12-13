@@ -1,13 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://4hnmjoye7dw1"]
+[gd_scene load_steps=9 format=3 uid="uid://4hnmjoye7dw1"]
 
-[ext_resource type="Script" uid="uid://bbtbfxm835u15" path="res://entities/dynamic/ui/user_interface.gd" id="1_gxmva"]
-[ext_resource type="Theme" uid="uid://buup0s46ek5dt" path="res://entities/dynamic/ui/theme_general.tres" id="4_0x5m7"]
-[ext_resource type="Texture2D" uid="uid://baa4jp7hyvge8" path="res://entities/dynamic/ui/textures/dark_background.png" id="4_qlmyo"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nakgj"]
-bg_color = Color(0.0627451, 0.08235294, 0.09019608, 1)
-border_width_bottom = 8
-border_color = Color(0, 0, 0, 1)
+[ext_resource type="Script" uid="uid://bbtbfxm835u15" path="res://entities/dynamic/user_interface/user_interface.gd" id="1_gxmva"]
+[ext_resource type="Texture2D" uid="uid://ddjg23x38yhkt" path="res://entities/dynamic/user_interface/textures/transparent_background.png" id="2_ldin5"]
+[ext_resource type="Theme" uid="uid://buup0s46ek5dt" path="res://entities/dynamic/user_interface/themes/theme_general.tres" id="4_0x5m7"]
+[ext_resource type="Theme" uid="uid://bskthmnx8bdib" path="res://entities/dynamic/user_interface/themes/theme_red.tres" id="4_ns8o4"]
+[ext_resource type="Texture2D" uid="uid://baa4jp7hyvge8" path="res://entities/dynamic/user_interface/textures/dark_background.png" id="4_qlmyo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g22m1"]
 bg_color = Color(0.1764706, 0.20784314, 0.22352941, 1)
@@ -22,30 +19,13 @@ shadow_size = 1
 shadow_offset = Vector2(4, 4)
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0x5m7"]
-bg_color = Color(0.1764706, 0.20784314, 0.22352941, 1)
-border_width_top = 2
-border_color = Color(0.24313726, 0.28235295, 0.3019608, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-shadow_color = Color(0, 0, 0, 0.49803922)
-shadow_size = 1
-shadow_offset = Vector2(4, 4)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlmyo"]
-bg_color = Color(0.84705883, 0.15294118, 0.39607844, 1)
-shadow_color = Color(0, 0, 0, 0.49803922)
-shadow_size = 1
-shadow_offset = Vector2(4, 4)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cel8s"]
-bg_color = Color(0.24313726, 0.28235295, 0.3019608, 1)
+bg_color = Color(0.14220001, 0.16299002, 0.18, 0.90588236)
 border_width_top = 4
 border_color = Color(0, 0, 0, 0.49803922)
+corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mebh3"]
 bg_color = Color(0.9529412, 0.4745098, 0.078431375, 1)
@@ -64,7 +44,7 @@ script = ExtResource("1_gxmva")
 HUD = NodePath("HUD")
 MAIN_MENU = NodePath("MainMenu")
 GAME_OVER = NodePath("GameOver")
-CHARGE_DISPLAY = NodePath("HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/BoxContainer/ChargeValue")
+CHARGE_DISPLAY = NodePath("HUD/TextureRect/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer/ChargeValue")
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 1
@@ -74,154 +54,150 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="HUD"]
+[node name="TextureRect" type="TextureRect" parent="HUD"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 49.0
+offset_bottom = 64.0
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_nakgj")
+texture = ExtResource("2_ldin5")
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/PanelContainer"]
-layout_mode = 2
+[node name="MarginContainer" type="MarginContainer" parent="HUD/TextureRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 91.0
+grow_horizontal = 2
 theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 8
+theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_bottom = 24
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/TextureRect/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="PanelContainer2" type="PanelContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_g22m1")
 
-[node name="MarginContainer2" type="MarginContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2"]
+[node name="MarginContainer2" type="MarginContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer/PanelContainer2"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 4
 
-[node name="Label" type="Label" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer2"]
+[node name="GameTitle" type="Label" parent="HUD/TextureRect/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer2"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "Dron.co"
 
-[node name="QuitButton" type="Button" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="QuitButton" type="Button" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "Exit"
 
-[node name="QualityButton" type="CheckButton" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="QualityButton" type="CheckButton" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "Low Quality"
 
-[node name="TempButton" type="Button" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("4_0x5m7")
-text = "Temp"
-
-[node name="Control2" type="Control" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="Seperator" type="Control" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PanelContainer4" type="PanelContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="TimeDisplay" type="PanelContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("4_0x5m7")
-theme_override_styles/panel = SubResource("StyleBoxFlat_0x5m7")
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer4"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer/TimeDisplay"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 4
 
-[node name="BoxContainer" type="BoxContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer4/MarginContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer"]
 custom_minimum_size = Vector2(171.685, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer4/MarginContainer/BoxContainer"]
+[node name="TimeText" type="Label" parent="HUD/TextureRect/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "Time: "
 
-[node name="Control" type="Control" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer4/MarginContainer/BoxContainer"]
+[node name="Control" type="Control" parent="HUD/TextureRect/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label2" type="Label" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer4/MarginContainer/BoxContainer"]
+[node name="TimeValue" type="Label" parent="HUD/TextureRect/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "00:00"
 horizontal_alignment = 2
 
-[node name="PanelContainer3" type="PanelContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="DeliveryDisplay" type="PanelContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("4_0x5m7")
-theme_override_styles/panel = SubResource("StyleBoxFlat_0x5m7")
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer/DeliveryDisplay"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 4
 
-[node name="BoxContainer" type="BoxContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3/MarginContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer"]
 custom_minimum_size = Vector2(171.685, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3/MarginContainer/BoxContainer"]
+[node name="DeliveryText" type="Label" parent="HUD/TextureRect/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "Delivered:"
 
-[node name="Control" type="Control" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3/MarginContainer/BoxContainer"]
+[node name="Control" type="Control" parent="HUD/TextureRect/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label2" type="Label" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3/MarginContainer/BoxContainer"]
+[node name="DeliveryValue" type="Label" parent="HUD/TextureRect/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "0"
 horizontal_alignment = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="ChargeDisplay" type="PanelContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("4_0x5m7")
-theme_override_styles/panel = SubResource("StyleBoxFlat_0x5m7")
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer/ChargeDisplay"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 4
 
-[node name="BoxContainer" type="BoxContainer" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer"]
 custom_minimum_size = Vector2(171.685, 0)
 layout_mode = 2
 
-[node name="ChargeText" type="Label" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/BoxContainer"]
+[node name="ChargeText" type="Label" parent="HUD/TextureRect/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "Charge: "
 
-[node name="Control" type="Control" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/BoxContainer"]
+[node name="Control" type="Control" parent="HUD/TextureRect/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ChargeValue" type="Label" parent="HUD/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/BoxContainer"]
+[node name="ChargeValue" type="Label" parent="HUD/TextureRect/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "0"
@@ -236,7 +212,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="GameOver"]
+[node name="BackgroundTexture" type="TextureRect" parent="GameOver"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -276,12 +252,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("4_0x5m7")
-theme_override_colors/font_color = Color(0.84705883, 0.15294118, 0.39607844, 1)
-theme_override_constants/shadow_offset_x = 4
-theme_override_constants/shadow_offset_y = 4
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 48
+theme = ExtResource("4_ns8o4")
 text = "GAME OVER"
 
 [node name="MarginContainer" type="MarginContainer" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
@@ -294,7 +265,7 @@ custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_qlmyo")
+theme = ExtResource("4_ns8o4")
 
 [node name="PanelContainer" type="PanelContainer" parent="GameOver/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -374,20 +345,20 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6901961)
 theme_override_constants/shadow_offset_x = 4
 theme_override_constants/shadow_offset_y = 4
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 112
+theme_override_font_sizes/font_size = 128
 text = "DRON.CO"
 
 [node name="HorizontalPanel" type="Panel" parent="MainMenu"]
-custom_minimum_size = Vector2(0, 4)
+custom_minimum_size = Vector2(512, 4)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.177
+anchor_left = 0.261
 anchor_top = 0.5
-anchor_right = 0.823
+anchor_right = 0.739
 anchor_bottom = 0.5
-offset_left = 0.09599304
+offset_left = 0.32800293
 offset_top = -86.985
-offset_right = -0.0960083
+offset_right = -0.32800293
 offset_bottom = -82.985
 grow_horizontal = 2
 grow_vertical = 2
@@ -411,7 +382,7 @@ theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 48
 text = "START"
 
-[connection signal="pressed" from="HUD/PanelContainer/MarginContainer/HBoxContainer/QuitButton" to="." method="quit"]
-[connection signal="toggled" from="HUD/PanelContainer/MarginContainer/HBoxContainer/QualityButton" to="." method="set_graphics"]
+[connection signal="pressed" from="HUD/TextureRect/MarginContainer/HBoxContainer/QuitButton" to="." method="quit"]
+[connection signal="toggled" from="HUD/TextureRect/MarginContainer/HBoxContainer/QualityButton" to="." method="set_graphics"]
 [connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/CloseButton" to="." method="close_game_over"]
 [connection signal="pressed" from="MainMenu/StartButton" to="." method="close_main_menu"]

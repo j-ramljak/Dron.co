@@ -5,6 +5,8 @@ class_name UserInterface
 signal graphics_high()
 signal graphics_low()
 
+@export var START_AT_MAIN_MENU := true
+
 @export_group("Private")
 @export var HUD: Control
 @export var MAIN_MENU: Control
@@ -12,9 +14,13 @@ signal graphics_low()
 @export var CHARGE_DISPLAY: Label
 
 func _ready() -> void:
-	MAIN_MENU.visible = true
-	HUD.visible = false
 	GAME_OVER.visible = false
+	if (START_AT_MAIN_MENU):
+		MAIN_MENU.visible = true
+		HUD.visible = false
+	else:
+		MAIN_MENU.visible = false
+		HUD.visible = true
 
 func update_charge(charge: float):
 	CHARGE_DISPLAY.text = str(charge)

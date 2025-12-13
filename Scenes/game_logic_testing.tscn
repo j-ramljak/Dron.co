@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dng6ihkug1pk8" path="res://shared/scripts/exit_app.gd" id="1_6jwji"]
 [ext_resource type="PackedScene" uid="uid://c8518p5fip7jw" path="res://entities/dynamic/drone/drone_body_3d.tscn" id="1_d4sxq"]
 [ext_resource type="PackedScene" uid="uid://cag2lm8kquc2p" path="res://entities/dynamic/environment/game_environment.tscn" id="2_w64ti"]
-[ext_resource type="PackedScene" uid="uid://4hnmjoye7dw1" path="res://entities/dynamic/ui/user_interface.tscn" id="5_vtib0"]
+[ext_resource type="PackedScene" uid="uid://4hnmjoye7dw1" path="res://entities/dynamic/user_interface/user_interface.tscn" id="5_vtib0"]
 [ext_resource type="PackedScene" uid="uid://dwcadry5m8pfg" path="res://entities/dynamic/charger/charger.tscn" id="6_3q7ta"]
 [ext_resource type="PackedScene" uid="uid://jfu5xsoq7sjv" path="res://entities/dynamic/package/box_large.tscn" id="7_1fn86"]
 [ext_resource type="PackedScene" uid="uid://dskhfpxgdfoav" path="res://entities/dynamic/headquarters/headquarters.tscn" id="7_gmkdt"]

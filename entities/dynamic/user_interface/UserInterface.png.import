@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://baa4jp7hyvge8"
-path="res://.godot/imported/dark_background.png-cfa1b6ff2469969c474fceeac87e9a3e.ctex"
+uid="uid://4arf8s03hsoy"
+path="res://.godot/imported/UserInterface.png-36df4f97e13ea2671f1e8092b785a875.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/dynamic/ui/textures/dark_background.png"
-dest_files=["res://.godot/imported/dark_background.png-cfa1b6ff2469969c474fceeac87e9a3e.ctex"]
+source_file="res://entities/dynamic/user_interface/UserInterface.png"
+dest_files=["res://.godot/imported/UserInterface.png-36df4f97e13ea2671f1e8092b785a875.ctex"]
 
 [params]
 
