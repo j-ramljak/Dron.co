@@ -18,6 +18,7 @@
     - [x] "responzivne" kontrole (smooth kamera, smooth kretanje, naginjanje pri kretanju) `[stjepan]`
     - [x] stilski efekti (post processing, nebo) `[martin]`
     - [ ] audio efekti (dron, alarm, pokupljanje paketa...) `[stjepan]`
+    - [ ] efekt punjenja baterije (particles, ui animacija) `[leon]`
 - Modeliranje
     - [x] podloge grada `[martin]`
     - [x] građevine `[martin]`
@@ -31,10 +32,10 @@
     - [ ] raspored grada `[matea]`
 - Gameplay
 	- [ ] dostavljanje paketa `[jakov]`
-    - [x] korisničko sučelje (title screen, baterija, death screen) `[martin]`
+    - [x] korisničko sučelje (title screen, baterija, death screen, ...) `[martin]`
 	- [x] baterija (pražnjenje, postaja za punjenje) `[martin]`
-	- [ ] mjerenje vremena `[leon]`
 	- [ ] death mechanic (sudar, prazna baterija, granice mape, istek vremena) `[leon]`
+	- [ ] mjerenje vremena `[leon]`
 - Dokumentacija 
 	- [x] Plan projekta `[svi]`
 	- [ ] Tehnička dokumentacija `[matea]`
