@@ -1,10 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://4hnmjoye7dw1"]
+[gd_scene load_steps=17 format=3 uid="uid://4hnmjoye7dw1"]
 
 [ext_resource type="Script" uid="uid://bbtbfxm835u15" path="res://entities/dynamic/user_interface/user_interface.gd" id="1_gxmva"]
-[ext_resource type="Texture2D" uid="uid://ddjg23x38yhkt" path="res://entities/dynamic/user_interface/textures/transparent_background.png" id="2_ldin5"]
 [ext_resource type="Theme" uid="uid://buup0s46ek5dt" path="res://entities/dynamic/user_interface/themes/theme_general.tres" id="4_0x5m7"]
 [ext_resource type="Theme" uid="uid://bskthmnx8bdib" path="res://entities/dynamic/user_interface/themes/theme_red.tres" id="4_ns8o4"]
-[ext_resource type="Texture2D" uid="uid://baa4jp7hyvge8" path="res://entities/dynamic/user_interface/textures/dark_background.png" id="4_qlmyo"]
+[ext_resource type="Texture2D" uid="uid://cdt8nykfln7mx" path="res://entities/dynamic/user_interface/textures/you_died.png" id="6_d64fq"]
+
+[sub_resource type="Gradient" id="Gradient_ns8o4"]
+colors = PackedColorArray(0, 0, 0, 0.49803922, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ldin5"]
+gradient = SubResource("Gradient_ns8o4")
+fill_to = Vector2(0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g22m1"]
 bg_color = Color(0.1764706, 0.20784314, 0.22352941, 1)
@@ -18,6 +24,154 @@ shadow_color = Color(0, 0, 0, 0.49803922)
 shadow_size = 1
 shadow_offset = Vector2(4, 4)
 anti_aliasing = false
+
+[sub_resource type="Animation" id="Animation_ldin5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/VBoxContainer/TextureGradient2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/VBoxContainer/TextureGradient:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/CenterContainer/Control/TextureYouDied:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/CenterContainer/Control/TextureYouDied:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ns8o4"]
+resource_name = "you_died"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/VBoxContainer/TextureGradient2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 5.0333333, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/VBoxContainer/TextureGradient:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 5.0333333, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/CenterContainer/Control/TextureYouDied:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6, 3.1333334, 4.233333, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/CenterContainer/Control/TextureYouDied:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(2, 2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d64fq"]
+_data = {
+&"RESET": SubResource("Animation_ldin5"),
+&"you_died": SubResource("Animation_ns8o4")
+}
+
+[sub_resource type="Gradient" id="Gradient_ggw1y"]
+colors = PackedColorArray(0, 0, 0, 0.92941177, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qgb30"]
+gradient = SubResource("Gradient_ggw1y")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_d64fq"]
+colors = PackedColorArray(0, 0, 0, 0.68235296, 0, 0, 0, 0.28627452)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_31too"]
+gradient = SubResource("Gradient_d64fq")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cel8s"]
 bg_color = Color(0.14220001, 0.16299002, 0.18, 0.90588236)
@@ -60,7 +214,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 64.0
 grow_horizontal = 2
-texture = ExtResource("2_ldin5")
+texture = SubResource("GradientTexture2D_ldin5")
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD/TextureRect"]
 layout_mode = 1
@@ -96,12 +250,18 @@ text = "Dron.co"
 [node name="QuitButton" type="Button" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
-text = "Exit"
+text = "Quit"
 
 [node name="QualityButton" type="CheckButton" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "Low Quality"
+
+[node name="DieButton" type="Button" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "Die
+"
 
 [node name="Seperator" type="Control" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -203,6 +363,84 @@ theme = ExtResource("4_0x5m7")
 text = "0"
 horizontal_alignment = 2
 
+[node name="YouDied" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="YouDied"]
+libraries = {
+&"": SubResource("AnimationLibrary_d64fq")
+}
+
+[node name="Control" type="Control" parent="YouDied"]
+layout_mode = 1
+anchor_top = 0.38734567
+anchor_right = 1.0
+anchor_bottom = 0.6126543
+offset_top = -137.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="YouDied/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="TextureGradient" type="TextureRect" parent="YouDied/Control/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_qgb30")
+flip_v = true
+
+[node name="TextureGradient2" type="TextureRect" parent="YouDied/Control/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_qgb30")
+
+[node name="CenterContainer" type="CenterContainer" parent="YouDied/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="YouDied/Control/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureYouDied" type="TextureRect" parent="YouDied/Control/CenterContainer/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+pivot_offset = Vector2(250, 250)
+mouse_filter = 2
+texture = ExtResource("6_d64fq")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
 [node name="GameOver" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -219,7 +457,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_qlmyo")
+texture = SubResource("GradientTexture2D_31too")
 
 [node name="PanelContainer" type="PanelContainer" parent="GameOver"]
 layout_mode = 1
@@ -325,7 +563,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_qlmyo")
+texture = SubResource("GradientTexture2D_31too")
 
 [node name="TitleLabel" type="Label" parent="MainMenu"]
 layout_mode = 1
@@ -384,5 +622,7 @@ text = "START"
 
 [connection signal="pressed" from="HUD/TextureRect/MarginContainer/HBoxContainer/QuitButton" to="." method="quit"]
 [connection signal="toggled" from="HUD/TextureRect/MarginContainer/HBoxContainer/QualityButton" to="." method="set_graphics"]
-[connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/CloseButton" to="." method="close_game_over"]
-[connection signal="pressed" from="MainMenu/StartButton" to="." method="close_main_menu"]
+[connection signal="pressed" from="HUD/TextureRect/MarginContainer/HBoxContainer/DieButton" to="." method="demo_die"]
+[connection signal="animation_finished" from="YouDied/AnimationPlayer" to="." method="demo_died" unbinds=1]
+[connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/CloseButton" to="." method="goto_menu" binds= [1]]
+[connection signal="pressed" from="MainMenu/StartButton" to="." method="goto_menu" binds= [1]]
