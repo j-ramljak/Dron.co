@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://4hnmjoye7dw1"]
+[gd_scene load_steps=18 format=3 uid="uid://4hnmjoye7dw1"]
 
 [ext_resource type="Script" uid="uid://bbtbfxm835u15" path="res://entities/dynamic/user_interface/user_interface.gd" id="1_gxmva"]
+[ext_resource type="PackedScene" uid="uid://g0sieg1khaeh" path="res://entities/dynamic/user_interface/warning_panel.tscn" id="3_ldin5"]
 [ext_resource type="Theme" uid="uid://buup0s46ek5dt" path="res://entities/dynamic/user_interface/themes/theme_general.tres" id="4_0x5m7"]
 [ext_resource type="Theme" uid="uid://bskthmnx8bdib" path="res://entities/dynamic/user_interface/themes/theme_red.tres" id="4_ns8o4"]
 [ext_resource type="Texture2D" uid="uid://cdt8nykfln7mx" path="res://entities/dynamic/user_interface/textures/you_died.png" id="6_d64fq"]
@@ -198,7 +199,7 @@ script = ExtResource("1_gxmva")
 HUD = NodePath("HUD")
 MAIN_MENU = NodePath("MainMenu")
 GAME_OVER = NodePath("GameOver")
-CHARGE_DISPLAY = NodePath("HUD/TextureRect/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer/ChargeValue")
+CHARGE_DISPLAY = NodePath("HUD/TopBar/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer/ChargeValue")
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 1
@@ -208,7 +209,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="HUD"]
+[node name="TopBar" type="TextureRect" parent="HUD"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -216,7 +217,7 @@ offset_bottom = 64.0
 grow_horizontal = 2
 texture = SubResource("GradientTexture2D_ldin5")
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/TextureRect"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/TopBar"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -227,141 +228,180 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/TextureRect/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/TopBar/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="PanelContainer2" type="PanelContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_g22m1")
 
-[node name="MarginContainer2" type="MarginContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer/PanelContainer2"]
+[node name="MarginContainer2" type="MarginContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer/PanelContainer2"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 4
 
-[node name="GameTitle" type="Label" parent="HUD/TextureRect/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer2"]
+[node name="GameTitle" type="Label" parent="HUD/TopBar/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer2"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "Dron.co"
 
-[node name="QuitButton" type="Button" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
+[node name="QuitButton" type="Button" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "Quit"
 
-[node name="QualityButton" type="CheckButton" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
+[node name="QualityButton" type="CheckButton" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "Low Quality"
 
-[node name="DieButton" type="Button" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
+[node name="DieButton" type="Button" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "Die
 "
 
-[node name="Seperator" type="Control" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
+[node name="Seperator" type="Control" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TimeDisplay" type="PanelContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
+[node name="TimeDisplay" type="PanelContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("4_0x5m7")
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer/TimeDisplay"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 4
 
-[node name="BoxContainer" type="BoxContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer"]
 custom_minimum_size = Vector2(171.685, 0)
 layout_mode = 2
 
-[node name="TimeText" type="Label" parent="HUD/TextureRect/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer/BoxContainer"]
+[node name="TimeText" type="Label" parent="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "Time: "
 
-[node name="Control" type="Control" parent="HUD/TextureRect/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer/BoxContainer"]
+[node name="Control" type="Control" parent="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TimeValue" type="Label" parent="HUD/TextureRect/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer/BoxContainer"]
+[node name="TimeValue" type="Label" parent="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "00:00"
 horizontal_alignment = 2
 
-[node name="DeliveryDisplay" type="PanelContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
+[node name="DeliveryDisplay" type="PanelContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("4_0x5m7")
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer/DeliveryDisplay"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer/DeliveryDisplay"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 4
 
-[node name="BoxContainer" type="BoxContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer"]
 custom_minimum_size = Vector2(171.685, 0)
 layout_mode = 2
 
-[node name="DeliveryText" type="Label" parent="HUD/TextureRect/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer/BoxContainer"]
+[node name="DeliveryText" type="Label" parent="HUD/TopBar/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "Delivered:"
 
-[node name="Control" type="Control" parent="HUD/TextureRect/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer/BoxContainer"]
+[node name="Control" type="Control" parent="HUD/TopBar/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DeliveryValue" type="Label" parent="HUD/TextureRect/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer/BoxContainer"]
+[node name="DeliveryValue" type="Label" parent="HUD/TopBar/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "0"
 horizontal_alignment = 2
 
-[node name="ChargeDisplay" type="PanelContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer"]
+[node name="ChargeDisplay" type="PanelContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("4_0x5m7")
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer/ChargeDisplay"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer/ChargeDisplay"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 4
 
-[node name="BoxContainer" type="BoxContainer" parent="HUD/TextureRect/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer"]
 custom_minimum_size = Vector2(171.685, 0)
 layout_mode = 2
 
-[node name="ChargeText" type="Label" parent="HUD/TextureRect/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer"]
+[node name="ChargeText" type="Label" parent="HUD/TopBar/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "Charge: "
 
-[node name="Control" type="Control" parent="HUD/TextureRect/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer"]
+[node name="Control" type="Control" parent="HUD/TopBar/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ChargeValue" type="Label" parent="HUD/TextureRect/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer"]
+[node name="ChargeValue" type="Label" parent="HUD/TopBar/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "0"
 horizontal_alignment = 2
+
+[node name="Warnings" type="Control" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/Warnings"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -188.0
+offset_top = -99.0
+offset_right = 188.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Warnings/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="WarningBattery" parent="HUD/Warnings/MarginContainer/HBoxContainer" instance=ExtResource("3_ldin5")]
+layout_mode = 2
+text = "Low battery!"
+
+[node name="WarningSignal" parent="HUD/Warnings/MarginContainer/HBoxContainer" instance=ExtResource("3_ldin5")]
+layout_mode = 2
+text = "No signal!"
+
+[node name="WarningAltitude" parent="HUD/Warnings/MarginContainer/HBoxContainer" instance=ExtResource("3_ldin5")]
+layout_mode = 2
+text = "High altitude!"
 
 [node name="YouDied" type="Control" parent="."]
 layout_mode = 1
@@ -547,6 +587,11 @@ size_flags_horizontal = 8
 theme = ExtResource("4_0x5m7")
 text = "Close"
 
+[node name="QuitButton" type="Button" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "Quit"
+
 [node name="MainMenu" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -620,9 +665,10 @@ theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 48
 text = "START"
 
-[connection signal="pressed" from="HUD/TextureRect/MarginContainer/HBoxContainer/QuitButton" to="." method="quit"]
-[connection signal="toggled" from="HUD/TextureRect/MarginContainer/HBoxContainer/QualityButton" to="." method="set_graphics"]
-[connection signal="pressed" from="HUD/TextureRect/MarginContainer/HBoxContainer/DieButton" to="." method="demo_die"]
+[connection signal="pressed" from="HUD/TopBar/MarginContainer/HBoxContainer/QuitButton" to="." method="quit"]
+[connection signal="toggled" from="HUD/TopBar/MarginContainer/HBoxContainer/QualityButton" to="." method="set_graphics"]
+[connection signal="pressed" from="HUD/TopBar/MarginContainer/HBoxContainer/DieButton" to="." method="demo_die"]
 [connection signal="animation_finished" from="YouDied/AnimationPlayer" to="." method="demo_died" unbinds=1]
 [connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/CloseButton" to="." method="goto_menu" binds= [1]]
+[connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/QuitButton" to="." method="quit"]
 [connection signal="pressed" from="MainMenu/StartButton" to="." method="goto_menu" binds= [1]]
