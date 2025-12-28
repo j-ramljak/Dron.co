@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dskhfpxgdfoav"]
+
+[ext_resource type="Script" uid="uid://y1usydfil6wr" path="res://entities/dynamic/headquarters/headquarters.gd" id="1_h8bg3"]
+[ext_resource type="PackedScene" uid="uid://bxla0ipmb0khh" path="res://entities/dynamic/headquarters/headquarters_model.glb" id="1_hj40l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h8bg3"]
+size = Vector3(4, 4, 4)
+
+[node name="Headquarters" type="Node3D"]
+script = ExtResource("1_h8bg3")
+
+[node name="Model" parent="." instance=ExtResource("1_hj40l")]
+
+[node name="headquarters_highlight" parent="Model" index="0"]
+cast_shadow = 0
+extra_cull_margin = 16384.0
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5121052, 5.8706794, -2.498451)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_h8bg3")
+
+[node name="PackageSpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5121052, 6.7775683, -2.498451)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+
+[editable path="Model"]

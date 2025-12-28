@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://cag2lm8kquc2p"]
+
+[ext_resource type="Script" uid="uid://biixcule0bg70" path="res://entities/dynamic/environment/game_environment.gd" id="1_5eqo1"]
+[ext_resource type="Texture2D" uid="uid://b1v8an61uwair" path="res://shared/textures/sky_2k.png" id="1_05ny4"]
+[ext_resource type="Shader" uid="uid://yqo4v1j6du5j" path="res://shared/materials/outline.gdshader" id="2_5eqo1"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tbgi4"]
+panorama = ExtResource("1_05ny4")
+
+[sub_resource type="Sky" id="Sky_jjgbg"]
+sky_material = SubResource("PanoramaSkyMaterial_tbgi4")
+
+[sub_resource type="Environment" id="Environment_bo1nx"]
+background_mode = 2
+sky = SubResource("Sky_jjgbg")
+ambient_light_sky_contribution = 0.75
+tonemap_mode = 3
+ssao_enabled = true
+ssao_intensity = 5.0
+ssil_radius = 25.0
+ssil_normal_rejection = 0.0
+glow_strength = 1.12
+glow_blend_mode = 0
+fog_enabled = true
+fog_mode = 1
+fog_sun_scatter = 0.1
+fog_density = 1.0
+fog_aerial_perspective = 1.0
+fog_sky_affect = 0.0
+fog_depth_begin = 0.0
+fog_depth_end = 512.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_sugp2"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
+render_priority = 0
+shader = ExtResource("2_5eqo1")
+shader_parameter/outline_color = Color(0.15127608, 0.15127608, 0.15127608, 1)
+shader_parameter/normal_outline_width = 1.0
+shader_parameter/normal_threshold = 0.75
+shader_parameter/normal_fade_start = 25.0
+shader_parameter/normal_fade_end = 10.0
+shader_parameter/depth_outline_width = 1.0
+shader_parameter/depth_threshold = 0.05
+shader_parameter/depth_artifact_correction_coef = 2.0
+
+[node name="GameEnvironment" type="Node3D"]
+script = ExtResource("1_5eqo1")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bo1nx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.35673797, 0.66058224, -0.66058224, 0, 0.7071067, 0.7071067, 0.9342044, -0.25225183, 0.25225183, 0, 0, 0)
+light_angular_distance = 2.0
+shadow_enabled = true
+directional_shadow_blend_splits = true
+
+[node name="OutlineEffect" type="MeshInstance3D" parent="."]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_sugp2")
+surface_material_override/0 = SubResource("ShaderMaterial_tbgi4")

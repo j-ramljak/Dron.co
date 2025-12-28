@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://jfu5xsoq7sjv"]
+
+[ext_resource type="Script" uid="uid://cvcrfgjrnvr4o" path="res://entities/dynamic/package/package_3d.gd" id="1_wvd5g"]
+[ext_resource type="PackedScene" uid="uid://6xckh2b74oda" path="res://entities/dynamic/package/box_large.glb" id="2_wvd5g"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wvd5g"]
+points = PackedVector3Array(-0.8208692, -0.10894656, -1, -0.8208692, 0.10880011, -1, -0.8189115, -0.7499998, -1, -1, -0.10894656, -0.8208692, -0.8189115, 0.7500002, -1, -1, 0.10880011, -0.8208692, -1, -0.7499998, -0.8189115, 0.8461237, -0.7499998, -1, -1, 0.7500002, -0.8189115, 0.8461237, 0.7500002, -1, -1, -0.7499998, 0.8461237, 1, -0.7499998, -0.8463195, -1, 0.7500002, 0.8461237, 1, 0.7500002, -0.8463195, -0.8463195, -0.7499998, 1, 1, -0.7499998, 0.8187157, -0.8463195, 0.7500002, 1, 1, 0.7500002, 0.8187157, 0.8187157, -0.7499998, 1, 1, -0.10894656, 0.82067347, 0.8187157, 0.7500002, 1, 1, 0.10880011, 0.82067347, 0.82067347, -0.10894656, 1, 0.82067347, 0.10880011, 1)
+
+[node name="BoxLarge" type="RigidBody3D" groups=["Package"]]
+script = ExtResource("1_wvd5g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_wvd5g")
+
+[node name="Model" parent="." instance=ExtResource("2_wvd5g")]

@@ -1,0 +1,674 @@
+[gd_scene load_steps=18 format=3 uid="uid://4hnmjoye7dw1"]
+
+[ext_resource type="Script" uid="uid://bbtbfxm835u15" path="res://entities/dynamic/user_interface/user_interface.gd" id="1_gxmva"]
+[ext_resource type="PackedScene" uid="uid://g0sieg1khaeh" path="res://entities/dynamic/user_interface/warning_panel.tscn" id="3_ldin5"]
+[ext_resource type="Theme" uid="uid://buup0s46ek5dt" path="res://entities/dynamic/user_interface/themes/theme_general.tres" id="4_0x5m7"]
+[ext_resource type="Theme" uid="uid://bskthmnx8bdib" path="res://entities/dynamic/user_interface/themes/theme_red.tres" id="4_ns8o4"]
+[ext_resource type="Texture2D" uid="uid://cdt8nykfln7mx" path="res://entities/dynamic/user_interface/textures/you_died.png" id="6_d64fq"]
+
+[sub_resource type="Gradient" id="Gradient_ns8o4"]
+colors = PackedColorArray(0, 0, 0, 0.49803922, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ldin5"]
+gradient = SubResource("Gradient_ns8o4")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g22m1"]
+bg_color = Color(0.1764706, 0.20784314, 0.22352941, 1)
+border_width_left = 4
+border_color = Color(0.9529412, 0.4745098, 0.078431375, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.49803922)
+shadow_size = 1
+shadow_offset = Vector2(4, 4)
+anti_aliasing = false
+
+[sub_resource type="Animation" id="Animation_ldin5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/VBoxContainer/TextureGradient2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/VBoxContainer/TextureGradient:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/CenterContainer/Control/TextureYouDied:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/CenterContainer/Control/TextureYouDied:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ns8o4"]
+resource_name = "you_died"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/VBoxContainer/TextureGradient2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 5.0333333, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/VBoxContainer/TextureGradient:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 5.0333333, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/CenterContainer/Control/TextureYouDied:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6, 3.1333334, 4.233333, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/CenterContainer/Control/TextureYouDied:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(2, 2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d64fq"]
+_data = {
+&"RESET": SubResource("Animation_ldin5"),
+&"you_died": SubResource("Animation_ns8o4")
+}
+
+[sub_resource type="Gradient" id="Gradient_ggw1y"]
+colors = PackedColorArray(0, 0, 0, 0.92941177, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qgb30"]
+gradient = SubResource("Gradient_ggw1y")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_d64fq"]
+colors = PackedColorArray(0, 0, 0, 0.68235296, 0, 0, 0, 0.28627452)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_31too"]
+gradient = SubResource("Gradient_d64fq")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cel8s"]
+bg_color = Color(0.14220001, 0.16299002, 0.18, 0.90588236)
+border_width_top = 4
+border_color = Color(0, 0, 0, 0.49803922)
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mebh3"]
+bg_color = Color(0.9529412, 0.4745098, 0.078431375, 1)
+shadow_color = Color(0, 0, 0, 0.49803922)
+shadow_size = 1
+shadow_offset = Vector2(4, 4)
+
+[node name="UserInterface" type="Control" node_paths=PackedStringArray("HUD", "MAIN_MENU", "GAME_OVER", "CHARGE_DISPLAY")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gxmva")
+HUD = NodePath("HUD")
+MAIN_MENU = NodePath("MainMenu")
+GAME_OVER = NodePath("GameOver")
+CHARGE_DISPLAY = NodePath("HUD/TopBar/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer/ChargeValue")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="TextureRect" parent="HUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+texture = SubResource("GradientTexture2D_ldin5")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/TopBar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 91.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/TopBar/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PanelContainer2" type="PanelContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g22m1")
+
+[node name="MarginContainer2" type="MarginContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="GameTitle" type="Label" parent="HUD/TopBar/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer2"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "Dron.co"
+
+[node name="QuitButton" type="Button" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "Quit"
+
+[node name="QualityButton" type="CheckButton" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "Low Quality"
+
+[node name="DieButton" type="Button" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "Die
+"
+
+[node name="Seperator" type="Control" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TimeDisplay" type="PanelContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_0x5m7")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="BoxContainer" type="BoxContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer"]
+custom_minimum_size = Vector2(171.685, 0)
+layout_mode = 2
+
+[node name="TimeText" type="Label" parent="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer/BoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "Time: "
+
+[node name="Control" type="Control" parent="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TimeValue" type="Label" parent="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer/BoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "00:00"
+horizontal_alignment = 2
+
+[node name="DeliveryDisplay" type="PanelContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_0x5m7")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer/DeliveryDisplay"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="BoxContainer" type="BoxContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer"]
+custom_minimum_size = Vector2(171.685, 0)
+layout_mode = 2
+
+[node name="DeliveryText" type="Label" parent="HUD/TopBar/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer/BoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "Delivered:"
+
+[node name="Control" type="Control" parent="HUD/TopBar/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DeliveryValue" type="Label" parent="HUD/TopBar/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer/BoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "0"
+horizontal_alignment = 2
+
+[node name="ChargeDisplay" type="PanelContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_0x5m7")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer/ChargeDisplay"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="BoxContainer" type="BoxContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer"]
+custom_minimum_size = Vector2(171.685, 0)
+layout_mode = 2
+
+[node name="ChargeText" type="Label" parent="HUD/TopBar/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "Charge: "
+
+[node name="Control" type="Control" parent="HUD/TopBar/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChargeValue" type="Label" parent="HUD/TopBar/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Warnings" type="Control" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/Warnings"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -188.0
+offset_top = -99.0
+offset_right = 188.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Warnings/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="WarningBattery" parent="HUD/Warnings/MarginContainer/HBoxContainer" instance=ExtResource("3_ldin5")]
+layout_mode = 2
+text = "Low battery!"
+
+[node name="WarningSignal" parent="HUD/Warnings/MarginContainer/HBoxContainer" instance=ExtResource("3_ldin5")]
+layout_mode = 2
+text = "No signal!"
+
+[node name="WarningAltitude" parent="HUD/Warnings/MarginContainer/HBoxContainer" instance=ExtResource("3_ldin5")]
+layout_mode = 2
+text = "High altitude!"
+
+[node name="YouDied" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="YouDied"]
+libraries = {
+&"": SubResource("AnimationLibrary_d64fq")
+}
+
+[node name="Control" type="Control" parent="YouDied"]
+layout_mode = 1
+anchor_top = 0.38734567
+anchor_right = 1.0
+anchor_bottom = 0.6126543
+offset_top = -137.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="YouDied/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="TextureGradient" type="TextureRect" parent="YouDied/Control/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_qgb30")
+flip_v = true
+
+[node name="TextureGradient2" type="TextureRect" parent="YouDied/Control/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_qgb30")
+
+[node name="CenterContainer" type="CenterContainer" parent="YouDied/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="YouDied/Control/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureYouDied" type="TextureRect" parent="YouDied/Control/CenterContainer/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+pivot_offset = Vector2(250, 250)
+mouse_filter = 2
+texture = ExtResource("6_d64fq")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundTexture" type="TextureRect" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_31too")
+
+[node name="PanelContainer" type="PanelContainer" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -328.0
+offset_top = -67.0
+offset_right = 328.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_0x5m7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOver/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_ns8o4")
+text = "GAME OVER"
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+
+[node name="HorizontalPanel" type="Panel" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("4_ns8o4")
+
+[node name="PanelContainer" type="PanelContainer" parent="GameOver/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cel8s")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "[game_over_message]"
+
+[node name="Control" type="Control" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RestartButton" type="Button" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("4_0x5m7")
+text = "Restart
+"
+
+[node name="CloseButton" type="Button" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("4_0x5m7")
+text = "Close"
+
+[node name="QuitButton" type="Button" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "Quit"
+
+[node name="MainMenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundTexture" type="TextureRect" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_31too")
+
+[node name="TitleLabel" type="Label" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -162.0
+offset_top = -212.0
+offset_right = 162.0
+offset_bottom = -99.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_0x5m7")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6901961)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 128
+text = "DRON.CO"
+
+[node name="HorizontalPanel" type="Panel" parent="MainMenu"]
+custom_minimum_size = Vector2(512, 4)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.261
+anchor_top = 0.5
+anchor_right = 0.739
+anchor_bottom = 0.5
+offset_left = 0.32800293
+offset_top = -86.985
+offset_right = -0.32800293
+offset_bottom = -82.985
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mebh3")
+
+[node name="StartButton" type="Button" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = -28.5
+offset_right = 135.0
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_0x5m7")
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 48
+text = "START"
+
+[connection signal="pressed" from="HUD/TopBar/MarginContainer/HBoxContainer/QuitButton" to="." method="quit"]
+[connection signal="toggled" from="HUD/TopBar/MarginContainer/HBoxContainer/QualityButton" to="." method="set_graphics"]
+[connection signal="pressed" from="HUD/TopBar/MarginContainer/HBoxContainer/DieButton" to="." method="demo_die"]
+[connection signal="animation_finished" from="YouDied/AnimationPlayer" to="." method="demo_died" unbinds=1]
+[connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/CloseButton" to="." method="goto_menu" binds= [1]]
+[connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/QuitButton" to="." method="quit"]
+[connection signal="pressed" from="MainMenu/StartButton" to="." method="goto_menu" binds= [1]]
