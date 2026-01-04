@@ -7,6 +7,8 @@
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.50793654, 0.50793654, 0.50793654, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
 [node name="BoxSmall" type="RigidBody3D" groups=["Package"]]
+collision_layer = 8
+collision_mask = 11
 script = ExtResource("1_y76c0")
 
 [node name="Model" parent="." instance=ExtResource("2_bj4x8")]

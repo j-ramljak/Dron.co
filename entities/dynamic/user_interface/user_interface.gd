@@ -14,6 +14,11 @@ enum Menu { MAIN_MENU, HUD, GAME_OVER }
 @export var GAME_OVER: Control
 @export var CHARGE_DISPLAY: Label
 
+
+
+@onready var delivery_label = $HUD/TopBar/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer/BoxContainer/DeliveryValue
+var delivered_pacakges: int = 0
+
 func _ready() -> void:
 	goto_menu(START_AT)
 
@@ -49,3 +54,10 @@ func demo_die():
 
 func demo_died():
 	goto_menu(Menu.GAME_OVER)
+
+func update_delivery_count(value: int):
+	#potrebno u editoru ih connectat
+	delivered_pacakges += value
+	print(delivered_pacakges)
+	delivery_label.text = str(delivered_pacakges)
+	

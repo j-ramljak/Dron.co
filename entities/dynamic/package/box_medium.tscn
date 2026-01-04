@@ -7,6 +7,10 @@
 points = PackedVector3Array(-0.98508894, -0.5, -0.5, 0.954305, 0.5, 0.5, 0.954305, -0.48412704, 0.5, 0.98508894, -0.5, -0.5, 0.954305, 0.5, -0.48412704, -0.954305, 0.5, 0.5, -0.954305, -0.48412704, 0.5, -0.954305, 0.5, -0.48412704)
 
 [node name="BoxMedium" type="RigidBody3D" groups=["Package"]]
+collision_layer = 8
+collision_mask = 11
+linear_damp = 2.0
+angular_damp = 20.0
 script = ExtResource("1_g2dqo")
 
 [node name="Model" parent="." instance=ExtResource("2_mvdkm")]

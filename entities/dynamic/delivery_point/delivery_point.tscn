@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcn7738wek3of"]
+
+[ext_resource type="Script" uid="uid://dlxv2c5cdx3pl" path="res://entities/dynamic/delivery_point/delivery_point.gd" id="1_j6sfe"]
+[ext_resource type="PackedScene" uid="uid://d0tn8qiossuxl" path="res://entities/dynamic/delivery_point/delivery_point_model.glb" id="2_m8fpt"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_avwrh"]
+radius = 2.9501128
+
+[node name="Delivery point" type="Area3D"]
+collision_mask = 8
+script = ExtResource("1_j6sfe")
+
+[node name="delivery_point_model" parent="." instance=ExtResource("2_m8fpt")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_avwrh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
