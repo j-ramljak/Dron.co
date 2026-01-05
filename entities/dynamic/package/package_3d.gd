@@ -3,7 +3,13 @@ extends RigidBody3D
 class_name Package3D
 var is_being_carried = false
 
+@export var max_height = 4
+var fall_damage = 0
+
+
 func chage_carrying_state():
+	if is_being_carried:
+		fall_damage = global_position.y
 	is_being_carried = not is_being_carried
 
 func get_height():
@@ -20,3 +26,11 @@ func get_height():
 	
 func deliver():
 	queue_free()
+	
+func destroy():
+	queue_free()
+
+
+func _on_body_entered(body: Node) -> void:
+	if body.is_in_group("Ground") and fall_damage >= max_height:
+		destroy()

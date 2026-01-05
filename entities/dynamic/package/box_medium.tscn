@@ -9,6 +9,8 @@ points = PackedVector3Array(-0.98508894, -0.5, -0.5, 0.954305, 0.5, 0.5, 0.95430
 [node name="BoxMedium" type="RigidBody3D" groups=["Package"]]
 collision_layer = 8
 collision_mask = 11
+contact_monitor = true
+max_contacts_reported = 4
 linear_damp = 2.0
 angular_damp = 20.0
 script = ExtResource("1_g2dqo")
@@ -17,3 +19,5 @@ script = ExtResource("1_g2dqo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_rvrni")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

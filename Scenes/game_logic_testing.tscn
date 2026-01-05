@@ -28,7 +28,7 @@ transform = Transform3D(-0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.
 
 [node name="UI" parent="." instance=ExtResource("5_vtib0")]
 
-[node name="Plane" type="StaticBody3D" parent="."]
+[node name="Plane" type="StaticBody3D" parent="." groups=["Ground"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Plane"]
 mesh = SubResource("PlaneMesh_ky85p")
@@ -66,9 +66,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0006714, 0.49999988, -18.05
 
 [node name="CrateSmall" parent="." instance=ExtResource("12_j8hlx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.285006, 0.49999988, -17.511112)
-
-[node name="CrateSmall2" parent="." instance=ExtResource("12_j8hlx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.563898, 4.6595244, -17.546045)
 
 [connection signal="graphics_high" from="UI" to="GameEnvironment" method="set_graphics_high"]
 [connection signal="graphics_low" from="UI" to="GameEnvironment" method="set_graphics_low"]

@@ -42,8 +42,10 @@ func deattach():
 	hook_deattach.emit()
 	
 	body.chage_carrying_state()
+	body.global_position = $"../Hook/Marker".global_position
 	
 	drone_collison_shape.shape.size.y = 0.5
 	body.set_collision_mask_value(2, true)
+	
 	body.linear_damp = 0
 	body.angular_damp = 0
