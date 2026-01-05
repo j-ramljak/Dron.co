@@ -3,8 +3,10 @@ extends RigidBody3D
 class_name Package3D
 var is_being_carried = false
 
-@export var max_height = 4
+@export var max_height = 10
 var fall_damage = 0
+
+
 
 
 func chage_carrying_state():
@@ -25,6 +27,9 @@ func get_height():
 	
 	
 func deliver():
+	
+
+	
 	queue_free()
 	
 func destroy():
