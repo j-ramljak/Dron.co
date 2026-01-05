@@ -22,6 +22,10 @@ var delivered_pacakges: int = 0
 @onready var global_timer = $"HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/Global timer" 
 @onready var global_timer_label = $HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer/BoxContainer/TimeValue
 
+@onready var out_of_bounds_warning = $HUD/Warnings/MarginContainer/HBoxContainer/WarningSignal
+@onready var static_screen = $Static
+var player_out_of_bound = false
+
 func _ready() -> void:
 	goto_menu(START_AT)
 	
@@ -81,3 +85,16 @@ func _on_global_timer_timeout() -> void:
 func _on_start_button_pressed() -> void:
 	goto_menu(Menu.HUD)
 	global_timer.start()
+	
+	
+func player_out_of_bounds():
+	#treba spojiti u editoru
+	if not player_out_of_bound:
+		out_of_bounds_warning.visible = false
+		static_screen.visible = false
+		player_out_of_bound = not player_out_of_bound
+	else:
+		out_of_bounds_warning.visible = true
+		static_screen.visible = true
+		player_out_of_bound = not player_out_of_bound
+	

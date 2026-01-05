@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://ygnmkcrlo8lc"]
+
+[ext_resource type="Shader" uid="uid://bn5mhpvfe71qe" path="res://Scenes/Shaders/Static.gdshader" id="1_kycuq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4d1c"]
+shader = ExtResource("1_kycuq")
+shader_parameter/amount = 3.0
+
+[node name="Static" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_d4d1c")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

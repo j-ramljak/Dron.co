@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://4hnmjoye7dw1"]
+[gd_scene load_steps=19 format=3 uid="uid://4hnmjoye7dw1"]
 
 [ext_resource type="Script" uid="uid://bbtbfxm835u15" path="res://entities/dynamic/user_interface/user_interface.gd" id="1_gxmva"]
 [ext_resource type="PackedScene" uid="uid://g0sieg1khaeh" path="res://entities/dynamic/user_interface/warning_panel.tscn" id="3_ldin5"]
 [ext_resource type="Theme" uid="uid://buup0s46ek5dt" path="res://entities/dynamic/user_interface/themes/theme_general.tres" id="4_0x5m7"]
 [ext_resource type="Theme" uid="uid://bskthmnx8bdib" path="res://entities/dynamic/user_interface/themes/theme_red.tres" id="4_ns8o4"]
+[ext_resource type="PackedScene" uid="uid://ygnmkcrlo8lc" path="res://Scenes/Shaders/static.tscn" id="6_31too"]
 [ext_resource type="Texture2D" uid="uid://cdt8nykfln7mx" path="res://entities/dynamic/user_interface/textures/you_died.png" id="6_d64fq"]
 
 [sub_resource type="Gradient" id="Gradient_ns8o4"]
@@ -668,6 +669,9 @@ theme = ExtResource("4_0x5m7")
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 48
 text = "START"
+
+[node name="Static" parent="." instance=ExtResource("6_31too")]
+layout_mode = 1
 
 [connection signal="pressed" from="HUD/TopBar/MarginContainer/HBoxContainer/QuitButton" to="." method="quit"]
 [connection signal="toggled" from="HUD/TopBar/MarginContainer/HBoxContainer/QualityButton" to="." method="set_graphics"]

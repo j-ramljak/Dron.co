@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqqe6q4gfbchu"]
+[gd_scene load_steps=17 format=3 uid="uid://cqqe6q4gfbchu"]
 
 [ext_resource type="Script" uid="uid://dng6ihkug1pk8" path="res://shared/scripts/exit_app.gd" id="1_6jwji"]
 [ext_resource type="PackedScene" uid="uid://c8518p5fip7jw" path="res://entities/dynamic/drone/drone_body_3d.tscn" id="1_d4sxq"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bhi424kc8x0h1" path="res://entities/dynamic/package/crate_medium.tscn" id="9_y8xq7"]
 [ext_resource type="PackedScene" uid="uid://cqsdepxh2vggh" path="res://entities/dynamic/package/crate_large.tscn" id="10_uud1g"]
 [ext_resource type="PackedScene" uid="uid://ctu34kfwf7fh6" path="res://entities/dynamic/package/crate_small.tscn" id="12_j8hlx"]
+[ext_resource type="PackedScene" uid="uid://cjwe750nfn477" path="res://Scenes/out_of_bounds.tscn" id="14_hfmse"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ky85p"]
 size = Vector2(100, 100)
@@ -25,8 +26,6 @@ script = ExtResource("1_6jwji")
 
 [node name="GameEnvironment" parent="." instance=ExtResource("2_w64ti")]
 transform = Transform3D(-0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.70710677, 0, 0, 0)
-
-[node name="UI" parent="." instance=ExtResource("5_vtib0")]
 
 [node name="Plane" type="StaticBody3D" parent="." groups=["Ground"]]
 
@@ -67,7 +66,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0006714, 0.49999988, -18.05
 [node name="CrateSmall" parent="." instance=ExtResource("12_j8hlx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.285006, 0.49999988, -17.511112)
 
-[connection signal="graphics_high" from="UI" to="GameEnvironment" method="set_graphics_high"]
-[connection signal="graphics_low" from="UI" to="GameEnvironment" method="set_graphics_low"]
+[node name="UI" parent="." instance=ExtResource("5_vtib0")]
+
+[node name="Out of bounds" parent="." instance=ExtResource("14_hfmse")]
+
 [connection signal="charge_change" from="DroneBody3D" to="UI" method="update_charge"]
 [connection signal="package_delivered" from="Delivery point" to="UI" method="update_delivery_count"]
+[connection signal="graphics_high" from="UI" to="GameEnvironment" method="set_graphics_high"]
+[connection signal="graphics_low" from="UI" to="GameEnvironment" method="set_graphics_low"]
+[connection signal="out_of_bounds" from="Out of bounds" to="UI" method="player_out_of_bounds"]
