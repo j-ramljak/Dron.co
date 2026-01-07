@@ -1,0 +1,21 @@
+extends Area3D
+
+func _ready():
+	
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
+	
+func _on_body_entered(body: Node): #ova funkcija se nikad ne pozove kad uđem u Area3d od Wind iz nekvog razloga
+	print("something entered") 
+	if body.is_in_group("drone"):
+		print("drone entered wind area3d")
+		if body.has_method("set_windy"):
+			body.set_windy(true)
+			
+func _on_body_exited(body: Node):#ova funkcija se nikad ne pozove kad izeđem u Area3d od Wind iz nekvog razloga
+	print("something exited")
+	if body.is_in_group("drone"):
+		print("drone exited wind area3d")
+		if body.has_method("set_windy"):
+			body.set_windy(false)
+			

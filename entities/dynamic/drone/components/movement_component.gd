@@ -8,12 +8,22 @@ class_name MovementComponent
 @export var FRICTION = 0.9
 @export var TILT_STRENGTH = 0.2
 @export var TILT_SMOOTHNESS = 4.0
+@export var WIND_HEIGHT = 10.0
+@export var WIND_STRENGTH: float = 0.6
+@export var WIND_SPEED: float = 1.5
+
+ 
 
 var acceleration := Vector3.ZERO
-
+var random = RandomNumberGenerator.new()
+var wind_reset=0 
+var random_vector=Vector3.ZERO
+var wind_time: float = 0.0
+var windy: bool =false
 func _physics_process(delta: float) -> void:
-	
+		
 	# Movement
+	wind_time+=delta
 	var input_dir := Input.get_vector("go_left", "go_right", "go_front", "go_back")
 	var direction := (DRONE.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction != Vector3.ZERO:
@@ -34,9 +44,23 @@ func _physics_process(delta: float) -> void:
 		acceleration.y = -throttle_input * SPEED
 	else:
 		acceleration.y = 0.0
+
+	# Velocity and wind
+	if(windy):
 	
-	# Velocity
-	DRONE.velocity += acceleration * delta
+		var wind_x = sin(wind_time * WIND_SPEED) * WIND_STRENGTH
+		var wind_z = cos(wind_time * WIND_SPEED * 0.7) * WIND_STRENGTH
+		
+		wind_x += random.randf_range(-0.1, 0.1)
+		wind_z += random.randf_range(-0.1, 0.1)
+		
+		var wind_force = Vector3(wind_x, 0, wind_z)
+		DRONE.velocity += acceleration * delta - wind_force
+		
+	else:
+		wind_reset=0
+		DRONE.velocity += acceleration * delta
+		
 	DRONE.velocity *= FRICTION
 	
 	# Hover effect
@@ -70,3 +94,4 @@ func push_pushables(delta: float) -> void:
 		var push_direction := -col.get_normal()
 		var push_position = col_position - col_collider.global_position
 		col_collider.apply_impulse(push_direction * 30 * delta, push_position)
+		
