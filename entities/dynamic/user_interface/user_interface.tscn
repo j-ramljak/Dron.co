@@ -671,6 +671,7 @@ theme_override_font_sizes/font_size = 48
 text = "START"
 
 [node name="Static" parent="." instance=ExtResource("6_31too")]
+visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="HUD/TopBar/MarginContainer/HBoxContainer/QuitButton" to="." method="quit"]
