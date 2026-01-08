@@ -1,4 +1,4 @@
-extends Area3D
+xtends Area3D
 
 func _ready():
 	

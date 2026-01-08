@@ -2,7 +2,7 @@
 extends CharacterBody3D
 class_name DroneBody3D
 
-@export var MOVEMENT_COMPONENT: MovementComponent
+@onready var MOVEMENT_COMPONENT: MovementComponent = $MovementComponent
 @export var BATTERY_COMPONENT : BatteryComponent
 
 
@@ -15,7 +15,7 @@ func _on_battery_component_charge_change(charge: float) -> void:
 	charge_change.emit(charge)
 
 func set_windy(value: bool):
-	MOVEMENT_COMPONENT.set_windy(value) 
+	MOVEMENT_COMPONENT.windy=value 
 	
 func charge_increment(increment: float):
 	BATTERY_COMPONENT.charge += increment	

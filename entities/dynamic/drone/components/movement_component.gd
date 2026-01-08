@@ -19,7 +19,10 @@ var random = RandomNumberGenerator.new()
 var wind_reset=0 
 var random_vector=Vector3.ZERO
 var wind_time: float = 0.0
-var windy: bool =false
+var windy: bool
+func _ready() -> void:
+	windy=false
+	
 func _physics_process(delta: float) -> void:
 		
 	# Movement
