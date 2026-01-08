@@ -72,7 +72,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.285006, 0.49999988, -17.51
 [node name="Out of bounds" parent="." instance=ExtResource("14_hfmse")]
 
 [node name="Wind" parent="." instance=ExtResource("15_656ta")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.4422169, 78.28278, 1.4754848)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.0999, -21.074394)
 
 [connection signal="charge_change" from="DroneBody3D" to="UI" method="update_charge"]
 [connection signal="package_delivered" from="Delivery point" to="UI" method="update_delivery_count"]
