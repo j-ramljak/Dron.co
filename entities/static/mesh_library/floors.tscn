@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://7xwr1bl0xorn"]
+[gd_scene load_steps=36 format=3 uid="uid://7xwr1bl0xorn"]
 
 [ext_resource type="PackedScene" uid="uid://bbi77n0td2bqu" path="res://entities/static/floors/01_road.glb" id="1_gem1n"]
 [ext_resource type="PackedScene" uid="uid://b58n4a7dsnuxq" path="res://entities/static/floors/02_road.glb" id="2_turr1"]
@@ -32,6 +32,9 @@
 [ext_resource type="PackedScene" uid="uid://cmohju8b8arej" path="res://entities/static/floors/30_grass.glb" id="30_e6fpu"]
 [ext_resource type="PackedScene" uid="uid://3btjhnfo2cd4" path="res://entities/static/floors/31_grass.glb" id="31_m1dlt"]
 [ext_resource type="PackedScene" uid="uid://dm7fpvya217eo" path="res://entities/static/floors/32_grass.glb" id="32_turr1"]
+[ext_resource type="PackedScene" uid="uid://dix24apjowqx1" path="res://entities/static/floors/33_border.glb" id="33_p4h1p"]
+[ext_resource type="PackedScene" uid="uid://8s84wlrysugn" path="res://entities/static/floors/34_border.glb" id="34_adurc"]
+[ext_resource type="PackedScene" uid="uid://m3unu7828417" path="res://entities/static/floors/35_border.glb" id="35_sj8wg"]
 
 [node name="TileMeshLibrary" type="Node3D"]
 
@@ -98,3 +101,9 @@
 [node name="31_grass" parent="." instance=ExtResource("31_m1dlt")]
 
 [node name="32_grass" parent="." instance=ExtResource("32_turr1")]
+
+[node name="33_border" parent="." instance=ExtResource("33_p4h1p")]
+
+[node name="34_border" parent="." instance=ExtResource("34_adurc")]
+
+[node name="35_border" parent="." instance=ExtResource("35_sj8wg")]
