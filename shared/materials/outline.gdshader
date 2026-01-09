@@ -16,15 +16,19 @@ uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
 uniform sampler2D NORMAL_TEXTURE : hint_normal_roughness_texture, filter_linear_mipmap;
 
-uniform vec3 outline_color: source_color;
+group_uniforms normal_outline;
+uniform vec3 normal_outline_color: source_color;
 uniform float normal_outline_width = 1.0;
 uniform float normal_threshold = 0.1;
 uniform float normal_fade_start = 10.0;
 uniform float normal_fade_end = 5.0;
+
+group_uniforms depth_outline;
+uniform vec3 depth_outline_color: source_color;
 uniform float depth_outline_width = 1.0;
 uniform float depth_threshold = 0.05;
-uniform float depth_fade_start = 512.0;
-uniform float depth_fade_end = 128.0;
+//uniform float depth_fade_start = 256.0;
+//uniform float depth_fade_end = 16.0;
 uniform float depth_artifact_correction_coef = 2;
 
 const mat3 sobel_y = mat3(
@@ -104,21 +108,18 @@ void fragment() {
 	float has_outline = 0.0;
 	vec2 pixel_size = vec2(1.0) / VIEWPORT_SIZE;
 	ALBEDO = texture(SCREEN_TEXTURE, SCREEN_UV).xyz;
-	//ALBEDO = vec3(get_depth(DEPTH_TEXTURE, SCREEN_UV, INV_PROJECTION_MATRIX));
 
 	float depth = get_depth(DEPTH_TEXTURE, SCREEN_UV, INV_PROJECTION_MATRIX);
-	//ALBEDO = vec3(map_range(depth, normal_fade_start, normal_fade_end, 0.0, 1.0));
 	if (edge_value_normal(NORMAL_TEXTURE, SCREEN_UV, normal_outline_width * pixel_size, sobel_x) + edge_value_normal(NORMAL_TEXTURE, SCREEN_UV, pixel_size, sobel_y) > normal_threshold){
-		//ALBEDO = outline_color;
-		ALBEDO = mix(ALBEDO, outline_color, clamp((depth - normal_fade_start) / (normal_fade_end - normal_fade_start), 0.0, 1.0));
+		ALBEDO = mix(ALBEDO, normal_outline_color, clamp((depth - normal_fade_start) / (normal_fade_end - normal_fade_start), 0.0, 1.0));
 		has_outline += 1.0;
 	}
 
 	vec3 normal = texture(NORMAL_TEXTURE, SCREEN_UV).rgb;
 	float angle = 1.0 - dot(normalize(normal-vec3(0.5)),  vec3(0.0,0.0,1.0));
 	if (edge_value_depth(DEPTH_TEXTURE, SCREEN_UV, depth_outline_width * pixel_size, sobel_x, INV_PROJECTION_MATRIX) + edge_value_depth(DEPTH_TEXTURE, SCREEN_UV, pixel_size, sobel_y, INV_PROJECTION_MATRIX) > depth_threshold + angle * depth_artifact_correction_coef){
-		//ALBEDO = mix(ALBEDO, outline_color, clamp((depth - depth_fade_start) / (depth_fade_end - depth_fade_start), 0.0, 1.0));
-		ALBEDO = outline_color;
+		//ALBEDO = mix(ALBEDO, depth_outline_color, clamp((depth - depth_fade_start) / (depth_fade_end - depth_fade_start), 0.0, 1.0));
+		ALBEDO = depth_outline_color;
 		has_outline += 1.0;
 	}
 

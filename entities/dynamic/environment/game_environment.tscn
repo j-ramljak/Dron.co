@@ -39,15 +39,16 @@ size = Vector2(2, 2)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
 render_priority = 0
 shader = ExtResource("2_5eqo1")
-shader_parameter/outline_color = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/normal_outline_color = Color(0.1, 0.1, 0.1, 1)
 shader_parameter/normal_outline_width = 1.0
 shader_parameter/normal_threshold = 0.75
 shader_parameter/normal_fade_start = 25.0
 shader_parameter/normal_fade_end = 10.0
+shader_parameter/depth_outline_color = Color(0.3, 0.3, 0.3, 1)
 shader_parameter/depth_outline_width = 1.0
 shader_parameter/depth_threshold = 0.05
-shader_parameter/depth_fade_start = 10.0
-shader_parameter/depth_fade_end = 5.0
+shader_parameter/depth_fade_start = 512.0
+shader_parameter/depth_fade_end = 128.0
 shader_parameter/depth_artifact_correction_coef = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1jyyf"]
