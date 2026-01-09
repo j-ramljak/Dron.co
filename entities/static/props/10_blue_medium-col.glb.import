@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://to23cvy83jfi"
-path="res://.godot/imported/01_green_large-col.glb-c931e238d9fad6e251d51d5cee6064e0.scn"
+uid="uid://es52mrfb7ouk"
+path="res://.godot/imported/10_blue_medium-col.glb-c1719c1d178908359ae6e6a88b3175e2.scn"
 
 [deps]
 
-source_file="res://entities/static/foliage/01_green_large-col.glb"
-dest_files=["res://.godot/imported/01_green_large-col.glb-c931e238d9fad6e251d51d5cee6064e0.scn"]
+source_file="res://entities/static/props/10_blue_medium-col.glb"
+dest_files=["res://.godot/imported/10_blue_medium-col.glb-c1719c1d178908359ae6e6a88b3175e2.scn"]
 
 [params]
 

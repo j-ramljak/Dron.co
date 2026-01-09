@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://2qydddknolyo"]
 
-[ext_resource type="MeshLibrary" uid="uid://ltwn0egw2emn" path="res://entities/static/mesh_library/tree_mesh_library.tres" id="3_ms2es"]
+[ext_resource type="MeshLibrary" uid="uid://ltwn0egw2emn" path="res://entities/static/mesh_library/prop_mesh_library.tres" id="3_ms2es"]
 [ext_resource type="MeshLibrary" uid="uid://jm8koq3bc4ac" path="res://entities/static/mesh_library/building_mesh_library.tres" id="43_me5gh"]
 [ext_resource type="MeshLibrary" uid="uid://shb3s2x2xvvn" path="res://entities/static/mesh_library/floor_mesh_library.tres" id="44_212ta"]
 
@@ -26,7 +26,7 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="TreeGridMap" type="GridMap" parent="."]
+[node name="PropGridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("3_ms2es")
 cell_size = Vector3(2.5, 2.5, 2.5)
 cell_octant_size = 128

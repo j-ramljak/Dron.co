@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dvyu375ldo0wc"
-path="res://.godot/imported/04_green_tiny-col.glb-8998afc3544d29c04ffac2e7c915479d.scn"
+path="res://.godot/imported/04_green_tiny-col.glb-138ded0db28ac1faef3533eaafc0e2ea.scn"
 
 [deps]
 
-source_file="res://entities/static/foliage/04_green_tiny-col.glb"
-dest_files=["res://.godot/imported/04_green_tiny-col.glb-8998afc3544d29c04ffac2e7c915479d.scn"]
+source_file="res://entities/static/props/04_green_tiny-col.glb"
+dest_files=["res://.godot/imported/04_green_tiny-col.glb-138ded0db28ac1faef3533eaafc0e2ea.scn"]
 
 [params]
 
