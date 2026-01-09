@@ -30,6 +30,7 @@
     - [ ] prepreke (reklame, semafori, žice, zastave...) `[matea]`
     - [ ] model drona + rotiranje propelera `[matea]`
     - [ ] raspored grada `[matea]`
+    - [x] granica grada `[martin]`
 - Gameplay
 	- [ ] dostavljanje paketa `[jakov]`
     - [x] korisničko sučelje (title screen, baterija, death screen, ...) `[martin]`
@@ -60,6 +61,7 @@
 > - Outline shader (MIT Lisence): https://godotshaders.com/shader/sobel-outline-shader/
 > - Skybox (Royalty Free License): https://freestylized.com/skybox/sky_22/
 > - Font (SIL Open Font License, Version 1.1): https://fonts.google.com/specimen/Jersey+15?categoryFilters=Appearance:%2FTheme%2FPixel
+> - Water shader (CC0 1.0 Universal License): https://godotshaders.com/shader/absorption-based-stylized-water/
 
 </details>
 
