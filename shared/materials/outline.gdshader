@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded;
+render_mode unshaded, fog_disabled;
 
 /*
 	https://godotshaders.com/shader/object-outline-shader/
@@ -23,6 +23,8 @@ uniform float normal_fade_start = 10.0;
 uniform float normal_fade_end = 5.0;
 uniform float depth_outline_width = 1.0;
 uniform float depth_threshold = 0.05;
+uniform float depth_fade_start = 512.0;
+uniform float depth_fade_end = 128.0;
 uniform float depth_artifact_correction_coef = 2;
 
 const mat3 sobel_y = mat3(
@@ -38,7 +40,7 @@ const mat3 sobel_x = mat3(
 );
 
 void vertex() {
-  POSITION = vec4(VERTEX.xy, 1.0, 1.0);
+	POSITION = vec4(VERTEX.xy, 1.0, 1.0);
 }
 
 float edge_value_normal(sampler2D normal_tex, vec2 uv, vec2 pixel_size, mat3 sobel) {
@@ -115,6 +117,7 @@ void fragment() {
 	vec3 normal = texture(NORMAL_TEXTURE, SCREEN_UV).rgb;
 	float angle = 1.0 - dot(normalize(normal-vec3(0.5)),  vec3(0.0,0.0,1.0));
 	if (edge_value_depth(DEPTH_TEXTURE, SCREEN_UV, depth_outline_width * pixel_size, sobel_x, INV_PROJECTION_MATRIX) + edge_value_depth(DEPTH_TEXTURE, SCREEN_UV, pixel_size, sobel_y, INV_PROJECTION_MATRIX) > depth_threshold + angle * depth_artifact_correction_coef){
+		//ALBEDO = mix(ALBEDO, outline_color, clamp((depth - depth_fade_start) / (depth_fade_end - depth_fade_start), 0.0, 1.0));
 		ALBEDO = outline_color;
 		has_outline += 1.0;
 	}
