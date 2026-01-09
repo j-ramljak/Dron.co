@@ -3,7 +3,6 @@ extends EditorScenePostImport
 
 const MATERIALS := {
 	"palette_color" = preload("res://shared/materials/palette_color.tres"),
-	"palette_foliage" = preload("res://shared/materials/palette_foliage.tres"),
 	"palette_transparent" = preload("res://shared/materials/palette_transparent.tres")
 }
 	

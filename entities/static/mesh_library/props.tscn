@@ -1,40 +1,49 @@
-[gd_scene load_steps=13 format=3 uid="uid://dfxfpgq2whgu8"]
+[gd_scene load_steps=16 format=3 uid="uid://dfxfpgq2whgu8"]
 
-[ext_resource type="PackedScene" uid="uid://to23cvy83jfi" path="res://entities/static/props/01_green_large-col.glb" id="1_n2m3a"]
-[ext_resource type="PackedScene" uid="uid://np1vt04kqwgj" path="res://entities/static/props/02_green_medium-col.glb" id="2_hpf18"]
-[ext_resource type="PackedScene" uid="uid://d0i7b8j32iytj" path="res://entities/static/props/03_green_small-col.glb" id="3_sqglq"]
-[ext_resource type="PackedScene" uid="uid://dvyu375ldo0wc" path="res://entities/static/props/04_green_tiny-col.glb" id="4_b58wr"]
-[ext_resource type="PackedScene" uid="uid://db2bdee0tf2ab" path="res://entities/static/props/05_orange_large-col.glb" id="5_unwst"]
-[ext_resource type="PackedScene" uid="uid://d13h6kicgmetn" path="res://entities/static/props/06_orange_medium-col.glb" id="6_er5ht"]
-[ext_resource type="PackedScene" uid="uid://d2bs0ovae7h06" path="res://entities/static/props/07_orange_small-col.glb" id="7_gtba3"]
-[ext_resource type="PackedScene" uid="uid://bgbhmctcdwysk" path="res://entities/static/props/08_orange_tiny-col.glb" id="8_k8w6s"]
-[ext_resource type="PackedScene" uid="uid://curwoiqy8jca4" path="res://entities/static/props/09_blue_large-col.glb" id="9_ddmng"]
-[ext_resource type="PackedScene" uid="uid://es52mrfb7ouk" path="res://entities/static/props/10_blue_medium-col.glb" id="10_a2825"]
-[ext_resource type="PackedScene" uid="uid://fbj20s3rhd61" path="res://entities/static/props/11_blue_small-col.glb" id="11_mriyb"]
-[ext_resource type="PackedScene" uid="uid://b0mckaksc2pnx" path="res://entities/static/props/12_blue_tiny-col.glb" id="12_v6nha"]
+[ext_resource type="PackedScene" uid="uid://to23cvy83jfi" path="res://entities/static/props/01_green_large-col.glb" id="1_o3baw"]
+[ext_resource type="PackedScene" uid="uid://np1vt04kqwgj" path="res://entities/static/props/02_green_medium-col.glb" id="2_51d0x"]
+[ext_resource type="PackedScene" uid="uid://d0i7b8j32iytj" path="res://entities/static/props/03_green_small-col.glb" id="3_wklkk"]
+[ext_resource type="PackedScene" uid="uid://dvyu375ldo0wc" path="res://entities/static/props/04_green_tiny-col.glb" id="4_xjusr"]
+[ext_resource type="PackedScene" uid="uid://db2bdee0tf2ab" path="res://entities/static/props/05_orange_large-col.glb" id="5_wcqpj"]
+[ext_resource type="PackedScene" uid="uid://d13h6kicgmetn" path="res://entities/static/props/06_orange_medium-col.glb" id="6_w2ln4"]
+[ext_resource type="PackedScene" uid="uid://d2bs0ovae7h06" path="res://entities/static/props/07_orange_small-col.glb" id="7_kc6o4"]
+[ext_resource type="PackedScene" uid="uid://bgbhmctcdwysk" path="res://entities/static/props/08_orange_tiny-col.glb" id="8_crwj4"]
+[ext_resource type="PackedScene" uid="uid://curwoiqy8jca4" path="res://entities/static/props/09_blue_large-col.glb" id="9_ore0i"]
+[ext_resource type="PackedScene" uid="uid://es52mrfb7ouk" path="res://entities/static/props/10_blue_medium-col.glb" id="10_48t13"]
+[ext_resource type="PackedScene" uid="uid://fbj20s3rhd61" path="res://entities/static/props/11_blue_small-col.glb" id="11_no2wv"]
+[ext_resource type="PackedScene" uid="uid://b0mckaksc2pnx" path="res://entities/static/props/12_blue_tiny-col.glb" id="12_3quoj"]
+[ext_resource type="PackedScene" uid="uid://j2lavjlyaula" path="res://entities/static/props/13_flags.glb" id="13_xjusr"]
+[ext_resource type="PackedScene" uid="uid://dbt4ppsbbly3s" path="res://entities/static/props/14_semafor.glb" id="14_wcqpj"]
+[ext_resource type="PackedScene" uid="uid://b6lkgbq8tk7k1" path="res://entities/static/props/15_billboard.glb" id="15_w2ln4"]
 
 [node name="Trees" type="Node3D"]
 
-[node name="01_green_large-col2" parent="." instance=ExtResource("1_n2m3a")]
+[node name="01_green_large" parent="." instance=ExtResource("1_o3baw")]
 
-[node name="02_green_medium-col2" parent="." instance=ExtResource("2_hpf18")]
+[node name="02_green_medium" parent="." instance=ExtResource("2_51d0x")]
 
-[node name="03_green_small-col2" parent="." instance=ExtResource("3_sqglq")]
+[node name="03_green_small" parent="." instance=ExtResource("3_wklkk")]
 
-[node name="04_green_tiny-col2" parent="." instance=ExtResource("4_b58wr")]
+[node name="04_green_tiny" parent="." instance=ExtResource("4_xjusr")]
 
-[node name="05_orange_large-col2" parent="." instance=ExtResource("5_unwst")]
+[node name="05_orange_large" parent="." instance=ExtResource("5_wcqpj")]
 
-[node name="06_orange_medium-col2" parent="." instance=ExtResource("6_er5ht")]
+[node name="06_orange_medium" parent="." instance=ExtResource("6_w2ln4")]
 
-[node name="07_orange_small-col2" parent="." instance=ExtResource("7_gtba3")]
+[node name="07_orange_small" parent="." instance=ExtResource("7_kc6o4")]
 
-[node name="08_orange_tiny-col2" parent="." instance=ExtResource("8_k8w6s")]
+[node name="08_orange_tiny" parent="." instance=ExtResource("8_crwj4")]
 
-[node name="09_blue_large-col2" parent="." instance=ExtResource("9_ddmng")]
+[node name="09_blue_large" parent="." instance=ExtResource("9_ore0i")]
 
-[node name="10_blue_medium-col2" parent="." instance=ExtResource("10_a2825")]
+[node name="10_blue_medium" parent="." instance=ExtResource("10_48t13")]
 
-[node name="11_blue_small-col2" parent="." instance=ExtResource("11_mriyb")]
+[node name="11_blue_small" parent="." instance=ExtResource("11_no2wv")]
 
-[node name="12_blue_tiny-col2" parent="." instance=ExtResource("12_v6nha")]
+[node name="12_blue_tiny" parent="." instance=ExtResource("12_3quoj")]
+
+[node name="13_flags" parent="." instance=ExtResource("13_xjusr")]
+
+[node name="14_semafor" parent="." instance=ExtResource("14_wcqpj")]
+
+[node name="15_billboard" parent="." instance=ExtResource("15_w2ln4")]
