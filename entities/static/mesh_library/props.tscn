@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dfxfpgq2whgu8"]
+[gd_scene load_steps=36 format=3 uid="uid://dfxfpgq2whgu8"]
 
 [ext_resource type="PackedScene" uid="uid://to23cvy83jfi" path="res://entities/static/props/01_green_large-col.glb" id="1_o3baw"]
 [ext_resource type="PackedScene" uid="uid://np1vt04kqwgj" path="res://entities/static/props/02_green_medium-col.glb" id="2_51d0x"]
@@ -15,6 +15,26 @@
 [ext_resource type="PackedScene" uid="uid://j2lavjlyaula" path="res://entities/static/props/13_flags.glb" id="13_xjusr"]
 [ext_resource type="PackedScene" uid="uid://dbt4ppsbbly3s" path="res://entities/static/props/14_semafor.glb" id="14_wcqpj"]
 [ext_resource type="PackedScene" uid="uid://b6lkgbq8tk7k1" path="res://entities/static/props/15_billboard.glb" id="15_w2ln4"]
+[ext_resource type="PackedScene" uid="uid://b72d7wc56xurt" path="res://entities/static/props/16_fountain.glb" id="16_wjw47"]
+[ext_resource type="PackedScene" uid="uid://dlvn7kj3w3mpv" path="res://entities/static/props/17_bench.glb" id="17_faje1"]
+[ext_resource type="PackedScene" uid="uid://daa4pal8dbrhf" path="res://entities/static/props/18_trash.glb" id="18_vje30"]
+[ext_resource type="PackedScene" uid="uid://d2yxa4jyqm8l6" path="res://entities/static/props/19_busstop.glb" id="19_n7m82"]
+[ext_resource type="PackedScene" uid="uid://csg568fspk06x" path="res://entities/static/props/20_trash.glb" id="20_s7q7p"]
+[ext_resource type="PackedScene" uid="uid://ci4nujnhfndj3" path="res://entities/static/props/21_trash.glb" id="21_4p7v8"]
+[ext_resource type="PackedScene" uid="uid://c537ktv2fajc5" path="res://entities/static/props/22_firehydrant.glb" id="22_tsc3c"]
+[ext_resource type="PackedScene" uid="uid://b5bq1y5lrwqic" path="res://entities/static/props/23_pot.glb" id="23_u3ma2"]
+[ext_resource type="PackedScene" uid="uid://bjtvkov1evw80" path="res://entities/static/props/24_bush-col.glb" id="24_8fv05"]
+[ext_resource type="PackedScene" uid="uid://6kquxx6g54l6" path="res://entities/static/props/25_bush-col.glb" id="25_2i3da"]
+[ext_resource type="PackedScene" uid="uid://bxlpmyn8ds8ih" path="res://entities/static/props/26_pot.glb" id="26_t2x5c"]
+[ext_resource type="PackedScene" uid="uid://cje4s00bftgdu" path="res://entities/static/props/27_pot.glb" id="27_uup80"]
+[ext_resource type="PackedScene" uid="uid://cgv4yhc0t4edj" path="res://entities/static/props/28_bench.glb" id="28_02w2u"]
+[ext_resource type="PackedScene" uid="uid://c58np1h6pw60y" path="res://entities/static/props/29_shop.glb" id="29_n8usy"]
+[ext_resource type="PackedScene" uid="uid://c0cb1eu5f0qy7" path="res://entities/static/props/30_shop.glb" id="30_gl26m"]
+[ext_resource type="PackedScene" uid="uid://cb54nwh3oks2" path="res://entities/static/props/31_shop.glb" id="31_sn4ln"]
+[ext_resource type="PackedScene" uid="uid://dikkav2v7p1tu" path="res://entities/static/props/32_lamp.glb" id="32_j6gjr"]
+[ext_resource type="PackedScene" uid="uid://5j3f1en8d6jr" path="res://entities/static/props/33_lamp.glb" id="33_8xufh"]
+[ext_resource type="PackedScene" uid="uid://bw2xkxkqiic2y" path="res://entities/static/props/34_lamp.glb" id="34_1xq0u"]
+[ext_resource type="PackedScene" uid="uid://bc6usu347hqpr" path="res://entities/static/props/35_flag.glb" id="35_faje1"]
 
 [node name="Trees" type="Node3D"]
 
@@ -47,3 +67,43 @@
 [node name="14_semafor" parent="." instance=ExtResource("14_wcqpj")]
 
 [node name="15_billboard" parent="." instance=ExtResource("15_w2ln4")]
+
+[node name="16_fountain" parent="." instance=ExtResource("16_wjw47")]
+
+[node name="17_bench" parent="." instance=ExtResource("17_faje1")]
+
+[node name="18_trash" parent="." instance=ExtResource("18_vje30")]
+
+[node name="19_busstop" parent="." instance=ExtResource("19_n7m82")]
+
+[node name="20_trash" parent="." instance=ExtResource("20_s7q7p")]
+
+[node name="21_trash" parent="." instance=ExtResource("21_4p7v8")]
+
+[node name="22_firehydrant" parent="." instance=ExtResource("22_tsc3c")]
+
+[node name="23_pot" parent="." instance=ExtResource("23_u3ma2")]
+
+[node name="24_bush" parent="." instance=ExtResource("24_8fv05")]
+
+[node name="25_bush" parent="." instance=ExtResource("25_2i3da")]
+
+[node name="26_pot" parent="." instance=ExtResource("26_t2x5c")]
+
+[node name="27_pot" parent="." instance=ExtResource("27_uup80")]
+
+[node name="28_bench" parent="." instance=ExtResource("28_02w2u")]
+
+[node name="29_shop" parent="." instance=ExtResource("29_n8usy")]
+
+[node name="30_shop" parent="." instance=ExtResource("30_gl26m")]
+
+[node name="31_shop" parent="." instance=ExtResource("31_sn4ln")]
+
+[node name="32_lamp" parent="." instance=ExtResource("32_j6gjr")]
+
+[node name="33_lamp" parent="." instance=ExtResource("33_8xufh")]
+
+[node name="34_lamp" parent="." instance=ExtResource("34_1xq0u")]
+
+[node name="35_flag" parent="." instance=ExtResource("35_faje1")]
