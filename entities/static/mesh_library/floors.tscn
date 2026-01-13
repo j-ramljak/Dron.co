@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://7xwr1bl0xorn"]
+[gd_scene load_steps=36 format=3 uid="uid://7xwr1bl0xorn"]
 
 [ext_resource type="PackedScene" uid="uid://bbi77n0td2bqu" path="res://entities/static/floors/01_road.glb" id="1_gem1n"]
 [ext_resource type="PackedScene" uid="uid://b58n4a7dsnuxq" path="res://entities/static/floors/02_road.glb" id="2_turr1"]
@@ -31,70 +31,79 @@
 [ext_resource type="PackedScene" uid="uid://cjn4xepohfp4k" path="res://entities/static/floors/29_grass.glb" id="29_s4fj3"]
 [ext_resource type="PackedScene" uid="uid://cmohju8b8arej" path="res://entities/static/floors/30_grass.glb" id="30_e6fpu"]
 [ext_resource type="PackedScene" uid="uid://3btjhnfo2cd4" path="res://entities/static/floors/31_grass.glb" id="31_m1dlt"]
-[ext_resource type="PackedScene" uid="uid://dm7fpvya217eo" path="res://entities/static/floors/32_grass.glb" id="32_turr1"]
+[ext_resource type="PackedScene" uid="uid://dix24apjowqx1" path="res://entities/static/floors/33_border.glb" id="33_p4h1p"]
+[ext_resource type="PackedScene" uid="uid://8s84wlrysugn" path="res://entities/static/floors/34_border.glb" id="34_adurc"]
+[ext_resource type="PackedScene" uid="uid://7yd2005i2ekp" path="res://entities/static/floors/32_road.glb" id="35_p4h1p"]
+[ext_resource type="PackedScene" uid="uid://m3unu7828417" path="res://entities/static/floors/35_border.glb" id="35_sj8wg"]
 
 [node name="TileMeshLibrary" type="Node3D"]
 
-[node name="01_road2" parent="." instance=ExtResource("1_gem1n")]
+[node name="01_road" parent="." instance=ExtResource("1_gem1n")]
 
-[node name="02_road2" parent="." instance=ExtResource("2_turr1")]
+[node name="02_road" parent="." instance=ExtResource("2_turr1")]
 
-[node name="03_road2" parent="." instance=ExtResource("3_uldfr")]
+[node name="03_road" parent="." instance=ExtResource("3_uldfr")]
 
-[node name="04_road2" parent="." instance=ExtResource("4_kdxi1")]
+[node name="04_road" parent="." instance=ExtResource("4_kdxi1")]
 
-[node name="05_road2" parent="." instance=ExtResource("5_p4h1p")]
+[node name="05_road" parent="." instance=ExtResource("5_p4h1p")]
 
-[node name="06_road2" parent="." instance=ExtResource("6_adurc")]
+[node name="06_road" parent="." instance=ExtResource("6_adurc")]
 
-[node name="07_grass2" parent="." instance=ExtResource("7_sj8wg")]
+[node name="07_grass" parent="." instance=ExtResource("7_sj8wg")]
 
-[node name="08_grass2" parent="." instance=ExtResource("8_qobd4")]
+[node name="08_grass" parent="." instance=ExtResource("8_qobd4")]
 
-[node name="09_grass2" parent="." instance=ExtResource("9_x1cyf")]
+[node name="09_grass" parent="." instance=ExtResource("9_x1cyf")]
 
-[node name="10_grass2" parent="." instance=ExtResource("10_bmp58")]
+[node name="10_grass" parent="." instance=ExtResource("10_bmp58")]
 
-[node name="11_grass2" parent="." instance=ExtResource("11_yfrsl")]
+[node name="11_grass" parent="." instance=ExtResource("11_yfrsl")]
 
-[node name="12_grass2" parent="." instance=ExtResource("12_6j1mi")]
+[node name="12_grass" parent="." instance=ExtResource("12_6j1mi")]
 
-[node name="13_grass2" parent="." instance=ExtResource("13_l4j37")]
+[node name="13_grass" parent="." instance=ExtResource("13_l4j37")]
 
-[node name="14_concrete2" parent="." instance=ExtResource("14_cvf5i")]
+[node name="14_concrete" parent="." instance=ExtResource("14_cvf5i")]
 
-[node name="15_concrete2" parent="." instance=ExtResource("15_esjox")]
+[node name="15_concrete" parent="." instance=ExtResource("15_esjox")]
 
-[node name="16_concrete2" parent="." instance=ExtResource("16_mgdgc")]
+[node name="16_concrete" parent="." instance=ExtResource("16_mgdgc")]
 
-[node name="17_concrete2" parent="." instance=ExtResource("17_g5paw")]
+[node name="17_concrete" parent="." instance=ExtResource("17_g5paw")]
 
-[node name="18_parking2" parent="." instance=ExtResource("18_kumwd")]
+[node name="18_parking" parent="." instance=ExtResource("18_kumwd")]
 
-[node name="19_parking2" parent="." instance=ExtResource("19_i0814")]
+[node name="19_parking" parent="." instance=ExtResource("19_i0814")]
 
-[node name="20_parking2" parent="." instance=ExtResource("20_d33pw")]
+[node name="20_parking" parent="." instance=ExtResource("20_d33pw")]
 
-[node name="21_parking2" parent="." instance=ExtResource("21_yx11o")]
+[node name="21_parking" parent="." instance=ExtResource("21_yx11o")]
 
-[node name="22_roundabout2" parent="." instance=ExtResource("22_l4j37")]
+[node name="22_roundabout" parent="." instance=ExtResource("22_l4j37")]
 
-[node name="23_road2" parent="." instance=ExtResource("23_j85av")]
+[node name="23_road" parent="." instance=ExtResource("23_j85av")]
 
-[node name="24_road2" parent="." instance=ExtResource("24_obq28")]
+[node name="24_road" parent="." instance=ExtResource("24_obq28")]
 
-[node name="25_road2" parent="." instance=ExtResource("25_6j2qe")]
+[node name="25_road" parent="." instance=ExtResource("25_6j2qe")]
 
-[node name="26_road2" parent="." instance=ExtResource("26_ktyp8")]
+[node name="26_road" parent="." instance=ExtResource("26_ktyp8")]
 
-[node name="27_grass2" parent="." instance=ExtResource("27_f3l42")]
+[node name="27_grass" parent="." instance=ExtResource("27_f3l42")]
 
-[node name="28_grass2" parent="." instance=ExtResource("28_wssqc")]
+[node name="28_grass" parent="." instance=ExtResource("28_wssqc")]
 
-[node name="29_grass2" parent="." instance=ExtResource("29_s4fj3")]
+[node name="29_grass" parent="." instance=ExtResource("29_s4fj3")]
 
-[node name="30_grass2" parent="." instance=ExtResource("30_e6fpu")]
+[node name="30_grass" parent="." instance=ExtResource("30_e6fpu")]
 
-[node name="31_grass2" parent="." instance=ExtResource("31_m1dlt")]
+[node name="31_grass" parent="." instance=ExtResource("31_m1dlt")]
 
-[node name="32_grass2" parent="." instance=ExtResource("32_turr1")]
+[node name="32_road2" parent="." instance=ExtResource("35_p4h1p")]
+
+[node name="33_border" parent="." instance=ExtResource("33_p4h1p")]
+
+[node name="34_border" parent="." instance=ExtResource("34_adurc")]
+
+[node name="35_border" parent="." instance=ExtResource("35_sj8wg")]

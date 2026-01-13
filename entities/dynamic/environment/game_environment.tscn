@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cag2lm8kquc2p"]
+[gd_scene load_steps=13 format=3 uid="uid://cag2lm8kquc2p"]
 
 [ext_resource type="Script" uid="uid://biixcule0bg70" path="res://entities/dynamic/environment/game_environment.gd" id="1_5eqo1"]
 [ext_resource type="Texture2D" uid="uid://b1v8an61uwair" path="res://shared/textures/sky_2k.png" id="1_05ny4"]
 [ext_resource type="Shader" uid="uid://yqo4v1j6du5j" path="res://shared/materials/outline.gdshader" id="2_5eqo1"]
+[ext_resource type="Shader" uid="uid://bqfqdvqx6604x" path="res://entities/static/water/water.gdshader" id="4_8kqk1"]
+[ext_resource type="Texture2D" uid="uid://crx8c6mbr8lff" path="res://entities/static/water/waves.jpeg" id="5_88pl4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tbgi4"]
 panorama = ExtResource("1_05ny4")
@@ -37,14 +39,48 @@ size = Vector2(2, 2)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tbgi4"]
 render_priority = 0
 shader = ExtResource("2_5eqo1")
-shader_parameter/outline_color = Color(0.15127608, 0.15127608, 0.15127608, 1)
+shader_parameter/normal_outline_color = Color(0.1, 0.1, 0.1, 1)
 shader_parameter/normal_outline_width = 1.0
 shader_parameter/normal_threshold = 0.75
 shader_parameter/normal_fade_start = 25.0
 shader_parameter/normal_fade_end = 10.0
+shader_parameter/depth_outline_color = Color(0.3, 0.3, 0.3, 1)
 shader_parameter/depth_outline_width = 1.0
 shader_parameter/depth_threshold = 0.05
+shader_parameter/depth_fade_start = 512.0
+shader_parameter/depth_fade_end = 128.0
 shader_parameter/depth_artifact_correction_coef = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1jyyf"]
+render_priority = 0
+shader = ExtResource("4_8kqk1")
+shader_parameter/absorption_color = Color(0.9834282, 0.9718608, 0.9579236, 1)
+shader_parameter/roughness = 0.15
+shader_parameter/specular = 0.25
+shader_parameter/depth_distance = 6.0000000894072
+shader_parameter/beers_law = 3.0000000447036
+shader_parameter/edge_thickness = 0.0
+shader_parameter/edge_speed = 0.350000016625
+shader_parameter/edge_noise_scale = Vector2(0.4, 0.4)
+shader_parameter/ssr_enabled = true
+shader_parameter/ssr_mix_strength = 0.2999999932944
+shader_parameter/ssr_travel = 50.0
+shader_parameter/ssr_resolution_near = 1.0
+shader_parameter/ssr_resolution_far = 5.0
+shader_parameter/ssr_tolerance = 1.0
+shader_parameter/refraction_strength = 0.0
+shader_parameter/normal_map_strength = 0.1999999955296
+shader_parameter/scroll_speed = 0.00999999977648
+shader_parameter/scroll_offset = Vector2(0.1, -0.3)
+shader_parameter/scale_offset = 0.5
+shader_parameter/normal_map_scale = Vector2(0.01, 0.01)
+shader_parameter/normal_map = ExtResource("5_88pl4")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1g8f5"]
+material = SubResource("ShaderMaterial_1jyyf")
+size = Vector2(10000, 10000)
+subdivide_width = 100
+subdivide_depth = 100
 
 [node name="GameEnvironment" type="Node3D"]
 script = ExtResource("1_5eqo1")
@@ -62,3 +98,7 @@ directional_shadow_blend_splits = true
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_sugp2")
 surface_material_override/0 = SubResource("ShaderMaterial_tbgi4")
+
+[node name="Water" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+mesh = SubResource("PlaneMesh_1g8f5")
