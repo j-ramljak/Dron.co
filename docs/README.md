@@ -26,9 +26,9 @@
     - [x] modeli paketa `[martin]`
     - [x] glavna postaja, punjač `[martin]`
 	- [x] oznake dostave (neki nacin da se zna kamo treba dostaviti) `[martin]`
-    - [ ] ukrasni detalji (klupe, kante, vozila...) `[matea]`
-    - [ ] prepreke (reklame, semafori, žice, zastave...) `[matea]`
-    - [ ] model drona + rotiranje propelera `[matea]`
+    - [x] ukrasni detalji (klupe, kante, vozila...) `[matea]`
+    - [x] prepreke (reklame, semafori, žice, zastave...) `[matea]`
+    - [x] model drona + rotiranje propelera `[matea]`
     - [ ] raspored grada `[matea]`
     - [x] granica grada `[martin]`
 - Gameplay
@@ -36,7 +36,7 @@
     - [x] korisničko sučelje (title screen, baterija, death screen, ...) `[martin]`
 	- [x] baterija (pražnjenje, postaja za punjenje) `[martin]`
 	- [ ] death mechanic (sudar, prazna baterija, granice mape, istek vremena) `[leon]`
-	- [ ] mjerenje vremena `[leon]`
+	- [x] mjerenje vremena `[leon]`
 - Dokumentacija 
 	- [x] Plan projekta `[svi]`
 	- [ ] Tehnička dokumentacija `[matea]`
