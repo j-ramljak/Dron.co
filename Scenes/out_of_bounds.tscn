@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjwe750nfn477"]
 
-[ext_resource type="Script" uid="uid://36cknfgvn2eg" path="res://Scenes/out_of_bounds.gd" id="1_1gtjv"]
+[ext_resource type="Script" uid="uid://36cknfgvn2eg" path="res://scenes/out_of_bounds.gd" id="1_1gtjv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mg8ca"]
 size = Vector3(100, 100, 100)
@@ -13,4 +13,6 @@ script = ExtResource("1_1gtjv")
 shape = SubResource("BoxShape3D_mg8ca")
 
 [connection signal="body_entered" from="." to="." method="player_entered_or_exited"]
+[connection signal="body_entered" from="." to="." method="player_enter"]
 [connection signal="body_exited" from="." to="." method="player_entered_or_exited"]
+[connection signal="body_exited" from="." to="." method="player_exit"]

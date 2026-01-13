@@ -4,53 +4,83 @@ class_name UserInterface
 
 signal graphics_high()
 signal graphics_low()
+signal on_death()
 enum Menu { MAIN_MENU, HUD, GAME_OVER }
+var delivered_pacakges := 0
 
 @export var START_AT := Menu.MAIN_MENU
-
 @export_group("Private")
+@export_subgroup("Menus")
 @export var HUD: Control
 @export var MAIN_MENU: Control
 @export var GAME_OVER: Control
-@export var CHARGE_DISPLAY: Label
-
-
-
-@onready var delivery_label = $HUD/TopBar/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer/BoxContainer/DeliveryValue
-var delivered_pacakges: int = 0
-
-@onready var global_timer = $"HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/Global timer" 
-@onready var global_timer_label = $HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer/BoxContainer/TimeValue
-
-@onready var out_of_bounds_warning = $HUD/Warnings/MarginContainer/HBoxContainer/WarningSignal
-@onready var static_screen = $Static
-var player_out_of_bound = false
+@export_subgroup("Labels")
+@export var CHARGE_LABEL: Label
+@export var DELIVERY_LABEL: Label
+@export var GLOBAL_TIMER_LABEL: Label
+@export var DEATH_MESSAGE_LABEL: Label
+@export var TOTAL_DELIVERED_LABEL: Label
+@export_subgroup("Warnings")
+@export var SIGNAL_WARNING: Control
+@export var BATTERY_WARNING: Control
+@export var WIND_WARNING: Control
+@export_subgroup("Other")
+@export var GLOBAL_TIMER: Timer
+@export var STATIC_OVERLAY: Control
+@export var YOU_DIED_ANIMATION: AnimationPlayer
 
 func _ready() -> void:
 	goto_menu(START_AT)
 	
-
-	
 func _process(_delta: float) -> void:
-	global_timer_label.text  = "%02d:%02d" % time_left_global()
+	GLOBAL_TIMER_LABEL.text  = "%02d:%02d" % time_left_global()
+	
+func time_left_global():
+	var time_left = GLOBAL_TIMER.time_left
+	var minute = floor(time_left / 60)
+	var second = int(time_left) % 60
+	return [minute, second]
 
 func quit():
 	get_tree().quit()
+	
+func reset() -> void:
+	get_tree().reload_current_scene()
 
 func goto_menu(menu: Menu):
+	MAIN_MENU.visible = false
+	HUD.visible = false
+	GAME_OVER.visible = false
 	match menu:
 		Menu.MAIN_MENU:
 			MAIN_MENU.visible = true
-			HUD.visible = false
-			GAME_OVER.visible = false
 		Menu.HUD:
-			MAIN_MENU.visible = false
 			HUD.visible = true
-			GAME_OVER.visible = false
 		Menu.GAME_OVER:
-			MAIN_MENU.visible = false
-			HUD.visible = false
 			GAME_OVER.visible = true
+
+# treba spojiti u editoru
+func die(death_message:= "You died", animated := false):
+	if (animated):
+		YOU_DIED_ANIMATION.play("you_died")
+	DEATH_MESSAGE_LABEL.text = death_message
+	TOTAL_DELIVERED_LABEL.text = str(delivered_pacakges)
+	on_death.emit()
+
+func death_animation_finish():
+	goto_menu(Menu.GAME_OVER)
+
+# treba spojiti u editoru
+func update_charge(charge: float):
+	CHARGE_LABEL.text = str(charge)
+	if (charge <= 0.0):
+		die("You ran out of battery charge!", true)
+	
+# treba spojiti u editoru
+func update_delivery_count(value: int):
+	delivered_pacakges += value
+	DELIVERY_LABEL.text = str(delivered_pacakges)
+	TOTAL_DELIVERED_LABEL.text = str(delivered_pacakges)
 
 func set_graphics(value):
 	if !value:
@@ -58,43 +88,19 @@ func set_graphics(value):
 	else:
 		graphics_low.emit()
 
-func update_charge(charge: float):
-	CHARGE_DISPLAY.text = str(charge)
-
-func demo_die():
-	$YouDied/AnimationPlayer.play("you_died")
-
-func demo_died():
-	goto_menu(Menu.GAME_OVER)
-
-func update_delivery_count(value: int):
-	#potrebno u editoru ih connectat
-	delivered_pacakges += value
-	delivery_label.text = str(delivered_pacakges)
-	
-func time_left_global():
-	var time_left = global_timer.time_left
-	var minute = floor(time_left / 60)
-	var second = int(time_left) % 60
-	return [minute, second]
-
-func _on_global_timer_timeout() -> void:
-	demo_die()
-
-
 func _on_start_button_pressed() -> void:
 	goto_menu(Menu.HUD)
-	global_timer.start()
+	GLOBAL_TIMER.start()
 	
+# treba spojiti u editoru
+func set_signal_warning(value: bool) -> void:
+	SIGNAL_WARNING.visible = value
+	STATIC_OVERLAY.visible = value;
 	
-func player_out_of_bounds():
-	#treba spojiti u editoru
-	if not player_out_of_bound:
-		out_of_bounds_warning.visible = false
-		static_screen.visible = false
-		player_out_of_bound = not player_out_of_bound
-	else:
-		out_of_bounds_warning.visible = true
-		static_screen.visible = true
-		player_out_of_bound = not player_out_of_bound
+# treba spojiti u editoru
+func set_wind_warning(value: bool) -> void:
+	WIND_WARNING.visible = value;
 	
+# treba spojiti u editoru
+func set_battery_warning(value: bool) -> void:
+	BATTERY_WARNING.visible = value;

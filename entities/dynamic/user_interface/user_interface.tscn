@@ -1,11 +1,16 @@
-[gd_scene load_steps=19 format=3 uid="uid://4hnmjoye7dw1"]
+[gd_scene load_steps=21 format=3 uid="uid://4hnmjoye7dw1"]
 
 [ext_resource type="Script" uid="uid://bbtbfxm835u15" path="res://entities/dynamic/user_interface/user_interface.gd" id="1_gxmva"]
+[ext_resource type="Texture2D" uid="uid://crx8c6mbr8lff" path="res://entities/static/water/waves.jpeg" id="2_31too"]
 [ext_resource type="PackedScene" uid="uid://g0sieg1khaeh" path="res://entities/dynamic/user_interface/warning_panel.tscn" id="3_ldin5"]
 [ext_resource type="Theme" uid="uid://buup0s46ek5dt" path="res://entities/dynamic/user_interface/themes/theme_general.tres" id="4_0x5m7"]
 [ext_resource type="Theme" uid="uid://bskthmnx8bdib" path="res://entities/dynamic/user_interface/themes/theme_red.tres" id="4_ns8o4"]
-[ext_resource type="PackedScene" uid="uid://ygnmkcrlo8lc" path="res://scenes/Shaders/static.tscn" id="6_31too"]
+[ext_resource type="Shader" uid="uid://bn5mhpvfe71qe" path="res://entities/dynamic/user_interface/shaders/static.gdshader" id="6_31too"]
 [ext_resource type="Texture2D" uid="uid://cdt8nykfln7mx" path="res://entities/dynamic/user_interface/textures/you_died.png" id="6_d64fq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4d1c"]
+shader = ExtResource("6_31too")
+shader_parameter/amount = 10.0
 
 [sub_resource type="Gradient" id="Gradient_ns8o4"]
 colors = PackedColorArray(0, 0, 0, 0.49803922, 0, 0, 0, 0)
@@ -189,7 +194,7 @@ shadow_color = Color(0, 0, 0, 0.49803922)
 shadow_size = 1
 shadow_offset = Vector2(4, 4)
 
-[node name="UserInterface" type="Control" node_paths=PackedStringArray("HUD", "MAIN_MENU", "GAME_OVER", "CHARGE_DISPLAY")]
+[node name="UserInterface" type="Control" node_paths=PackedStringArray("HUD", "MAIN_MENU", "GAME_OVER", "CHARGE_LABEL", "DELIVERY_LABEL", "GLOBAL_TIMER_LABEL", "DEATH_MESSAGE_LABEL", "TOTAL_DELIVERED_LABEL", "SIGNAL_WARNING", "BATTERY_WARNING", "WIND_WARNING", "GLOBAL_TIMER", "STATIC_OVERLAY", "YOU_DIED_ANIMATION")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -200,7 +205,42 @@ script = ExtResource("1_gxmva")
 HUD = NodePath("HUD")
 MAIN_MENU = NodePath("MainMenu")
 GAME_OVER = NodePath("GameOver")
-CHARGE_DISPLAY = NodePath("HUD/TopBar/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer/ChargeValue")
+CHARGE_LABEL = NodePath("HUD/TopBar/MarginContainer/HBoxContainer/ChargeDisplay/MarginContainer/BoxContainer/ChargeValue")
+DELIVERY_LABEL = NodePath("HUD/TopBar/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer/BoxContainer/DeliveryValue")
+GLOBAL_TIMER_LABEL = NodePath("HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer/BoxContainer/TimeValue")
+DEATH_MESSAGE_LABEL = NodePath("GameOver/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/DeathMessage")
+TOTAL_DELIVERED_LABEL = NodePath("GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/DeliveredNumber")
+SIGNAL_WARNING = NodePath("HUD/Warnings/MarginContainer/HBoxContainer/WarningSignal")
+BATTERY_WARNING = NodePath("HUD/Warnings/MarginContainer/HBoxContainer/WarningBattery")
+WIND_WARNING = NodePath("HUD/Warnings/MarginContainer/HBoxContainer/WarningWind")
+GLOBAL_TIMER = NodePath("HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/Global timer")
+STATIC_OVERLAY = NodePath("Static")
+YOU_DIED_ANIMATION = NodePath("YouDied/AnimationPlayer")
+
+[node name="Static" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Static"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_31too")
+
+[node name="TextureRect" type="ColorRect" parent="Static"]
+material = SubResource("ShaderMaterial_d4d1c")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 1
@@ -258,12 +298,6 @@ text = "Quit"
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "Low Quality"
-
-[node name="DieButton" type="Button" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("4_0x5m7")
-text = "Die
-"
 
 [node name="Seperator" type="Control" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -406,7 +440,7 @@ visible = false
 layout_mode = 2
 text = "No signal!"
 
-[node name="WarningAltitude" parent="HUD/Warnings/MarginContainer/HBoxContainer" instance=ExtResource("3_ldin5")]
+[node name="WarningWind" parent="HUD/Warnings/MarginContainer/HBoxContainer" instance=ExtResource("3_ldin5")]
 visible = false
 layout_mode = 2
 text = "High altitude!"
@@ -490,7 +524,6 @@ stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="GameOver" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -533,25 +566,33 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_ns8o4")
 text = "GAME OVER"
 
-[node name="MarginContainer" type="MarginContainer" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 12
 
-[node name="HorizontalPanel" type="Panel" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
+[node name="HorizontalPanel" type="Panel" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("4_ns8o4")
+
+[node name="DeathMessage" type="Label" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "[game_over_message]"
 
 [node name="PanelContainer" type="PanelContainer" parent="GameOver/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -572,9 +613,20 @@ layout_mode = 2
 [node name="Label" type="Label" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_0x5m7")
-text = "[game_over_message]"
+text = "You managed to deliver "
+
+[node name="DeliveredNumber" type="Label" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "[n]"
+
+[node name="Label3" type="Label" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = " packages!"
 
 [node name="Control" type="Control" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -588,12 +640,6 @@ size_flags_horizontal = 8
 theme = ExtResource("4_0x5m7")
 text = "Restart
 "
-
-[node name="CloseButton" type="Button" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-theme = ExtResource("4_0x5m7")
-text = "Close"
 
 [node name="QuitButton" type="Button" parent="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -673,15 +719,10 @@ theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 48
 text = "START"
 
-[node name="Static" parent="." instance=ExtResource("6_31too")]
-visible = false
-layout_mode = 1
-
 [connection signal="pressed" from="HUD/TopBar/MarginContainer/HBoxContainer/QuitButton" to="." method="quit"]
 [connection signal="toggled" from="HUD/TopBar/MarginContainer/HBoxContainer/QualityButton" to="." method="set_graphics"]
-[connection signal="pressed" from="HUD/TopBar/MarginContainer/HBoxContainer/DieButton" to="." method="demo_die"]
-[connection signal="timeout" from="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/Global timer" to="." method="_on_global_timer_timeout"]
-[connection signal="animation_finished" from="YouDied/AnimationPlayer" to="." method="demo_died" unbinds=1]
-[connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/CloseButton" to="." method="goto_menu" binds= [1]]
+[connection signal="timeout" from="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/Global timer" to="." method="die" binds= ["You ran out of time!", true]]
+[connection signal="animation_finished" from="YouDied/AnimationPlayer" to="." method="death_animation_finish" unbinds=1]
+[connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/RestartButton" to="." method="reset"]
 [connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/QuitButton" to="." method="quit"]
 [connection signal="pressed" from="MainMenu/StartButton" to="." method="_on_start_button_pressed"]
