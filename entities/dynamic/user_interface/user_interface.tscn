@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://g0sieg1khaeh" path="res://entities/dynamic/user_interface/warning_panel.tscn" id="3_ldin5"]
 [ext_resource type="Theme" uid="uid://buup0s46ek5dt" path="res://entities/dynamic/user_interface/themes/theme_general.tres" id="4_0x5m7"]
 [ext_resource type="Theme" uid="uid://bskthmnx8bdib" path="res://entities/dynamic/user_interface/themes/theme_red.tres" id="4_ns8o4"]
-[ext_resource type="PackedScene" uid="uid://ygnmkcrlo8lc" path="res://Scenes/Shaders/static.tscn" id="6_31too"]
+[ext_resource type="PackedScene" uid="uid://ygnmkcrlo8lc" path="res://scenes/Shaders/static.tscn" id="6_31too"]
 [ext_resource type="Texture2D" uid="uid://cdt8nykfln7mx" path="res://entities/dynamic/user_interface/textures/you_died.png" id="6_d64fq"]
 
 [sub_resource type="Gradient" id="Gradient_ns8o4"]
@@ -397,14 +397,17 @@ layout_mode = 2
 theme_override_constants/separation = 12
 
 [node name="WarningBattery" parent="HUD/Warnings/MarginContainer/HBoxContainer" instance=ExtResource("3_ldin5")]
+visible = false
 layout_mode = 2
 text = "Low battery!"
 
 [node name="WarningSignal" parent="HUD/Warnings/MarginContainer/HBoxContainer" instance=ExtResource("3_ldin5")]
+visible = false
 layout_mode = 2
 text = "No signal!"
 
 [node name="WarningAltitude" parent="HUD/Warnings/MarginContainer/HBoxContainer" instance=ExtResource("3_ldin5")]
+visible = false
 layout_mode = 2
 text = "High altitude!"
 
