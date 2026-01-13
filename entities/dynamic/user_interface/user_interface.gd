@@ -14,8 +14,25 @@ enum Menu { MAIN_MENU, HUD, GAME_OVER }
 @export var GAME_OVER: Control
 @export var CHARGE_DISPLAY: Label
 
+
+
+@onready var delivery_label = $HUD/TopBar/MarginContainer/HBoxContainer/DeliveryDisplay/MarginContainer/BoxContainer/DeliveryValue
+var delivered_pacakges: int = 0
+
+@onready var global_timer = $"HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/Global timer" 
+@onready var global_timer_label = $HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/MarginContainer/BoxContainer/TimeValue
+
+@onready var out_of_bounds_warning = $HUD/Warnings/MarginContainer/HBoxContainer/WarningSignal
+@onready var static_screen = $Static
+var player_out_of_bound = false
+
 func _ready() -> void:
 	goto_menu(START_AT)
+	
+
+	
+func _process(_delta: float) -> void:
+	global_timer_label.text  = "%02d:%02d" % time_left_global()
 
 func quit():
 	get_tree().quit()
@@ -49,3 +66,35 @@ func demo_die():
 
 func demo_died():
 	goto_menu(Menu.GAME_OVER)
+
+func update_delivery_count(value: int):
+	#potrebno u editoru ih connectat
+	delivered_pacakges += value
+	delivery_label.text = str(delivered_pacakges)
+	
+func time_left_global():
+	var time_left = global_timer.time_left
+	var minute = floor(time_left / 60)
+	var second = int(time_left) % 60
+	return [minute, second]
+
+func _on_global_timer_timeout() -> void:
+	demo_die()
+
+
+func _on_start_button_pressed() -> void:
+	goto_menu(Menu.HUD)
+	global_timer.start()
+	
+	
+func player_out_of_bounds():
+	#treba spojiti u editoru
+	if not player_out_of_bound:
+		out_of_bounds_warning.visible = false
+		static_screen.visible = false
+		player_out_of_bound = not player_out_of_bound
+	else:
+		out_of_bounds_warning.visible = true
+		static_screen.visible = true
+		player_out_of_bound = not player_out_of_bound
+	

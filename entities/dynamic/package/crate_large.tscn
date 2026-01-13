@@ -7,9 +7,15 @@
 points = PackedVector3Array(-0.994666, -0.75, -0.9949038, 0.9998045, 0.74588495, 1, -0.9997611, 0.74588495, 1, 0.9998045, 0.74588495, -1, 0.9947094, -0.75, 0.9949038, -0.9997611, 0.74588495, -1, -0.994666, -0.75, 0.9949038, 0.9947094, -0.75, -0.9949038)
 
 [node name="CrateLarge" type="RigidBody3D" groups=["Package"]]
+collision_layer = 8
+collision_mask = 11
+contact_monitor = true
+max_contacts_reported = 4
 script = ExtResource("1_t4dfr")
 
 [node name="Model" parent="." instance=ExtResource("2_m6fss")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_64kgk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

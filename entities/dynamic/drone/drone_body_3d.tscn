@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://cycf5odiyocvc" path="res://entities/dynamic/drone/components/smooth_camera_component.gd" id="6_m1reu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mny65"]
-size = Vector3(2.3044434, 0.50219727, 1.982666)
+size = Vector3(2.3044434, 0.4507773, 1.982666)
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_7ixqd"]
 
@@ -17,7 +17,7 @@ size = Vector3(2.3044434, 0.50219727, 1.982666)
 height = 2.465332
 
 [node name="DroneBody3D" type="CharacterBody3D" node_paths=PackedStringArray("BATTERY_COMPONENT")]
-collision_layer = 3
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_3aqr0")
 BATTERY_COMPONENT = NodePath("BatteryComponent")
@@ -50,7 +50,7 @@ MOVEMENT_COMPONENT = NodePath("../MovementComponent")
 transform = Transform3D(-2, 0, -3.019916e-07, 0, 2, 0, 3.019916e-07, 0, -2, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0227983, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.048508286, 0)
 shape = SubResource("BoxShape3D_mny65")
 
 [node name="CameraAnchor" type="Node3D" parent="."]
@@ -69,14 +69,38 @@ transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 9.999
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.21569562, 0)
 node_a = NodePath("../..")
 exclude_nodes_from_collision = false
-angular_limit_x/enabled = false
-angular_limit_y/enabled = false
-angular_limit_z/enabled = false
+linear_limit_z/softness = 1.0
+linear_spring_x/enabled = true
+linear_spring_x/stiffness = 200.0
+linear_spring_x/damping = 20.0
+linear_spring_y/enabled = true
+linear_spring_y/stiffness = 200.0
+linear_spring_y/damping = 20.0
+linear_spring_z/enabled = true
+linear_spring_z/stiffness = 200.0
+linear_spring_z/damping = 20.0
+angular_limit_x/upper_angle = 0.34906584
+angular_limit_x/lower_angle = -0.34906584
+angular_limit_y/upper_angle = 0.34906584
+angular_limit_y/lower_angle = -0.34906584
+angular_limit_z/upper_angle = 0.34906584
+angular_limit_z/lower_angle = -0.34906584
+angular_spring_x/enabled = true
+angular_spring_x/stiffness = 50.0
+angular_spring_x/damping = 10.0
+angular_spring_y/enabled = true
+angular_spring_y/stiffness = 50.0
+angular_spring_y/damping = 10.0
+angular_spring_z/enabled = true
+angular_spring_z/stiffness = 50.0
+angular_spring_z/damping = 10.0
 
 [node name="Marker" type="Marker3D" parent="Hook"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0082762, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0330617, 0)
 
 [node name="Hook area" type="Area3D" parent="Hook"]
+collision_layer = 4
+collision_mask = 12
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hook/Hook area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0290527, 0)

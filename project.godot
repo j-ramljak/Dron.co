@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Dron.co"
-run/main_scene="uid://rmbm2tujnepm"
+run/main_scene="uid://cqqe6q4gfbchu"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
 [display]
@@ -40,6 +40,7 @@ folder_colors={
 [global_group]
 
 Package=""
+Ground=""
 
 [gui]
 
@@ -111,6 +112,13 @@ drop={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(120, 13),"global_position":Vector2(129, 61),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":true,"script":null)
 ]
 }
+
+[layer_names]
+
+3d_physics/layer_1="World"
+3d_physics/layer_2="Drone"
+3d_physics/layer_3="Pickup zone"
+3d_physics/layer_4="Box"
 
 [rendering]
 

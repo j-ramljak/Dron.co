@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://4hnmjoye7dw1"]
+[gd_scene load_steps=19 format=3 uid="uid://4hnmjoye7dw1"]
 
 [ext_resource type="Script" uid="uid://bbtbfxm835u15" path="res://entities/dynamic/user_interface/user_interface.gd" id="1_gxmva"]
 [ext_resource type="PackedScene" uid="uid://g0sieg1khaeh" path="res://entities/dynamic/user_interface/warning_panel.tscn" id="3_ldin5"]
 [ext_resource type="Theme" uid="uid://buup0s46ek5dt" path="res://entities/dynamic/user_interface/themes/theme_general.tres" id="4_0x5m7"]
 [ext_resource type="Theme" uid="uid://bskthmnx8bdib" path="res://entities/dynamic/user_interface/themes/theme_red.tres" id="4_ns8o4"]
+[ext_resource type="PackedScene" uid="uid://ygnmkcrlo8lc" path="res://Scenes/Shaders/static.tscn" id="6_31too"]
 [ext_resource type="Texture2D" uid="uid://cdt8nykfln7mx" path="res://entities/dynamic/user_interface/textures/you_died.png" id="6_d64fq"]
 
 [sub_resource type="Gradient" id="Gradient_ns8o4"]
@@ -299,6 +300,10 @@ layout_mode = 2
 theme = ExtResource("4_0x5m7")
 text = "00:00"
 horizontal_alignment = 2
+
+[node name="Global timer" type="Timer" parent="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay"]
+wait_time = 121.0
+one_shot = true
 
 [node name="DeliveryDisplay" type="PanelContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -665,10 +670,15 @@ theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 48
 text = "START"
 
+[node name="Static" parent="." instance=ExtResource("6_31too")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="HUD/TopBar/MarginContainer/HBoxContainer/QuitButton" to="." method="quit"]
 [connection signal="toggled" from="HUD/TopBar/MarginContainer/HBoxContainer/QualityButton" to="." method="set_graphics"]
 [connection signal="pressed" from="HUD/TopBar/MarginContainer/HBoxContainer/DieButton" to="." method="demo_die"]
+[connection signal="timeout" from="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/Global timer" to="." method="_on_global_timer_timeout"]
 [connection signal="animation_finished" from="YouDied/AnimationPlayer" to="." method="demo_died" unbinds=1]
 [connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/CloseButton" to="." method="goto_menu" binds= [1]]
 [connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/QuitButton" to="." method="quit"]
-[connection signal="pressed" from="MainMenu/StartButton" to="." method="goto_menu" binds= [1]]
+[connection signal="pressed" from="MainMenu/StartButton" to="." method="_on_start_button_pressed"]

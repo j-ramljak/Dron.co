@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://ws64msh5srxs"]
+
+[ext_resource type="Script" uid="uid://3x6hgi6d1onc" path="res://entities/dynamic/wind/wind.gd" id="1_hxfdq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hxfdq"]
+size = Vector3(100, 10, 10)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sxw6e"]
+particle_flag_align_y = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+spread = 0.0
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hxfdq"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_sxw6e"]
+material = SubResource("StandardMaterial3D_hxfdq")
+shape = 0
+size = 0.1
+section_length = 0.3
+
+[node name="Wind" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 3
+script = ExtResource("1_hxfdq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_hxfdq")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.382893, 0, 0)
+amount = 30
+lifetime = 3.0399999999999996
+visibility_aabb = AABB(-50, -50, -50, 100, 100, 100)
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_sxw6e")
+draw_pass_1 = SubResource("RibbonTrailMesh_sxw6e")

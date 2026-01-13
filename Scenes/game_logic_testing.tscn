@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqqe6q4gfbchu"]
+[gd_scene load_steps=18 format=3 uid="uid://cqqe6q4gfbchu"]
 
 [ext_resource type="Script" uid="uid://dng6ihkug1pk8" path="res://shared/scripts/exit_app.gd" id="1_6jwji"]
 [ext_resource type="PackedScene" uid="uid://c8518p5fip7jw" path="res://entities/dynamic/drone/drone_body_3d.tscn" id="1_d4sxq"]
@@ -6,13 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://4hnmjoye7dw1" path="res://entities/dynamic/user_interface/user_interface.tscn" id="5_vtib0"]
 [ext_resource type="PackedScene" uid="uid://dwcadry5m8pfg" path="res://entities/dynamic/charger/charger.tscn" id="6_3q7ta"]
 [ext_resource type="PackedScene" uid="uid://jfu5xsoq7sjv" path="res://entities/dynamic/package/box_large.tscn" id="7_1fn86"]
+[ext_resource type="PackedScene" uid="uid://bcn7738wek3of" path="res://entities/dynamic/delivery_point/delivery_point.tscn" id="7_02vlc"]
 [ext_resource type="PackedScene" uid="uid://dskhfpxgdfoav" path="res://entities/dynamic/headquarters/headquarters.tscn" id="7_gmkdt"]
-[ext_resource type="PackedScene" uid="uid://d0tn8qiossuxl" path="res://entities/dynamic/delivery_point/delivery_point_model.glb" id="8_tevn3"]
 [ext_resource type="PackedScene" uid="uid://r7ulet2wfct2" path="res://entities/dynamic/package/box_medium.tscn" id="8_v33bw"]
 [ext_resource type="PackedScene" uid="uid://4gntuksh08vs" path="res://entities/dynamic/package/box_small.tscn" id="9_w64ti"]
 [ext_resource type="PackedScene" uid="uid://bhi424kc8x0h1" path="res://entities/dynamic/package/crate_medium.tscn" id="9_y8xq7"]
 [ext_resource type="PackedScene" uid="uid://cqsdepxh2vggh" path="res://entities/dynamic/package/crate_large.tscn" id="10_uud1g"]
 [ext_resource type="PackedScene" uid="uid://ctu34kfwf7fh6" path="res://entities/dynamic/package/crate_small.tscn" id="12_j8hlx"]
+[ext_resource type="PackedScene" uid="uid://cjwe750nfn477" path="res://Scenes/out_of_bounds.tscn" id="14_hfmse"]
+[ext_resource type="PackedScene" uid="uid://ws64msh5srxs" path="res://entities/dynamic/wind/wind.tscn" id="15_656ta"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ky85p"]
 size = Vector2(100, 100)
@@ -26,9 +28,7 @@ script = ExtResource("1_6jwji")
 [node name="GameEnvironment" parent="." instance=ExtResource("2_w64ti")]
 transform = Transform3D(-0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.70710677, 0, 0, 0)
 
-[node name="UI" parent="." instance=ExtResource("5_vtib0")]
-
-[node name="Plane" type="StaticBody3D" parent="."]
+[node name="Plane" type="StaticBody3D" parent="." groups=["Ground"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Plane"]
 mesh = SubResource("PlaneMesh_ky85p")
@@ -46,9 +46,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 10)
 [node name="Headquarters" parent="." instance=ExtResource("7_gmkdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -15)
 
-[node name="delivery_point_model" parent="." instance=ExtResource("8_tevn3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.302574, 4.7683716e-07, -1.9727707)
-cast_shadow = 0
+[node name="Delivery point" parent="." instance=ExtResource("7_02vlc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.842255, 0, 0)
 
 [node name="BoxLarge" parent="." instance=ExtResource("7_1fn86")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5106268, 0.7499998, -12.620582)
@@ -68,9 +67,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0006714, 0.49999988, -18.05
 [node name="CrateSmall" parent="." instance=ExtResource("12_j8hlx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.285006, 0.49999988, -17.511112)
 
-[node name="CrateSmall2" parent="." instance=ExtResource("12_j8hlx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.563898, 4.6595244, -17.546045)
+[node name="UI" parent="." instance=ExtResource("5_vtib0")]
 
+[node name="Out of bounds" parent="." instance=ExtResource("14_hfmse")]
+
+[node name="Wind" parent="." instance=ExtResource("15_656ta")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.0999, -21.074394)
+
+[connection signal="charge_change" from="DroneBody3D" to="UI" method="update_charge"]
+[connection signal="package_delivered" from="Delivery point" to="UI" method="update_delivery_count"]
 [connection signal="graphics_high" from="UI" to="GameEnvironment" method="set_graphics_high"]
 [connection signal="graphics_low" from="UI" to="GameEnvironment" method="set_graphics_low"]
-[connection signal="charge_change" from="DroneBody3D" to="UI" method="update_charge"]
+[connection signal="out_of_bounds" from="Out of bounds" to="UI" method="player_out_of_bounds"]
