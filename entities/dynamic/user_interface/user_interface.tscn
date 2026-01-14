@@ -194,7 +194,7 @@ shadow_color = Color(0, 0, 0, 0.49803922)
 shadow_size = 1
 shadow_offset = Vector2(4, 4)
 
-[node name="UserInterface" type="Control" node_paths=PackedStringArray("HUD", "MAIN_MENU", "GAME_OVER", "CHARGE_LABEL", "DELIVERY_LABEL", "GLOBAL_TIMER_LABEL", "DEATH_MESSAGE_LABEL", "TOTAL_DELIVERED_LABEL", "SIGNAL_WARNING", "BATTERY_WARNING", "WIND_WARNING", "GLOBAL_TIMER", "STATIC_OVERLAY", "YOU_DIED_ANIMATION")]
+[node name="UserInterface" type="Control" node_paths=PackedStringArray("HUD", "MAIN_MENU", "GAME_OVER", "CHARGE_LABEL", "DELIVERY_LABEL", "GLOBAL_TIMER_LABEL", "DEATH_MESSAGE_LABEL", "TOTAL_DELIVERED_LABEL", "SIGNAL_WARNING", "BATTERY_WARNING", "WIND_WARNING", "STATIC_OVERLAY", "YOU_DIED_ANIMATION")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -213,7 +213,6 @@ TOTAL_DELIVERED_LABEL = NodePath("GameOver/PanelContainer/VBoxContainer/PanelCon
 SIGNAL_WARNING = NodePath("HUD/Warnings/MarginContainer/HBoxContainer/WarningSignal")
 BATTERY_WARNING = NodePath("HUD/Warnings/MarginContainer/HBoxContainer/WarningBattery")
 WIND_WARNING = NodePath("HUD/Warnings/MarginContainer/HBoxContainer/WarningWind")
-GLOBAL_TIMER = NodePath("HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/Global timer")
 STATIC_OVERLAY = NodePath("Static")
 YOU_DIED_ANIMATION = NodePath("YouDied/AnimationPlayer")
 
@@ -335,10 +334,6 @@ theme = ExtResource("4_0x5m7")
 text = "00:00"
 horizontal_alignment = 2
 
-[node name="Global timer" type="Timer" parent="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay"]
-wait_time = 121.0
-one_shot = true
-
 [node name="DeliveryDisplay" type="PanelContainer" parent="HUD/TopBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -433,12 +428,12 @@ theme_override_constants/separation = 12
 [node name="WarningBattery" parent="HUD/Warnings/MarginContainer/HBoxContainer" instance=ExtResource("3_ldin5")]
 visible = false
 layout_mode = 2
-text = "Low battery!"
+text = "Low battery! Find a charging station!"
 
 [node name="WarningSignal" parent="HUD/Warnings/MarginContainer/HBoxContainer" instance=ExtResource("3_ldin5")]
 visible = false
 layout_mode = 2
-text = "Low signal!"
+text = "Low signal! Dont go too far!"
 
 [node name="WarningWind" parent="HUD/Warnings/MarginContainer/HBoxContainer" instance=ExtResource("3_ldin5")]
 visible = false
@@ -721,7 +716,6 @@ text = "START"
 
 [connection signal="pressed" from="HUD/TopBar/MarginContainer/HBoxContainer/QuitButton" to="." method="quit"]
 [connection signal="toggled" from="HUD/TopBar/MarginContainer/HBoxContainer/QualityButton" to="." method="set_graphics"]
-[connection signal="timeout" from="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/Global timer" to="." method="global_timer_finish"]
 [connection signal="animation_finished" from="YouDied/AnimationPlayer" to="." method="death_animation_finish" unbinds=1]
 [connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/RestartButton" to="." method="reset"]
 [connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/QuitButton" to="." method="quit"]

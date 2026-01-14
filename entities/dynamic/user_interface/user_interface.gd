@@ -5,6 +5,7 @@ class_name UserInterface
 signal graphics_high()
 signal graphics_low()
 signal on_timeout()
+signal on_start()
 enum Menu { MAIN_MENU, HUD, GAME_OVER }
 var delivered_pacakges := 0
 
@@ -25,22 +26,12 @@ var delivered_pacakges := 0
 @export var BATTERY_WARNING: Control
 @export var WIND_WARNING: Control
 @export_subgroup("Other")
-@export var GLOBAL_TIMER: Timer
 @export var STATIC_OVERLAY: Control
 @export var YOU_DIED_ANIMATION: AnimationPlayer
 
 func _ready() -> void:
 	goto_menu(START_AT)
 	
-func _process(_delta: float) -> void:
-	GLOBAL_TIMER_LABEL.text  = "%02d:%02d" % time_left_global()
-	
-func time_left_global():
-	var time_left = GLOBAL_TIMER.time_left
-	var minute = floor(time_left / 60)
-	var second = int(time_left) % 60
-	return [minute, second]
-
 func quit():
 	get_tree().quit()
 	
@@ -67,7 +58,8 @@ func set_graphics(value):
 
 func _on_start_button_pressed() -> void:
 	goto_menu(Menu.HUD)
-	GLOBAL_TIMER.start()
+	TOTAL_DELIVERED_LABEL.text = str(delivered_pacakges)
+	on_start.emit()
 	
 func death_animation_finish():
 	goto_menu(Menu.GAME_OVER)
@@ -79,11 +71,20 @@ func global_timer_finish():
 
 func update_charge(charge: float):
 	CHARGE_LABEL.text = str(charge)
+	if (charge < 25.0):
+		BATTERY_WARNING.visible = true;
+	else:
+		BATTERY_WARNING.visible = false;
 	
 func update_delivery_count(value: int):
 	delivered_pacakges += value
 	DELIVERY_LABEL.text = str(delivered_pacakges)
 	TOTAL_DELIVERED_LABEL.text = str(delivered_pacakges)
+
+func set_countdown(seconds: float) -> void:
+	var minute = floor(seconds / 60)
+	var second = int(seconds) % 60
+	GLOBAL_TIMER_LABEL.text  = "%02d:%02d" % [minute, second]
 
 func set_death_screen(death_message:= "You died", animated := true):
 	DEATH_MESSAGE_LABEL.text = death_message
@@ -99,5 +100,3 @@ func set_signal_warning(value: bool) -> void:
 func set_wind_warning(value: bool) -> void:
 	WIND_WARNING.visible = value;
 	
-func set_battery_warning(value: bool) -> void:
-	BATTERY_WARNING.visible = value;
