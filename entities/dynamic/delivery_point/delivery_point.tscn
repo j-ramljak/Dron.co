@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d0tn8qiossuxl" path="res://entities/dynamic/delivery_point/delivery_point_model.glb" id="2_m8fpt"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_j6sfe"]
-height = 0.7703247
+height = 0.1
 radius = 2.8110352
 
 [node name="Delivery point" type="Area3D"]

@@ -9,6 +9,7 @@ class_name DroneBody3D
 
 signal charge_change(charge: float)
 signal on_death(death_message: String)
+signal pickup_package
 
 func _ready():
 	add_to_group("drone")  
@@ -27,3 +28,6 @@ func charge_increment(increment: float):
 func die(death_message: String):
 	DEATH_COMPONENT.kill()
 	on_death.emit(death_message)
+	
+func package_pickup():
+	emit_signal("pickup_package")
