@@ -28,7 +28,6 @@ enum Menu { MAIN_MENU, HUD, GAME_OVER }
 @export_subgroup("Other")
 @export var STATIC_OVERLAY: Control
 @export var YOU_DIED_ANIMATION: AnimationPlayer
-@export var DESATURATION_RECT: TextureRect
 
 func _ready() -> void:
 	goto_menu(START_AT)
@@ -72,7 +71,7 @@ func global_timer_finish():
 
 func set_charge(charge: float):
 	CHARGE_LABEL.text = String.num(charge, 1)
-	change_saturation.emit(1.0 - clamp(charge / 25.0, 0.0, 1.0))
+	change_saturation.emit(clamp(charge / 25.0, 0.0, 1.0))
 	if (charge < 25.0):
 		BATTERY_WARNING.visible = true;
 	else:
