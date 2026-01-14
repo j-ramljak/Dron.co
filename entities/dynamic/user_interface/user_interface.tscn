@@ -438,12 +438,12 @@ text = "Low battery!"
 [node name="WarningSignal" parent="HUD/Warnings/MarginContainer/HBoxContainer" instance=ExtResource("3_ldin5")]
 visible = false
 layout_mode = 2
-text = "No signal!"
+text = "Low signal!"
 
 [node name="WarningWind" parent="HUD/Warnings/MarginContainer/HBoxContainer" instance=ExtResource("3_ldin5")]
 visible = false
 layout_mode = 2
-text = "High altitude!"
+text = "High altitude, strong winds!"
 
 [node name="YouDied" type="Control" parent="."]
 layout_mode = 1
@@ -721,7 +721,7 @@ text = "START"
 
 [connection signal="pressed" from="HUD/TopBar/MarginContainer/HBoxContainer/QuitButton" to="." method="quit"]
 [connection signal="toggled" from="HUD/TopBar/MarginContainer/HBoxContainer/QualityButton" to="." method="set_graphics"]
-[connection signal="timeout" from="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/Global timer" to="." method="die" binds= ["You ran out of time!", true]]
+[connection signal="timeout" from="HUD/TopBar/MarginContainer/HBoxContainer/TimeDisplay/Global timer" to="." method="global_timer_finish"]
 [connection signal="animation_finished" from="YouDied/AnimationPlayer" to="." method="death_animation_finish" unbinds=1]
 [connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/RestartButton" to="." method="reset"]
 [connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/QuitButton" to="." method="quit"]

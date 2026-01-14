@@ -4,7 +4,7 @@ class_name UserInterface
 
 signal graphics_high()
 signal graphics_low()
-signal on_death()
+signal on_timeout()
 enum Menu { MAIN_MENU, HUD, GAME_OVER }
 var delivered_pacakges := 0
 
@@ -59,29 +59,6 @@ func goto_menu(menu: Menu):
 		Menu.GAME_OVER:
 			GAME_OVER.visible = true
 
-# treba spojiti u editoru
-func die(death_message:= "You died", animated := false):
-	if (animated):
-		YOU_DIED_ANIMATION.play("you_died")
-	DEATH_MESSAGE_LABEL.text = death_message
-	TOTAL_DELIVERED_LABEL.text = str(delivered_pacakges)
-	on_death.emit()
-
-func death_animation_finish():
-	goto_menu(Menu.GAME_OVER)
-
-# treba spojiti u editoru
-func update_charge(charge: float):
-	CHARGE_LABEL.text = str(charge)
-	if (charge <= 0.0):
-		die("You ran out of battery charge!", true)
-	
-# treba spojiti u editoru
-func update_delivery_count(value: int):
-	delivered_pacakges += value
-	DELIVERY_LABEL.text = str(delivered_pacakges)
-	TOTAL_DELIVERED_LABEL.text = str(delivered_pacakges)
-
 func set_graphics(value):
 	if !value:
 		graphics_high.emit()
@@ -92,15 +69,35 @@ func _on_start_button_pressed() -> void:
 	goto_menu(Menu.HUD)
 	GLOBAL_TIMER.start()
 	
-# treba spojiti u editoru
+func death_animation_finish():
+	goto_menu(Menu.GAME_OVER)
+	
+func global_timer_finish():
+	on_timeout.emit()
+
+# Za spojiti sa signalima 􏿿􏿿↓
+
+func update_charge(charge: float):
+	CHARGE_LABEL.text = str(charge)
+	
+func update_delivery_count(value: int):
+	delivered_pacakges += value
+	DELIVERY_LABEL.text = str(delivered_pacakges)
+	TOTAL_DELIVERED_LABEL.text = str(delivered_pacakges)
+
+func set_death_screen(death_message:= "You died", animated := true):
+	DEATH_MESSAGE_LABEL.text = death_message
+	if (animated):
+		YOU_DIED_ANIMATION.play("you_died")
+	else:
+		goto_menu(Menu.GAME_OVER)
+	
 func set_signal_warning(value: bool) -> void:
 	SIGNAL_WARNING.visible = value
 	STATIC_OVERLAY.visible = value;
 	
-# treba spojiti u editoru
 func set_wind_warning(value: bool) -> void:
 	WIND_WARNING.visible = value;
 	
-# treba spojiti u editoru
 func set_battery_warning(value: bool) -> void:
 	BATTERY_WARNING.visible = value;

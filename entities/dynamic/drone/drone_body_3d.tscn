@@ -16,12 +16,13 @@ size = Vector3(2.3044434, 0.4507773, 2.3084106)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mny65"]
 height = 2.465332
 
-[node name="DroneBody3D" type="CharacterBody3D" node_paths=PackedStringArray("MOVEMENT_COMPONENT", "BATTERY_COMPONENT")]
+[node name="DroneBody3D" type="CharacterBody3D" node_paths=PackedStringArray("MOVEMENT_COMPONENT", "BATTERY_COMPONENT", "DEATH_COMPONENT")]
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_3aqr0")
 MOVEMENT_COMPONENT = NodePath("MovementComponent")
 BATTERY_COMPONENT = NodePath("BatteryComponent")
+DEATH_COMPONENT = NodePath("DeathComponent")
 
 [node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("DRONE")]
 script = ExtResource("5_aw4du")
@@ -38,9 +39,8 @@ script = ExtResource("6_lakys")
 [node name="DepletionTimer" type="Timer" parent="BatteryComponent"]
 autostart = true
 
-[node name="DeathComponent" type="Node" parent="." node_paths=PackedStringArray("DRONE")]
+[node name="DeathComponent" type="Node" parent="."]
 script = ExtResource("5_i2hpc")
-DRONE = NodePath("..")
 
 [node name="SmoothCameraComponent" type="Node" parent="." node_paths=PackedStringArray("CAMERA_ANCHOR", "MOVEMENT_COMPONENT")]
 script = ExtResource("6_m1reu")
