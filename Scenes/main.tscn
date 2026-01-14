@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://rmbm2tujnepm"]
+[gd_scene load_steps=8 format=3 uid="uid://rmbm2tujnepm"]
 
 [ext_resource type="PackedScene" uid="uid://c8518p5fip7jw" path="res://entities/dynamic/drone/drone_body_3d.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://dng6ihkug1pk8" path="res://shared/scripts/exit_app.gd" id="1_tbgi4"]
-[ext_resource type="PackedScene" uid="uid://2qydddknolyo" path="res://scenes/town.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://2qydddknolyo" path="res://Scenes/town.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://cag2lm8kquc2p" path="res://entities/dynamic/environment/game_environment.tscn" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://4hnmjoye7dw1" path="res://entities/dynamic/user_interface/user_interface.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://dwcadry5m8pfg" path="res://entities/dynamic/charger/charger.tscn" id="6_21xkr"]
+[ext_resource type="PackedScene" uid="uid://dskhfpxgdfoav" path="res://entities/dynamic/headquarters/headquarters.tscn" id="7_6bp64"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_tbgi4")
@@ -17,6 +19,33 @@ script = ExtResource("1_tbgi4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.625, 3.249, -5.66)
 
 [node name="Town" parent="." instance=ExtResource("2_0wfyh")]
+
+[node name="Charger" parent="." instance=ExtResource("6_21xkr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -124.331924, 0.099990845, -65.136314)
+
+[node name="Charger2" parent="." instance=ExtResource("6_21xkr")]
+transform = Transform3D(-0.007382727, 0, -0.99997276, 0, 1, 0, 0.99997276, 0, -0.007382727, -34.911118, 0.099998474, -145.2513)
+
+[node name="Charger3" parent="." instance=ExtResource("6_21xkr")]
+transform = Transform3D(-0.009319929, 0, -0.99995655, 0, 1, 0, 0.99995655, 0, -0.009319929, 34.653843, 0.10000229, -45.25342)
+
+[node name="Charger4" parent="." instance=ExtResource("6_21xkr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.91824, 0.10000229, 34.7745)
+
+[node name="Charger5" parent="." instance=ExtResource("6_21xkr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.487194, 0.099998474, 154.83502)
+
+[node name="Headquarters" parent="." instance=ExtResource("7_6bp64")]
+transform = Transform3D(-0.9998912, 0, -0.014747474, 0, 1, 0, 0.014747474, 0, -0.9998912, -55.011337, 0.099998474, 5.187805)
+
+[node name="Charger6" parent="." instance=ExtResource("6_21xkr")]
+transform = Transform3D(-0.0067892633, 0, 0.999977, 0, 1, 0, -0.999977, 0, -0.0067892633, -5.3067255, 0.09999466, 75.16636)
+
+[node name="Charger7" parent="." instance=ExtResource("6_21xkr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.76796, 0.099998474, 114.97015)
+
+[node name="Charger8" parent="." instance=ExtResource("6_21xkr")]
+transform = Transform3D(0.011920365, 0, 0.99992895, 0, 1, 0, -0.99992895, 0, 0.011920365, -124.542145, 0.10000229, 104.809715)
 
 [connection signal="graphics_high" from="UserInterface" to="Environment" method="set_graphics_high"]
 [connection signal="graphics_low" from="UserInterface" to="Environment" method="set_graphics_low"]
