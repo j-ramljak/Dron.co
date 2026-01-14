@@ -1,7 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://4hnmjoye7dw1"]
+[gd_scene load_steps=20 format=3 uid="uid://4hnmjoye7dw1"]
 
 [ext_resource type="Script" uid="uid://bbtbfxm835u15" path="res://entities/dynamic/user_interface/user_interface.gd" id="1_gxmva"]
-[ext_resource type="Texture2D" uid="uid://crx8c6mbr8lff" path="res://entities/static/water/waves.jpeg" id="2_31too"]
 [ext_resource type="PackedScene" uid="uid://g0sieg1khaeh" path="res://entities/dynamic/user_interface/warning_panel.tscn" id="3_ldin5"]
 [ext_resource type="Theme" uid="uid://buup0s46ek5dt" path="res://entities/dynamic/user_interface/themes/theme_general.tres" id="4_0x5m7"]
 [ext_resource type="Theme" uid="uid://bskthmnx8bdib" path="res://entities/dynamic/user_interface/themes/theme_red.tres" id="4_ns8o4"]
@@ -194,7 +193,7 @@ shadow_color = Color(0, 0, 0, 0.49803922)
 shadow_size = 1
 shadow_offset = Vector2(4, 4)
 
-[node name="UserInterface" type="Control" node_paths=PackedStringArray("HUD", "MAIN_MENU", "GAME_OVER", "CHARGE_LABEL", "DELIVERY_LABEL", "GLOBAL_TIMER_LABEL", "DEATH_MESSAGE_LABEL", "TOTAL_DELIVERED_LABEL", "SIGNAL_WARNING", "BATTERY_WARNING", "WIND_WARNING", "STATIC_OVERLAY", "YOU_DIED_ANIMATION")]
+[node name="UserInterface" type="Control" node_paths=PackedStringArray("HUD", "MAIN_MENU", "GAME_OVER", "CHARGE_LABEL", "DELIVERY_LABEL", "GLOBAL_TIMER_LABEL", "DEATH_MESSAGE_LABEL", "TOTAL_DELIVERED_LABEL", "SIGNAL_WARNING", "BATTERY_WARNING", "WIND_WARNING", "STATIC_OVERLAY", "YOU_DIED_ANIMATION", "DESATURATION_RECT")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -215,6 +214,7 @@ BATTERY_WARNING = NodePath("HUD/Warnings/MarginContainer/HBoxContainer/WarningBa
 WIND_WARNING = NodePath("HUD/Warnings/MarginContainer/HBoxContainer/WarningWind")
 STATIC_OVERLAY = NodePath("Static")
 YOU_DIED_ANIMATION = NodePath("YouDied/AnimationPlayer")
+DESATURATION_RECT = NodePath("")
 
 [node name="Static" type="Control" parent="."]
 visible = false
@@ -224,13 +224,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="TextureRect2" type="TextureRect" parent="Static"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("2_31too")
 
 [node name="TextureRect" type="ColorRect" parent="Static"]
 material = SubResource("ShaderMaterial_d4d1c")
@@ -519,6 +512,7 @@ stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="GameOver" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

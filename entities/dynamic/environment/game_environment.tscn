@@ -31,6 +31,7 @@ fog_aerial_perspective = 1.0
 fog_sky_affect = 0.0
 fog_depth_begin = 0.0
 fog_depth_end = 512.0
+adjustment_enabled = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_sugp2"]
 flip_faces = true
@@ -47,8 +48,6 @@ shader_parameter/normal_fade_end = 10.0
 shader_parameter/depth_outline_color = Color(0.3, 0.3, 0.3, 1)
 shader_parameter/depth_outline_width = 1.0
 shader_parameter/depth_threshold = 0.05
-shader_parameter/depth_fade_start = 512.0
-shader_parameter/depth_fade_end = 128.0
 shader_parameter/depth_artifact_correction_coef = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1jyyf"]

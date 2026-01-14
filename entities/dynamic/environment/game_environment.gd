@@ -18,3 +18,6 @@ func set_graphics_high():
 	ENVIRONMENT.environment.ssao_enabled = true
 	SUN.directional_shadow_mode = DirectionalLight3D.ShadowMode.SHADOW_PARALLEL_4_SPLITS
 	WATER.mesh.material.set_shader_parameter("ssr_enabled", true)
+
+func set_saturation(saturation: float):
+	ENVIRONMENT.environment.adjustment_saturation = saturation;

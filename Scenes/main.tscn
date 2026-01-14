@@ -94,6 +94,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, 0, 0)
 [connection signal="on_timeout" from="GameMaster" to="DroneBody3D" method="die" binds= ["You ran out of time!", false]]
 [connection signal="time_changed" from="GameMaster" to="UserInterface" method="set_countdown"]
 [connection signal="timeout" from="GameMaster/GameDurationTimer" to="GameMaster" method="game_timer_finish"]
+[connection signal="change_saturation" from="UserInterface" to="Environment" method="set_saturation"]
 [connection signal="graphics_high" from="UserInterface" to="Environment" method="set_graphics_high"]
 [connection signal="graphics_low" from="UserInterface" to="Environment" method="set_graphics_low"]
 [connection signal="on_start" from="UserInterface" to="GameMaster/GameDurationTimer" method="start"]

@@ -3,7 +3,7 @@ extends Node
 class_name BatteryComponent
 
 @export var MAX_CHARGE := 100.0
-@export var deplete_speed := 1.0
+@export var deplete_speed := 0.1
 
 signal charge_change(charge: float)
 signal charge_depleted()
