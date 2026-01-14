@@ -37,6 +37,14 @@ import_script/path="uid://bltbwm2wl4px4"
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"beacon": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://entities/dynamic/delivery_point/beacon_orange.tres",
+"use_external/path": "uid://dwltjg6gifyo4"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1

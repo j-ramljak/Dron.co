@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode shadows_disabled, depth_test_default;
+render_mode shadows_disabled;
 
 //#define CAUSTICS
 //#define FRESNEL

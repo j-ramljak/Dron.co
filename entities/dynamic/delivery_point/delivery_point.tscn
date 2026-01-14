@@ -12,9 +12,16 @@ collision_mask = 8
 script = ExtResource("1_j6sfe")
 
 [node name="delivery_point_model" parent="." instance=ExtResource("2_m8fpt")]
+cast_shadow = 0
+extra_cull_margin = 16384.0
+
+[node name="delivery_point_ring" parent="delivery_point_model" index="0"]
+cast_shadow = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17312622, 0)
 shape = SubResource("CylinderShape3D_j6sfe")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+
+[editable path="delivery_point_model"]
