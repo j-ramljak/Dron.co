@@ -3,7 +3,8 @@ extends EditorScenePostImport
 
 const MATERIALS := {
 	"palette_color" = preload("res://shared/materials/palette_color.tres"),
-	"palette_transparent" = preload("res://shared/materials/palette_transparent.tres")
+	"palette_transparent" = preload("res://shared/materials/palette_transparent.tres"),
+	"palette_beacon" = preload("res://shared/materials/palette_beacon.tres"),
 }
 	
 func _post_import(scene):

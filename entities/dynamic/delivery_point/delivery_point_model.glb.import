@@ -39,10 +39,10 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"beacon": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://entities/dynamic/delivery_point/beacon_orange.tres",
-"use_external/path": "uid://dwltjg6gifyo4"
+"palette_transparent": {
+"use_external/enabled": false,
+"use_external/fallback_path": "res://shared/materials/palette_beacon.tres",
+"use_external/path": "uid://d4lnyst40pwjn"
 }
 }
 }

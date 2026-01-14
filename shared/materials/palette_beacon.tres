@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://d4lnyst40pwjn"]
+
+[ext_resource type="Shader" uid="uid://bbvi4rcoupu57" path="res://shared/materials/palette_beacon.gdshader" id="1_7urij"]
+[ext_resource type="Texture2D" uid="uid://do72a8ykmhf8v" path="res://shared/textures/gradient.png" id="2_ts8hv"]
+[ext_resource type="Texture2D" uid="uid://vjuwtqc8q2d4" path="res://shared/textures/palette.png" id="3_ur4r1"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7urij")
+shader_parameter/color = ExtResource("3_ur4r1")
+shader_parameter/alpha = ExtResource("2_ts8hv")

@@ -1,6 +1,6 @@
 shader_type spatial;
 
-render_mode cull_disabled, unshaded, shadows_disabled;
+render_mode cull_disabled, unshaded, shadows_disabled, depth_draw_always;
 
 uniform sampler2D color;
 uniform sampler2D alpha : repeat_disable;
