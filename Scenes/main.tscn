@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://rmbm2tujnepm"]
+[gd_scene load_steps=14 format=3 uid="uid://rmbm2tujnepm"]
 
 [ext_resource type="PackedScene" uid="uid://c8518p5fip7jw" path="res://entities/dynamic/drone/drone_body_3d.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://dng6ihkug1pk8" path="res://shared/scripts/exit_app.gd" id="1_tbgi4"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dwcadry5m8pfg" path="res://entities/dynamic/charger/charger.tscn" id="6_21xkr"]
 [ext_resource type="PackedScene" uid="uid://dskhfpxgdfoav" path="res://entities/dynamic/headquarters/headquarters.tscn" id="7_6bp64"]
 [ext_resource type="PackedScene" uid="uid://daxervjj2enkh" path="res://entities/dynamic/player_area/player_area_3d.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://bcn7738wek3of" path="res://entities/dynamic/delivery_point/delivery_point.tscn" id="10_choun"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o6xl0"]
 size = Vector3(400, 68, 440)
@@ -26,7 +27,7 @@ script = ExtResource("1_tbgi4")
 script = ExtResource("4_85g3d")
 
 [node name="GameDurationTimer" type="Timer" parent="GameMaster"]
-wait_time = 5.0
+wait_time = 121.0
 
 [node name="UserInterface" parent="." instance=ExtResource("5_tbgi4")]
 
@@ -86,13 +87,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.76796, 0.099998474, 114.97
 [node name="Charger8" parent="PointsOfIntrest" instance=ExtResource("6_21xkr")]
 transform = Transform3D(0.011920365, 0, 0.99992895, 0, 1, 0, -0.99992895, 0, 0.011920365, -124.542145, 0.10000229, 104.809715)
 
+[node name="Delivery point" parent="PointsOfIntrest" instance=ExtResource("10_choun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, 0, 0)
+
+[connection signal="delivered_changed" from="GameMaster" to="UserInterface" method="set_delivered"]
 [connection signal="on_timeout" from="GameMaster" to="DroneBody3D" method="die" binds= ["You ran out of time!", false]]
 [connection signal="time_changed" from="GameMaster" to="UserInterface" method="set_countdown"]
 [connection signal="timeout" from="GameMaster/GameDurationTimer" to="GameMaster" method="game_timer_finish"]
 [connection signal="graphics_high" from="UserInterface" to="Environment" method="set_graphics_high"]
 [connection signal="graphics_low" from="UserInterface" to="Environment" method="set_graphics_low"]
 [connection signal="on_start" from="UserInterface" to="GameMaster/GameDurationTimer" method="start"]
-[connection signal="charge_change" from="DroneBody3D" to="UserInterface" method="update_charge"]
+[connection signal="charge_change" from="DroneBody3D" to="UserInterface" method="set_charge"]
 [connection signal="on_death" from="DroneBody3D" to="UserInterface" method="set_death_screen"]
 [connection signal="on_player_exited" from="Areas/GameArea" to="DroneBody3D" method="die" binds= ["The drone lost its signal connection!"]]
 [connection signal="on_player_entered" from="Areas/WindArea" to="UserInterface" method="set_wind_warning" binds= [true]]
@@ -101,3 +106,4 @@ transform = Transform3D(0.011920365, 0, 0.99992895, 0, 1, 0, -0.99992895, 0, 0.0
 [connection signal="on_player_exited" from="Areas/WindArea" to="DroneBody3D" method="set_windy" binds= [false]]
 [connection signal="on_player_entered" from="Areas/SignalArea" to="UserInterface" method="set_signal_warning" binds= [false]]
 [connection signal="on_player_exited" from="Areas/SignalArea" to="UserInterface" method="set_signal_warning" binds= [true]]
+[connection signal="package_delivered" from="PointsOfIntrest/Delivery point" to="GameMaster" method="increment_delivered"]

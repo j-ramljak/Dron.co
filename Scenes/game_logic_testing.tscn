@@ -75,7 +75,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.285006, 0.49999988, -17.51
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.0999, -21.074394)
 
 [connection signal="charge_change" from="DroneBody3D" to="UI" method="update_charge"]
-[connection signal="package_delivered" from="Delivery point" to="UI" method="update_delivery_count"]
 [connection signal="graphics_high" from="UI" to="GameEnvironment" method="set_graphics_high"]
 [connection signal="graphics_low" from="UI" to="GameEnvironment" method="set_graphics_low"]
 [connection signal="on_enter" from="Out of bounds" to="UI" method="set_signal_warning" binds= [false]]

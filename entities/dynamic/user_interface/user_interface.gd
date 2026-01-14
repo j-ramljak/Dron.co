@@ -7,7 +7,6 @@ signal graphics_low()
 signal on_timeout()
 signal on_start()
 enum Menu { MAIN_MENU, HUD, GAME_OVER }
-var delivered_pacakges := 0
 
 @export var START_AT := Menu.MAIN_MENU
 @export_group("Private")
@@ -31,6 +30,7 @@ var delivered_pacakges := 0
 
 func _ready() -> void:
 	goto_menu(START_AT)
+	TOTAL_DELIVERED_LABEL.text = str(0)
 	
 func quit():
 	get_tree().quit()
@@ -58,7 +58,6 @@ func set_graphics(value):
 
 func _on_start_button_pressed() -> void:
 	goto_menu(Menu.HUD)
-	TOTAL_DELIVERED_LABEL.text = str(delivered_pacakges)
 	on_start.emit()
 	
 func death_animation_finish():
@@ -69,17 +68,16 @@ func global_timer_finish():
 
 # Za spojiti sa signalima 􏿿􏿿↓
 
-func update_charge(charge: float):
+func set_charge(charge: float):
 	CHARGE_LABEL.text = str(charge)
 	if (charge < 25.0):
 		BATTERY_WARNING.visible = true;
 	else:
 		BATTERY_WARNING.visible = false;
 	
-func update_delivery_count(value: int):
-	delivered_pacakges += value
-	DELIVERY_LABEL.text = str(delivered_pacakges)
-	TOTAL_DELIVERED_LABEL.text = str(delivered_pacakges)
+func set_delivered(value: int):
+	DELIVERY_LABEL.text = str(value)
+	TOTAL_DELIVERED_LABEL.text = str(value)
 
 func set_countdown(seconds: float) -> void:
 	var minute = floor(seconds / 60)

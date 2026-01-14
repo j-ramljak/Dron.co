@@ -15,3 +15,6 @@ func _process(_delta: float) -> void:
 
 func game_timer_finish():
 	on_timeout.emit()
+
+func increment_delivered(increment := 1):
+	packages_delivered += increment
