@@ -22,7 +22,7 @@ func spawn_delivery_point():
 	delivery_points.add_child(delivery_point_instance)
 	
 	delivery_point_instance.global_position = spawn_marker.global_position
-	delivery_point_instance.package_delivered.connect(ui.update_delivery_count)
+	delivery_point_instance.package_delivered.connect(ui.set_delivered)
 
 	
 	

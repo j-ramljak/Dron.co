@@ -3,7 +3,7 @@ extends Node3D
 @onready var drone=$DroneBody3D
 @onready var windArea=$Areas/WindArea
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	wind.position=drone.position-Vector3(15,0,0)
 	if is_drone_in_wind_area():
 		wind.emitting = true
