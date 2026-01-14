@@ -12,6 +12,7 @@ preload("res://entities/dynamic/package/crate_large.tscn"), preload("res://entit
 preload("res://entities/dynamic/package/crate_small.tscn")]
 
 var has_package = false
+var delivery_in_progress = false
 
 
 
@@ -24,14 +25,19 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body is Package3D:
 		HIGHLIGHT_MESH.visible = false
 		has_package = false
+		delivery_state_toggle()
 		timer.start()
 
 
 func _on_timer_timeout() -> void:
-	
-	if not has_package:
+	if not has_package and not delivery_in_progress:
 		var package_instance = package_scenes[randi_range(0,package_scenes.size())-1].instantiate()
 		add_child(package_instance)
 		package_instance.global_position = marker.global_position
 		has_package = true
+		
+		
+func delivery_state_toggle():
+	delivery_in_progress = not delivery_in_progress
+
 		

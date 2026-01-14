@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dwcadry5m8pfg" path="res://entities/dynamic/charger/charger.tscn" id="6_21xkr"]
 [ext_resource type="PackedScene" uid="uid://dskhfpxgdfoav" path="res://entities/dynamic/headquarters/headquarters.tscn" id="7_6bp64"]
 [ext_resource type="PackedScene" uid="uid://daxervjj2enkh" path="res://entities/dynamic/player_area/player_area_3d.tscn" id="7_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://bcn7738wek3of" path="res://entities/dynamic/delivery_point/delivery_point.tscn" id="10_choun"]
+[ext_resource type="Script" uid="uid://b0fpvqns8ypbj" path="res://entities/dynamic/delivery_point/dropoff_points.gd" id="9_ynf5e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o6xl0"]
 size = Vector3(400, 68, 440)
@@ -58,7 +58,7 @@ wait_time = 121.0
 [node name="Town" parent="." instance=ExtResource("2_0wfyh")]
 
 [node name="DroneBody3D" parent="." instance=ExtResource("1_jjgbg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.625, 3.249, -5.66)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -57.519505, 9.7281, 2.809147)
 
 [node name="Areas" type="Node3D" parent="."]
 
@@ -109,9 +109,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.76796, 0.099998474, 114.97
 [node name="Charger8" parent="PointsOfIntrest" instance=ExtResource("6_21xkr")]
 transform = Transform3D(0.011920365, 0, 0.99992895, 0, 1, 0, -0.99992895, 0, 0.011920365, -124.542145, 0.10000229, 104.809715)
 
-[node name="Delivery point" parent="PointsOfIntrest" instance=ExtResource("10_choun")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, 0, 0)
-
 [node name="WindParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2196312, 16.186878, 0)
 amount = 30
@@ -119,6 +116,72 @@ visibility_aabb = AABB(-50, -50, -50, 100, 100, 100)
 trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_hptm8")
 draw_pass_1 = SubResource("RibbonTrailMesh_d1ilt")
+
+[node name="Delivery points markers" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.76796, 0.099998474, 114.97015)
+script = ExtResource("9_ynf5e")
+
+[node name="Point 1" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -139.75482, 0, -179.98538)
+
+[node name="Point 2" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.654816, 0, -159.90672)
+
+[node name="Point 3" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.67466, 0, -269.9887)
+
+[node name="Point 4" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -229.7516, 0, -261.7431)
+
+[node name="Point 5" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -280.89246, 0, -190.15887)
+
+[node name="Point 6" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -233.8693, 0, 49.586243)
+
+[node name="Point 7" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 0.99900746, 0.044543512, 0, -0.044543512, 0.99900746, -59.603294, 0, 90.076584)
+
+[node name="Point 8" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.680122, 0, 10.999237)
+
+[node name="Point 9" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -133.9521, 0, -49.15155)
+
+[node name="Point 10" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -171.21754, 0, -21.454453)
+
+[node name="Point 11" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.0007, 0, 11.070679)
+
+[node name="Point 12" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.693634, 0, -79.901054)
+
+[node name="Point 13" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.886292, 0, -189.30055)
+
+[node name="Point 14" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(-0.34519997, 0, 0.93852913, 0, 1, 0, -0.93852913, 0, -0.34519997, 20.168472, 0, -119.91728)
+
+[node name="Point 15" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.703293, 0, -196.82582)
+
+[node name="Point 16" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -239.70622, 0, -49.954918)
+
+[node name="Point 17" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -189.85541, 0, 10.176926)
+
+[node name="Point 18" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69.92259, 0, -40.04396)
+
+[node name="Point 19" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -189.8194, 0, -129.92549)
+
+[node name="Point 20" type="Marker3D" parent="Delivery points markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -159.98775, 0.2669506, -189.91183)
+
+[node name="Delivery points" type="Node3D" parent="."]
 
 [connection signal="delivered_changed" from="GameMaster" to="UserInterface" method="set_delivered"]
 [connection signal="on_timeout" from="GameMaster" to="DroneBody3D" method="die" binds= ["You ran out of time!", false]]
@@ -128,8 +191,10 @@ draw_pass_1 = SubResource("RibbonTrailMesh_d1ilt")
 [connection signal="graphics_high" from="UserInterface" to="Environment" method="set_graphics_high"]
 [connection signal="graphics_low" from="UserInterface" to="Environment" method="set_graphics_low"]
 [connection signal="on_start" from="UserInterface" to="GameMaster/GameDurationTimer" method="start"]
+[connection signal="charge_change" from="DroneBody3D" to="UserInterface" method="update_charge"]
 [connection signal="charge_change" from="DroneBody3D" to="UserInterface" method="set_charge"]
 [connection signal="on_death" from="DroneBody3D" to="UserInterface" method="set_death_screen"]
+[connection signal="pickup_package" from="DroneBody3D" to="Delivery points markers" method="spawn_delivery_point"]
 [connection signal="on_player_exited" from="Areas/GameArea" to="DroneBody3D" method="die" binds= ["The drone lost its signal connection!"]]
 [connection signal="on_player_entered" from="Areas/WindArea" to="UserInterface" method="set_wind_warning" binds= [true]]
 [connection signal="on_player_entered" from="Areas/WindArea" to="DroneBody3D" method="set_windy" binds= [true]]
@@ -137,4 +202,3 @@ draw_pass_1 = SubResource("RibbonTrailMesh_d1ilt")
 [connection signal="on_player_exited" from="Areas/WindArea" to="DroneBody3D" method="set_windy" binds= [false]]
 [connection signal="on_player_entered" from="Areas/SignalArea" to="UserInterface" method="set_signal_warning" binds= [false]]
 [connection signal="on_player_exited" from="Areas/SignalArea" to="UserInterface" method="set_signal_warning" binds= [true]]
-[connection signal="package_delivered" from="PointsOfIntrest/Delivery point" to="GameMaster" method="increment_delivered"]
