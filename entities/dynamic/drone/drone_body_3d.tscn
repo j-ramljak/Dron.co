@@ -16,10 +16,11 @@ size = Vector3(2.3044434, 0.4507773, 2.3084106)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mny65"]
 height = 2.465332
 
-[node name="DroneBody3D" type="CharacterBody3D" node_paths=PackedStringArray("BATTERY_COMPONENT")]
+[node name="DroneBody3D" type="CharacterBody3D" node_paths=PackedStringArray("MOVEMENT_COMPONENT", "BATTERY_COMPONENT")]
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_3aqr0")
+MOVEMENT_COMPONENT = NodePath("MovementComponent")
 BATTERY_COMPONENT = NodePath("BatteryComponent")
 
 [node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("DRONE")]

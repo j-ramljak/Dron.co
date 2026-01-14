@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://daxervjj2enkh"]
+
+[ext_resource type="Script" uid="uid://btkh532sy2v7y" path="res://entities/dynamic/player_area/player_area_3d.gd" id="1_vov7o"]
+
+[node name="PlayerArea3D" type="Area3D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_vov7o")
+
+[connection signal="body_entered" from="." to="." method="player_entered"]
+[connection signal="body_exited" from="." to="." method="player_exited"]
