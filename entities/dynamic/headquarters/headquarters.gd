@@ -25,7 +25,7 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body is Package3D:
 		HIGHLIGHT_MESH.visible = false
 		has_package = false
-		delivery_state_toggle()
+		delivery_in_progress = true
 		timer.start()
 
 
@@ -35,6 +35,7 @@ func _on_timer_timeout() -> void:
 		add_child(package_instance)
 		package_instance.global_position = marker.global_position
 		has_package = true
+		$"../../Delivery points markers".spawn_delivery_point()
 		
 		
 func delivery_state_toggle():

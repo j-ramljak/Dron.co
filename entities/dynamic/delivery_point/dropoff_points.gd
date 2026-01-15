@@ -5,6 +5,7 @@ extends Node3D
 @onready var delivery_points: Node = $"../Delivery points"
 
 @onready var ui = $"../UserInterface"
+@onready var gm =  $"../GameMaster"
 
 
 
@@ -22,7 +23,8 @@ func spawn_delivery_point():
 	delivery_points.add_child(delivery_point_instance)
 	
 	delivery_point_instance.global_position = spawn_marker.global_position
-	delivery_point_instance.package_delivered.connect(ui.set_delivered)
+	
+	delivery_point_instance.package_delivered.connect(gm.increment_delivered)
 
 	
 	

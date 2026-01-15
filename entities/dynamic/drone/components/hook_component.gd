@@ -7,7 +7,7 @@ class_name HookComponent
 
 @onready var drone_collison_shape = $"../CollisionShape3D"
 
-signal picked_package
+
 
 signal hook_attach(body: RigidBody3D)
 signal hook_deattach()
@@ -31,7 +31,8 @@ func attach(body: RigidBody3D):
 		drone_collison_shape.shape.size.y = body.get_height() * 2
 		drone_collison_shape.position.y -= body.get_height()
 		body.set_collision_mask_value(2, false)
-		emit_signal("picked_package")
+		$"../Hook/GPUParticles3D".visible = true
+		
 		
 		body.linear_damp = 2
 		body.angular_damp = 20 
@@ -50,6 +51,8 @@ func deattach():
 	drone_collison_shape.shape.size.y = 0.5
 	drone_collison_shape.position.y += body.get_height()
 	body.set_collision_mask_value(2, true)
+	
+	$"../Hook/GPUParticles3D".visible = false
 	
 	body.linear_damp = 0
 	body.angular_damp = 0

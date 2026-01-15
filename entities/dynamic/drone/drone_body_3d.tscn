@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c8518p5fip7jw"]
+[gd_scene load_steps=20 format=3 uid="uid://c8518p5fip7jw"]
 
 [ext_resource type="Script" uid="uid://dxh6075hoaryl" path="res://entities/dynamic/drone/drone_body_3d.gd" id="1_3aqr0"]
 [ext_resource type="Script" uid="uid://cks2ue7muwtvh" path="res://entities/dynamic/drone/components/hook_component.gd" id="4_mny65"]
@@ -16,6 +16,50 @@ size = Vector3(2.3044434, 0.4507773, 2.3084106)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mny65"]
 height = 2.465332
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2hpc"]
+albedo_color = Color(0.0056398893, 0, 0.36309236, 1)
+emission_enabled = true
+emission = Color(0.2546583, 0.47499835, 1, 1)
+emission_energy_multiplier = 5.33
+
+[sub_resource type="Curve" id="Curve_m1reu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_72xr7"]
+curve = SubResource("Curve_m1reu")
+
+[sub_resource type="Curve" id="Curve_i2hpc"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_m1reu"]
+curve = SubResource("Curve_i2hpc")
+
+[sub_resource type="Curve" id="Curve_72xr7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1880841, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5466942), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6txih"]
+curve = SubResource("Curve_72xr7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i2hpc"]
+lifetime_randomness = 0.64
+emission_shape = 3
+emission_box_extents = Vector3(0.2, 0.01, 0.2)
+flatness = 1.0
+gravity = Vector3(0, 1, 0)
+scale_curve = SubResource("CurveTexture_6txih")
+color = Color(0.3099814, 0.5756744, 0.99631566, 1)
+emission_curve = SubResource("CurveTexture_72xr7")
+hue_variation_curve = SubResource("CurveTexture_m1reu")
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_i2hpc"]
+size = 0.03
+sections = 3
+section_length = 0.1
+
 [node name="DroneBody3D" type="CharacterBody3D" node_paths=PackedStringArray("MOVEMENT_COMPONENT", "BATTERY_COMPONENT", "DEATH_COMPONENT")]
 collision_layer = 2
 motion_mode = 1
@@ -27,9 +71,9 @@ DEATH_COMPONENT = NodePath("DeathComponent")
 [node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("DRONE")]
 script = ExtResource("5_aw4du")
 DRONE = NodePath("..")
-SPEED = 35.0
+SPEED = 20.0
 ROTATE_SENSITIVITY = 1.5
-FRICTION = 0.97
+FRICTION = 0.98
 WIND_SPEED = 3.0
 
 [node name="HookComponent" type="Node" parent="." node_paths=PackedStringArray("MARKER", "JOINT")]
@@ -105,7 +149,7 @@ angular_spring_z/stiffness = 50.0
 angular_spring_z/damping = 10.0
 
 [node name="Marker" type="Marker3D" parent="Hook"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0330617, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0889881, 0)
 
 [node name="Hook area" type="Area3D" parent="Hook"]
 collision_layer = 4
@@ -115,7 +159,16 @@ collision_mask = 12
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0290527, 0)
 shape = SubResource("CapsuleShape3D_mny65")
 
-[connection signal="picked_package" from="HookComponent" to="." method="package_pickup"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Hook"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.62398624, 0)
+material_override = SubResource("StandardMaterial3D_i2hpc")
+amount = 10
+lifetime = 0.9
+local_coords = true
+trail_lifetime = 0.09999999999999999
+process_material = SubResource("ParticleProcessMaterial_i2hpc")
+draw_pass_1 = SubResource("RibbonTrailMesh_i2hpc")
+
 [connection signal="charge_change" from="BatteryComponent" to="." method="_on_battery_component_charge_change"]
 [connection signal="charge_depleted" from="BatteryComponent" to="DeathComponent" method="kill"]
 [connection signal="timeout" from="BatteryComponent/DepletionTimer" to="BatteryComponent" method="decrement_charge"]
