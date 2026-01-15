@@ -1,4 +1,4 @@
-@icon("./game_master.pngp")
+@icon("./game_master.png")
 extends Node
 class_name GameMaster
 
