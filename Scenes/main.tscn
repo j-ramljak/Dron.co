@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://rmbm2tujnepm"]
+[gd_scene load_steps=17 format=3 uid="uid://rmbm2tujnepm"]
 
 [ext_resource type="PackedScene" uid="uid://c8518p5fip7jw" path="res://entities/dynamic/drone/drone_body_3d.tscn" id="1_jjgbg"]
-[ext_resource type="Script" uid="uid://dng6ihkug1pk8" path="res://shared/scripts/exit_app.gd" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://2qydddknolyo" path="res://scenes/town.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://cag2lm8kquc2p" path="res://entities/dynamic/environment/game_environment.tscn" id="2_jyhfs"]
 [ext_resource type="Script" uid="uid://b57i31wh58dae" path="res://entities/dynamic/game_master/game_master.gd" id="4_85g3d"]
@@ -9,17 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dwcadry5m8pfg" path="res://entities/dynamic/charger/charger.tscn" id="6_21xkr"]
 [ext_resource type="PackedScene" uid="uid://dskhfpxgdfoav" path="res://entities/dynamic/headquarters/headquarters.tscn" id="7_6bp64"]
 [ext_resource type="PackedScene" uid="uid://daxervjj2enkh" path="res://entities/dynamic/player_area/player_area_3d.tscn" id="7_o6xl0"]
-[ext_resource type="Script" uid="uid://b0fpvqns8ypbj" path="res://entities/dynamic/delivery_point/dropoff_points.gd" id="9_ynf5e"]
-[ext_resource type="Script" uid="uid://b5e3dto2xmbmw" path="res://scenes/wind.gd" id="11_ya4ey"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_o6xl0"]
-size = Vector3(400, 68, 440)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_tefeu"]
-size = Vector3(400, 40, 440)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_tipki"]
-size = Vector3(360, 60, 400)
+[ext_resource type="Script" uid="uid://b0fpvqns8ypbj" path="res://entities/dynamic/delivery_point/delivery_spawner.gd" id="9_ynf5e"]
+[ext_resource type="Script" uid="uid://b5e3dto2xmbmw" path="res://entities/dynamic/wind/wind_follow.gd" id="11_ya4ey"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hptm8"]
 particle_flag_align_y = true
@@ -43,23 +33,44 @@ shape = 0
 size = 0.1
 section_length = 0.3
 
-[node name="Main" type="Node3D"]
-script = ExtResource("1_tbgi4")
+[sub_resource type="BoxShape3D" id="BoxShape3D_o6xl0"]
+size = Vector3(400, 68, 440)
 
-[node name="GameMaster" type="Node" parent="."]
+[sub_resource type="BoxShape3D" id="BoxShape3D_tefeu"]
+size = Vector3(400, 40, 440)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tipki"]
+size = Vector3(360, 60, 400)
+
+[node name="Main" type="Node3D" node_paths=PackedStringArray("GAME_TIMER")]
 script = ExtResource("4_85g3d")
+GAME_TIMER = NodePath("GameDurationTimer")
 
-[node name="GameDurationTimer" type="Timer" parent="GameMaster"]
+[node name="GameDurationTimer" type="Timer" parent="."]
 wait_time = 121.0
 
 [node name="UserInterface" parent="." instance=ExtResource("5_tbgi4")]
 
 [node name="Environment" parent="." instance=ExtResource("2_jyhfs")]
 
-[node name="Town" parent="." instance=ExtResource("2_0wfyh")]
-
 [node name="DroneBody3D" parent="." instance=ExtResource("1_jjgbg")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -57.519505, 9.7281, 2.809147)
+
+[node name="WindAnchor" type="Node3D" parent="." node_paths=PackedStringArray("FOLLOW_NODE")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0)
+script = ExtResource("11_ya4ey")
+FOLLOW_NODE = NodePath("../DroneBody3D")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="WindAnchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 20, 0)
+amount = 50
+lifetime = 2.0
+visibility_aabb = AABB(-50, -50, -50, 100, 100, 100)
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_hptm8")
+draw_pass_1 = SubResource("RibbonTrailMesh_d1ilt")
+
+[node name="Town" parent="." instance=ExtResource("2_0wfyh")]
 
 [node name="Areas" type="Node3D" parent="."]
 
@@ -110,96 +121,80 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.76796, 0.099998474, 114.97
 [node name="Charger8" parent="PointsOfIntrest" instance=ExtResource("6_21xkr")]
 transform = Transform3D(0.011920365, 0, 0.99992895, 0, 1, 0, -0.99992895, 0, 0.011920365, -124.542145, 0.10000229, 104.809715)
 
-[node name="Delivery points markers" type="Node3D" parent="."]
+[node name="DeliveryPointSpawner" type="Node3D" parent="." node_paths=PackedStringArray("GAME_MASTER", "HEADQUARTERS")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.76796, 0.099998474, 114.97015)
 script = ExtResource("9_ynf5e")
+GAME_MASTER = NodePath("..")
+HEADQUARTERS = NodePath("../PointsOfIntrest/Headquarters")
 
-[node name="Point 1" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 1" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -139.75482, 0, -179.98538)
 
-[node name="Point 2" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 2" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.654816, 0, -159.90672)
 
-[node name="Point 3" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 3" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.67466, 0, -269.9887)
 
-[node name="Point 4" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 4" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -229.7516, 0, -261.7431)
 
-[node name="Point 5" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 5" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -280.89246, 0, -190.15887)
 
-[node name="Point 6" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 6" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -233.8693, 0, 49.586243)
 
-[node name="Point 7" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 7" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 0.99900746, 0.044543512, 0, -0.044543512, 0.99900746, -59.603294, 0, 90.076584)
 
-[node name="Point 8" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 8" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.680122, 0, 10.999237)
 
-[node name="Point 9" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 9" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -133.9521, 0, -49.15155)
 
-[node name="Point 10" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 10" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -171.21754, 0, -21.454453)
 
-[node name="Point 11" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 11" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.0007, 0, 11.070679)
 
-[node name="Point 12" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 12" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.693634, 0, -79.901054)
 
-[node name="Point 13" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 13" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.886292, 0, -189.30055)
 
-[node name="Point 14" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 14" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(-0.34519997, 0, 0.93852913, 0, 1, 0, -0.93852913, 0, -0.34519997, 20.168472, 0, -119.91728)
 
-[node name="Point 15" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 15" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.703293, 0, -196.82582)
 
-[node name="Point 16" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 16" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -239.70622, 0, -49.954918)
 
-[node name="Point 17" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 17" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -189.85541, 0, 10.176926)
 
-[node name="Point 18" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 18" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69.92259, 0, -40.04396)
 
-[node name="Point 19" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 19" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -189.8194, 0, -129.92549)
 
-[node name="Point 20" type="Marker3D" parent="Delivery points markers"]
+[node name="Point 20" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -159.98775, 0.2669506, -189.91183)
 
-[node name="Delivery points" type="Node3D" parent="."]
-
-[node name="WindAnchor" type="Node3D" parent="." node_paths=PackedStringArray("DRONE")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0)
-script = ExtResource("11_ya4ey")
-DRONE = NodePath("../DroneBody3D")
-
-[node name="WindParticles" type="GPUParticles3D" parent="WindAnchor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 20, 0)
-amount = 50
-lifetime = 2.0
-visibility_aabb = AABB(-50, -50, -50, 100, 100, 100)
-trail_enabled = true
-process_material = SubResource("ParticleProcessMaterial_hptm8")
-draw_pass_1 = SubResource("RibbonTrailMesh_d1ilt")
-
-[connection signal="delivered_changed" from="GameMaster" to="UserInterface" method="set_delivered"]
-[connection signal="on_timeout" from="GameMaster" to="DroneBody3D" method="die" binds= ["You ran out of time!", false]]
-[connection signal="time_changed" from="GameMaster" to="UserInterface" method="set_countdown"]
-[connection signal="timeout" from="GameMaster/GameDurationTimer" to="GameMaster" method="game_timer_finish"]
+[connection signal="delivered_changed" from="." to="UserInterface" method="set_delivered"]
+[connection signal="time_changed" from="." to="UserInterface" method="set_countdown"]
+[connection signal="timeout" from="GameDurationTimer" to="DroneBody3D" method="die" binds= ["You ran out of time!", false]]
 [connection signal="change_saturation" from="UserInterface" to="Environment" method="set_saturation"]
 [connection signal="graphics_high" from="UserInterface" to="Environment" method="set_graphics_high"]
 [connection signal="graphics_low" from="UserInterface" to="Environment" method="set_graphics_low"]
-[connection signal="on_start" from="UserInterface" to="GameMaster/GameDurationTimer" method="start"]
+[connection signal="on_start" from="UserInterface" to="GameDurationTimer" method="start"]
 [connection signal="charge_change" from="DroneBody3D" to="UserInterface" method="set_charge"]
-[connection signal="charge_change" from="DroneBody3D" to="UserInterface" method="update_charge"]
 [connection signal="on_death" from="DroneBody3D" to="UserInterface" method="set_death_screen"]
 [connection signal="on_player_exited" from="Areas/GameArea" to="DroneBody3D" method="die" binds= ["The drone lost its signal connection!"]]
 [connection signal="on_player_entered" from="Areas/WindArea" to="UserInterface" method="set_wind_warning" binds= [true]]
@@ -208,3 +203,4 @@ draw_pass_1 = SubResource("RibbonTrailMesh_d1ilt")
 [connection signal="on_player_exited" from="Areas/WindArea" to="DroneBody3D" method="set_windy" binds= [false]]
 [connection signal="on_player_entered" from="Areas/SignalArea" to="UserInterface" method="set_signal_warning" binds= [false]]
 [connection signal="on_player_exited" from="Areas/SignalArea" to="UserInterface" method="set_signal_warning" binds= [true]]
+[connection signal="spawned_package" from="PointsOfIntrest/Headquarters" to="DeliveryPointSpawner" method="spawn_delivery_point"]

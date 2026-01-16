@@ -1,5 +1,6 @@
 @icon("./Charger.png")
 extends Node3D
+class_name Charger
 
 @export var CHARGE_SPEED := 1
 

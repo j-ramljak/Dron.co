@@ -6,9 +6,6 @@ var is_being_carried = false
 @export var max_height = 10
 var fall_damage = 0
 
-
-
-
 func chage_carrying_state():
 	if is_being_carried:
 		fall_damage = global_position.y
@@ -25,16 +22,8 @@ func get_height():
 		
 	return max_y - min_y
 	
-	
-func deliver():
-	
-
-	
-	queue_free()
-	
 func destroy():
 	queue_free()
-
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("Ground") and fall_damage >= max_height:

@@ -4,7 +4,6 @@ class_name UserInterface
 
 signal graphics_high()
 signal graphics_low()
-signal on_timeout()
 signal on_start()
 signal change_saturation(saturation: float)
 enum Menu { MAIN_MENU, HUD, GAME_OVER }
@@ -64,9 +63,6 @@ func _on_start_button_pressed() -> void:
 func death_animation_finish():
 	goto_menu(Menu.GAME_OVER)
 	
-func global_timer_finish():
-	on_timeout.emit()
-
 # Za spojiti sa signalima 􏿿􏿿↓
 
 func set_charge(charge: float):

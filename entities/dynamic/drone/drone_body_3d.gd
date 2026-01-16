@@ -6,6 +6,7 @@ class_name DroneBody3D
 @export var MOVEMENT_COMPONENT: MovementComponent
 @export var BATTERY_COMPONENT: BatteryComponent
 @export var DEATH_COMPONENT: DeathComponent
+@export var HOOK_COMPONENT: HookComponent
 
 signal charge_change(charge: float)
 signal on_death(death_message: String, animated: bool)
@@ -20,12 +21,14 @@ func _on_battery_component_charge_change(charge: float) -> void:
 
 func set_windy(value: bool):
 	MOVEMENT_COMPONENT.windy = value 
-	$HookComponent.deattach()
+	HOOK_COMPONENT.deattach()
 	
 func charge_increment(increment: float):
 	BATTERY_COMPONENT.charge += increment	
 
 func die(death_message: String, animated = true):
+	if (DEATH_COMPONENT.dead):
+		return
 	DEATH_COMPONENT.kill()
 	on_death.emit(death_message, animated)
 
