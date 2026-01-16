@@ -90,8 +90,9 @@ script = ExtResource("6_lakys")
 wait_time = 0.1
 autostart = true
 
-[node name="DeathComponent" type="Node" parent="."]
+[node name="DeathComponent" type="Node" parent="." node_paths=PackedStringArray("MOVEMENT_COMPONENT")]
 script = ExtResource("5_i2hpc")
+MOVEMENT_COMPONENT = NodePath("../MovementComponent")
 
 [node name="SmoothCameraComponent" type="Node" parent="." node_paths=PackedStringArray("CAMERA_ANCHOR", "MOVEMENT_COMPONENT")]
 script = ExtResource("6_m1reu")
