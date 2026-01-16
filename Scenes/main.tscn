@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://rmbm2tujnepm"]
+[gd_scene load_steps=18 format=3 uid="uid://rmbm2tujnepm"]
 
 [ext_resource type="PackedScene" uid="uid://c8518p5fip7jw" path="res://entities/dynamic/drone/drone_body_3d.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://dng6ihkug1pk8" path="res://shared/scripts/exit_app.gd" id="1_tbgi4"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dskhfpxgdfoav" path="res://entities/dynamic/headquarters/headquarters.tscn" id="7_6bp64"]
 [ext_resource type="PackedScene" uid="uid://daxervjj2enkh" path="res://entities/dynamic/player_area/player_area_3d.tscn" id="7_o6xl0"]
 [ext_resource type="Script" uid="uid://b0fpvqns8ypbj" path="res://entities/dynamic/delivery_point/dropoff_points.gd" id="9_ynf5e"]
+[ext_resource type="Script" uid="uid://b5e3dto2xmbmw" path="res://scenes/wind.gd" id="11_ya4ey"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o6xl0"]
 size = Vector3(400, 68, 440)
@@ -23,7 +24,7 @@ size = Vector3(360, 60, 400)
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hptm8"]
 particle_flag_align_y = true
 emission_shape = 3
-emission_box_extents = Vector3(10, 10, 10)
+emission_box_extents = Vector3(20, 20, 20)
 spread = 0.0
 initial_velocity_min = 20.0
 initial_velocity_max = 50.0
@@ -109,14 +110,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.76796, 0.099998474, 114.97
 [node name="Charger8" parent="PointsOfIntrest" instance=ExtResource("6_21xkr")]
 transform = Transform3D(0.011920365, 0, 0.99992895, 0, 1, 0, -0.99992895, 0, 0.011920365, -124.542145, 0.10000229, 104.809715)
 
-[node name="WindParticles" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2196312, 16.186878, 0)
-amount = 30
-visibility_aabb = AABB(-50, -50, -50, 100, 100, 100)
-trail_enabled = true
-process_material = SubResource("ParticleProcessMaterial_hptm8")
-draw_pass_1 = SubResource("RibbonTrailMesh_d1ilt")
-
 [node name="Delivery points markers" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.76796, 0.099998474, 114.97015)
 script = ExtResource("9_ynf5e")
@@ -183,6 +176,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -159.98775, 0.2669506, -189.9
 
 [node name="Delivery points" type="Node3D" parent="."]
 
+[node name="WindAnchor" type="Node3D" parent="." node_paths=PackedStringArray("DRONE")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0)
+script = ExtResource("11_ya4ey")
+DRONE = NodePath("../DroneBody3D")
+
+[node name="WindParticles" type="GPUParticles3D" parent="WindAnchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 20, 0)
+amount = 50
+lifetime = 2.0
+visibility_aabb = AABB(-50, -50, -50, 100, 100, 100)
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_hptm8")
+draw_pass_1 = SubResource("RibbonTrailMesh_d1ilt")
+
 [connection signal="delivered_changed" from="GameMaster" to="UserInterface" method="set_delivered"]
 [connection signal="on_timeout" from="GameMaster" to="DroneBody3D" method="die" binds= ["You ran out of time!", false]]
 [connection signal="time_changed" from="GameMaster" to="UserInterface" method="set_countdown"]
@@ -191,8 +198,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -159.98775, 0.2669506, -189.9
 [connection signal="graphics_high" from="UserInterface" to="Environment" method="set_graphics_high"]
 [connection signal="graphics_low" from="UserInterface" to="Environment" method="set_graphics_low"]
 [connection signal="on_start" from="UserInterface" to="GameMaster/GameDurationTimer" method="start"]
-[connection signal="charge_change" from="DroneBody3D" to="UserInterface" method="update_charge"]
 [connection signal="charge_change" from="DroneBody3D" to="UserInterface" method="set_charge"]
+[connection signal="charge_change" from="DroneBody3D" to="UserInterface" method="update_charge"]
 [connection signal="on_death" from="DroneBody3D" to="UserInterface" method="set_death_screen"]
 [connection signal="on_player_exited" from="Areas/GameArea" to="DroneBody3D" method="die" binds= ["The drone lost its signal connection!"]]
 [connection signal="on_player_entered" from="Areas/WindArea" to="UserInterface" method="set_wind_warning" binds= [true]]
