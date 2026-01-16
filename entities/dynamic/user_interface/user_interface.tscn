@@ -7,30 +7,11 @@
 [ext_resource type="Shader" uid="uid://bn5mhpvfe71qe" path="res://entities/dynamic/user_interface/shaders/static.gdshader" id="6_31too"]
 [ext_resource type="Texture2D" uid="uid://cdt8nykfln7mx" path="res://entities/dynamic/user_interface/textures/you_died.png" id="6_d64fq"]
 [ext_resource type="Theme" uid="uid://cwx8s75gpvqpq" path="res://entities/dynamic/user_interface/themes/theme_orange.tres" id="7_31too"]
+[ext_resource type="Texture2D" uid="uid://xobkg1flsrjl" path="res://entities/dynamic/user_interface/textures/placeholder.png" id="8_ggw1y"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d4d1c"]
 shader = ExtResource("6_31too")
 shader_parameter/amount = 10.0
-
-[sub_resource type="Gradient" id="Gradient_ns8o4"]
-colors = PackedColorArray(0, 0, 0, 0.49803922, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ldin5"]
-gradient = SubResource("Gradient_ns8o4")
-fill_to = Vector2(0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g22m1"]
-bg_color = Color(0.1764706, 0.20784314, 0.22352941, 1)
-border_width_left = 4
-border_color = Color(0.9529412, 0.4745098, 0.078431375, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-shadow_color = Color(0, 0, 0, 0.49803922)
-shadow_size = 1
-shadow_offset = Vector2(4, 4)
-anti_aliasing = false
 
 [sub_resource type="Animation" id="Animation_ldin5"]
 length = 0.001
@@ -172,6 +153,34 @@ colors = PackedColorArray(0, 0, 0, 0.92941177, 0, 0, 0, 0)
 gradient = SubResource("Gradient_ggw1y")
 fill_to = Vector2(0, 1)
 
+[sub_resource type="Gradient" id="Gradient_ns8o4"]
+colors = PackedColorArray(0, 0, 0, 0.49803922, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ldin5"]
+gradient = SubResource("Gradient_ns8o4")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g22m1"]
+bg_color = Color(0.1764706, 0.20784314, 0.22352941, 1)
+border_width_left = 4
+border_color = Color(0.9529412, 0.4745098, 0.078431375, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.49803922)
+shadow_size = 1
+shadow_offset = Vector2(4, 4)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d64fq"]
+bg_color = Color(0.14220001, 0.16299002, 0.18, 0.90588236)
+border_width_top = 4
+border_color = Color(0, 0, 0, 0.49803922)
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
 [sub_resource type="Gradient" id="Gradient_d64fq"]
 colors = PackedColorArray(0, 0, 0, 0.68235296, 0, 0, 0, 0.28627452)
 
@@ -188,21 +197,7 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mebh3"]
-bg_color = Color(0.9529412, 0.4745098, 0.078431375, 1)
-shadow_color = Color(0, 0, 0, 0.49803922)
-shadow_size = 1
-shadow_offset = Vector2(4, 4)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d64fq"]
-bg_color = Color(0.14220001, 0.16299002, 0.18, 0.90588236)
-border_width_top = 4
-border_color = Color(0, 0, 0, 0.49803922)
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-anti_aliasing = false
-
-[node name="UserInterface" type="Control" node_paths=PackedStringArray("HUD", "MAIN_MENU", "GAME_OVER", "CHARGE_LABEL", "DELIVERY_LABEL", "GLOBAL_TIMER_LABEL", "DEATH_MESSAGE_LABEL", "TOTAL_DELIVERED_LABEL", "SIGNAL_WARNING", "BATTERY_WARNING", "WIND_WARNING", "STATIC_OVERLAY", "YOU_DIED_ANIMATION")]
+[node name="UserInterface" type="Control" node_paths=PackedStringArray("HUD", "MAIN_MENU", "GAME_OVER", "CHARGE_LABEL", "DELIVERY_LABEL", "GLOBAL_TIMER_LABEL", "DEATH_MESSAGE_LABEL", "TOTAL_DELIVERED_LABEL", "SIGNAL_WARNING", "BATTERY_WARNING", "WIND_WARNING", "STATIC_OVERLAY", "YOU_DIED_ANIMATION", "CONTROLS_MENU")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -223,6 +218,7 @@ BATTERY_WARNING = NodePath("HUD/Warnings/MarginContainer/HBoxContainer/WarningBa
 WIND_WARNING = NodePath("HUD/Warnings/MarginContainer/HBoxContainer/WarningWind")
 STATIC_OVERLAY = NodePath("Static")
 YOU_DIED_ANIMATION = NodePath("YouDied/AnimationPlayer")
+CONTROLS_MENU = NodePath("HUD/TutorialControls/Controls")
 
 [node name="Static" type="Control" parent="."]
 visible = false
@@ -242,8 +238,85 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="YouDied" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="YouDied"]
+libraries = {
+&"": SubResource("AnimationLibrary_d64fq")
+}
+
+[node name="Control" type="Control" parent="YouDied"]
+layout_mode = 1
+anchor_top = 0.38734567
+anchor_right = 1.0
+anchor_bottom = 0.6126543
+offset_top = -137.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="YouDied/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="TextureGradient" type="TextureRect" parent="YouDied/Control/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_qgb30")
+flip_v = true
+
+[node name="TextureGradient2" type="TextureRect" parent="YouDied/Control/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_qgb30")
+
+[node name="CenterContainer" type="CenterContainer" parent="YouDied/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="YouDied/Control/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureYouDied" type="TextureRect" parent="YouDied/Control/CenterContainer/Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+pivot_offset = Vector2(250, 250)
+mouse_filter = 2
+texture = ExtResource("6_d64fq")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
 [node name="HUD" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -442,83 +515,128 @@ visible = false
 layout_mode = 2
 text = "High altitude, strong winds!"
 
-[node name="YouDied" type="Control" parent="."]
+[node name="TutorialControls" type="MarginContainer" parent="HUD"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 2
+anchor_top = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+offset_top = -280.0
+offset_right = 434.0
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="YouDied"]
-libraries = {
-&"": SubResource("AnimationLibrary_d64fq")
-}
-
-[node name="Control" type="Control" parent="YouDied"]
-layout_mode = 1
-anchor_top = 0.38734567
-anchor_right = 1.0
-anchor_bottom = 0.6126543
-offset_top = -137.0
-offset_bottom = 137.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="YouDied/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/separation = 0
-
-[node name="TextureGradient" type="TextureRect" parent="YouDied/Control/VBoxContainer"]
-modulate = Color(1, 1, 1, 0)
+[node name="OpenControls" type="Button" parent="HUD/TutorialControls"]
 layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_qgb30")
-flip_v = true
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme = ExtResource("4_0x5m7")
+text = "CONTROLS"
 
-[node name="TextureGradient2" type="TextureRect" parent="YouDied/Control/VBoxContainer"]
-modulate = Color(1, 1, 1, 0)
+[node name="Controls" type="PanelContainer" parent="HUD/TutorialControls"]
 layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_qgb30")
+theme = ExtResource("4_0x5m7")
 
-[node name="CenterContainer" type="CenterContainer" parent="YouDied/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Control" type="Control" parent="YouDied/Control/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/TutorialControls/Controls"]
 layout_mode = 2
-mouse_filter = 2
 
-[node name="TextureYouDied" type="TextureRect" parent="YouDied/Control/CenterContainer/Control"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = -250.0
-offset_top = -250.0
-offset_right = 250.0
-offset_bottom = 250.0
-pivot_offset = Vector2(250, 250)
-mouse_filter = 2
-texture = ExtResource("6_d64fq")
-expand_mode = 1
-stretch_mode = 5
-metadata/_edit_use_anchors_ = true
+[node name="MarginContainer" type="MarginContainer" parent="HUD/TutorialControls/Controls/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/TutorialControls/Controls/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="HUD/TutorialControls/Controls/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("7_31too")
+text = "CONTROLS"
+
+[node name="HorizontalPanel" type="Panel" parent="HUD/TutorialControls/Controls/VBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("7_31too")
+
+[node name="CloseControls" type="Button" parent="HUD/TutorialControls/Controls/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_ns8o4")
+text = "X"
+
+[node name="Panel" type="PanelContainer" parent="HUD/TutorialControls/Controls/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d64fq")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/TutorialControls/Controls/VBoxContainer/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="GridContainer" type="GridContainer" parent="HUD/TutorialControls/Controls/VBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="Label" type="Label" parent="HUD/TutorialControls/Controls/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_ns8o4")
+text = "W/S"
+
+[node name="Label2" type="Label" parent="HUD/TutorialControls/Controls/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "forward/backward"
+
+[node name="Label3" type="Label" parent="HUD/TutorialControls/Controls/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_ns8o4")
+text = "A/D"
+
+[node name="Label4" type="Label" parent="HUD/TutorialControls/Controls/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "rotate left/right"
+
+[node name="Label5" type="Label" parent="HUD/TutorialControls/Controls/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_ns8o4")
+text = "Q/E"
+
+[node name="Label6" type="Label" parent="HUD/TutorialControls/Controls/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "strafe left/right"
+
+[node name="Label7" type="Label" parent="HUD/TutorialControls/Controls/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_ns8o4")
+text = "Space/Ctrl"
+
+[node name="Label8" type="Label" parent="HUD/TutorialControls/Controls/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "up/down"
+
+[node name="Label9" type="Label" parent="HUD/TutorialControls/Controls/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_ns8o4")
+theme_override_font_sizes/font_size = 32
+text = "Click"
+
+[node name="Label10" type="Label" parent="HUD/TutorialControls/Controls/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "drop package"
 
 [node name="GameOver" type="Control" parent="."]
 visible = false
@@ -646,6 +764,7 @@ theme = ExtResource("4_0x5m7")
 text = "Quit"
 
 [node name="MainMenu" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -662,179 +781,134 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_31too")
 
-[node name="TitleLabel" type="Label" parent="MainMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -162.0
-offset_top = -212.0
-offset_right = 162.0
-offset_bottom = -99.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("4_0x5m7")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6901961)
-theme_override_constants/shadow_offset_x = 4
-theme_override_constants/shadow_offset_y = 4
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 128
-text = "DRON.CO"
-
-[node name="HorizontalPanel" type="Panel" parent="MainMenu"]
-custom_minimum_size = Vector2(512, 4)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.261
-anchor_top = 0.5
-anchor_right = 0.739
-anchor_bottom = 0.5
-offset_left = 0.32800293
-offset_top = -86.985
-offset_right = -0.32800293
-offset_bottom = -82.985
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mebh3")
-
-[node name="StartButton" type="Button" parent="MainMenu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -135.0
-offset_top = -28.5
-offset_right = 135.0
-offset_bottom = 28.5
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("4_0x5m7")
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 48
-text = "START"
-
-[node name="TutorialControls" type="MarginContainer" parent="MainMenu"]
-layout_mode = 1
-anchors_preset = 2
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_left = -304.0
+offset_top = -237.0
+offset_right = 304.0
+grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="PanelContainer" type="PanelContainer" parent="MainMenu/TutorialControls"]
+[node name="CenterContainer" type="HBoxContainer" parent="MainMenu/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/MarginContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 256)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("8_ggw1y")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="MainMenu/MarginContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("4_0x5m7")
+text = "[tutorial_text]"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/TutorialControls/PanelContainer"]
+[node name="HBoxContainer2" type="VBoxContainer" parent="MainMenu/MarginContainer/CenterContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="MainMenu/MarginContainer/CenterContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 256)
 layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("8_ggw1y")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label2" type="Label" parent="MainMenu/MarginContainer/CenterContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_0x5m7")
+text = "[tutorial_text]"
+
+[node name="HBoxContainer3" type="VBoxContainer" parent="MainMenu/MarginContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="MainMenu/MarginContainer/CenterContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(0, 256)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("8_ggw1y")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label3" type="Label" parent="MainMenu/MarginContainer/CenterContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_0x5m7")
+text = "[tutorial_text]"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.264
+anchor_top = 0.5
+anchor_right = 0.73600006
+anchor_bottom = 0.5
+offset_left = -0.12799072
+offset_top = -324.0
+offset_right = 0.12792969
+offset_bottom = -62.0
+grow_horizontal = 2
 theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 8
+theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer2"]
 layout_mode = 2
+alignment = 1
 
-[node name="Label" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="TitleLabel" type="Label" parent="MainMenu/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_0x5m7")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6901961)
+theme_override_constants/line_spacing = 3
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 128
+text = "DRON.CO"
+
+[node name="HorizontalPanel" type="Panel" parent="MainMenu/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(512, 4)
 layout_mode = 2
 theme = ExtResource("7_31too")
-text = "CONTROLS"
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/MarginContainer2/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 32
 
-[node name="HorizontalPanel" type="Panel" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(0, 4)
+[node name="StartButton" type="Button" parent="MainMenu/MarginContainer2/VBoxContainer/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme = ExtResource("7_31too")
-
-[node name="Panel" type="PanelContainer" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_d64fq")
-
-[node name="MarginContainer" type="MarginContainer" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel"]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 8
-
-[node name="GridContainer" type="GridContainer" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer"]
-layout_mode = 2
-theme_override_constants/h_separation = 16
-theme_override_constants/v_separation = 0
-columns = 2
-
-[node name="Label" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
-layout_mode = 2
-theme = ExtResource("4_ns8o4")
-text = "W/S"
-
-[node name="Label2" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
-layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("4_0x5m7")
-text = "forward/backward"
+theme_override_constants/outline_size = 8
+theme_override_constants/h_separation = 12
+theme_override_font_sizes/font_size = 48
+text = "START"
 
-[node name="Label3" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
-layout_mode = 2
-theme = ExtResource("4_ns8o4")
-text = "A/D"
-
-[node name="Label4" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
-layout_mode = 2
-theme = ExtResource("4_0x5m7")
-text = "rotate left/right"
-
-[node name="Label5" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
-layout_mode = 2
-theme = ExtResource("4_ns8o4")
-text = "Q/E"
-
-[node name="Label6" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
-layout_mode = 2
-theme = ExtResource("4_0x5m7")
-text = "strafe left/right"
-
-[node name="Label7" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
-layout_mode = 2
-theme = ExtResource("4_ns8o4")
-text = "Space/Ctrl"
-
-[node name="Label8" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
-layout_mode = 2
-theme = ExtResource("4_0x5m7")
-text = "up/down"
-
-[node name="Label9" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
-layout_mode = 2
-theme = ExtResource("4_ns8o4")
-theme_override_font_sizes/font_size = 32
-text = "Click"
-
-[node name="Label10" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
-layout_mode = 2
-theme = ExtResource("4_0x5m7")
-text = "drop package"
-
+[connection signal="animation_finished" from="YouDied/AnimationPlayer" to="." method="death_animation_finish" unbinds=1]
 [connection signal="pressed" from="HUD/TopBar/MarginContainer/HBoxContainer/QuitButton" to="." method="quit"]
 [connection signal="toggled" from="HUD/TopBar/MarginContainer/HBoxContainer/QualityButton" to="." method="set_graphics"]
-[connection signal="animation_finished" from="YouDied/AnimationPlayer" to="." method="death_animation_finish" unbinds=1]
+[connection signal="pressed" from="HUD/TutorialControls/OpenControls" to="." method="set_controls" binds= [true]]
+[connection signal="pressed" from="HUD/TutorialControls/Controls/VBoxContainer/MarginContainer/HBoxContainer/CloseControls" to="." method="set_controls" binds= [false]]
 [connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/RestartButton" to="." method="reset"]
 [connection signal="pressed" from="GameOver/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/QuitButton" to="." method="quit"]
-[connection signal="pressed" from="MainMenu/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MainMenu/MarginContainer2/VBoxContainer/MarginContainer/StartButton" to="." method="_on_start_button_pressed"]

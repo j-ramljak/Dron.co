@@ -27,6 +27,7 @@ enum Menu { MAIN_MENU, HUD, GAME_OVER }
 @export_subgroup("Other")
 @export var STATIC_OVERLAY: Control
 @export var YOU_DIED_ANIMATION: AnimationPlayer
+@export var CONTROLS_MENU: Control
 
 func _ready() -> void:
 	goto_menu(START_AT)
@@ -96,3 +97,5 @@ func set_signal_warning(value: bool) -> void:
 func set_wind_warning(value: bool) -> void:
 	WIND_WARNING.visible = value;
 	
+func set_controls(value: bool) -> void:
+	CONTROLS_MENU.visible = value;
