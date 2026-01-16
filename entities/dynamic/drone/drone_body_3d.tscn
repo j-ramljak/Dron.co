@@ -74,6 +74,7 @@ DRONE = NodePath("..")
 SPEED = 20.0
 ROTATE_SENSITIVITY = 1.5
 FRICTION = 0.98
+WIND_STRENGTH = 0.2
 WIND_SPEED = 3.0
 
 [node name="HookComponent" type="Node" parent="." node_paths=PackedStringArray("MARKER", "JOINT")]
@@ -166,7 +167,7 @@ material_override = SubResource("StandardMaterial3D_i2hpc")
 amount = 10
 lifetime = 0.9
 local_coords = true
-trail_lifetime = 0.09999999999999999
+trail_lifetime = 0.1
 process_material = SubResource("ParticleProcessMaterial_i2hpc")
 draw_pass_1 = SubResource("RibbonTrailMesh_i2hpc")
 

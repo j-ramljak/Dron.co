@@ -3,16 +3,14 @@ extends Node
 class_name MovementComponent
 
 @export var DRONE: DroneBody3D
-@export var SPEED = 50.0
-@export var ROTATE_SENSITIVITY = 2.0
-@export var FRICTION = 0.9
-@export var TILT_STRENGTH = 0.2
-@export var TILT_SMOOTHNESS = 4.0
-@export var WIND_HEIGHT = 10.0
-@export var WIND_STRENGTH: float = 0.6
-@export var WIND_SPEED: float = 1.5
-
- 
+@export var SPEED := 50.0
+@export var ROTATE_SENSITIVITY := 2.0
+@export var FRICTION := 0.9
+@export var TILT_STRENGTH := 0.2
+@export var TILT_SMOOTHNESS := 4.0
+@export var WIND_STRENGTH := 0.6
+@export var WIND_SPEED := 1.5
+@export var WIND_SLOWDOWN := 0.5
 
 var acceleration := Vector3.ZERO
 var random = RandomNumberGenerator.new()
@@ -20,6 +18,7 @@ var wind_reset=0
 var random_vector=Vector3.ZERO
 var wind_time: float = 0.0
 var windy: bool =false
+
 func _physics_process(delta: float) -> void:
 		
 	# Movement
@@ -27,8 +26,8 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("go_left", "go_right", "go_front", "go_back")
 	var direction := (DRONE.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction != Vector3.ZERO:
-		acceleration.x = direction.x * SPEED
-		acceleration.z = direction.z * SPEED
+		acceleration.x = direction.x * SPEED * (WIND_SLOWDOWN if windy else 1.0)
+		acceleration.z = direction.z * SPEED * (WIND_SLOWDOWN if windy else 1.0)
 	else:
 		acceleration.x = 0.0
 		acceleration.z = 0.0
