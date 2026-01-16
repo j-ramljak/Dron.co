@@ -13,11 +13,11 @@
 	- [x] letjenje (kontroler, tipkovnica) `[leon, stjepan]`
     - [x] kolizija `[leon, stjepan]`
     - [x] nošenje paketa `[jakov]`
-    - [ ] efekt vjetra `[leon]`
+    - [x] vjetar `[leon]`
 - Efekti
     - [x] "responzivne" kontrole (smooth kamera, smooth kretanje, naginjanje pri kretanju) `[stjepan]`
     - [x] stilski efekti (post processing, nebo) `[martin]`
-    - [ ] audio efekti (dron, alarm, pokupljanje paketa...) `[stjepan]`
+    - [ ] audio efekti (dron, alarm, pokupljanje paketa...) `[jakov]`
     - [ ] efekt punjenja baterije (particles, ui animacija) `[leon]`
 - Modeliranje
     - [x] podloge grada `[martin]`
@@ -29,13 +29,13 @@
     - [x] ukrasni detalji (klupe, kante, vozila...) `[matea]`
     - [x] prepreke (reklame, semafori, žice, zastave...) `[matea]`
     - [x] model drona + rotiranje propelera `[matea]`
-    - [ ] raspored grada `[matea]`
+    - [x] raspored grada `[matea]`
     - [x] granica grada `[martin]`
 - Gameplay
-	- [ ] dostavljanje paketa `[jakov]`
+	- [x] dostavljanje paketa `[jakov]`
     - [x] korisničko sučelje (title screen, baterija, death screen, ...) `[martin]`
 	- [x] baterija (pražnjenje, postaja za punjenje) `[martin]`
-	- [ ] death mechanic (sudar, prazna baterija, granice mape, istek vremena) `[leon]`
+	- [x] death mechanic (sudar, prazna baterija, granice mape, istek vremena) `[martin]`
 	- [x] mjerenje vremena `[leon]`
 - Dokumentacija 
 	- [x] Plan projekta `[svi]`
