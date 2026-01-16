@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://4hnmjoye7dw1"]
+[gd_scene load_steps=22 format=3 uid="uid://4hnmjoye7dw1"]
 
 [ext_resource type="Script" uid="uid://bbtbfxm835u15" path="res://entities/dynamic/user_interface/user_interface.gd" id="1_gxmva"]
 [ext_resource type="PackedScene" uid="uid://g0sieg1khaeh" path="res://entities/dynamic/user_interface/warning_panel.tscn" id="3_ldin5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://bskthmnx8bdib" path="res://entities/dynamic/user_interface/themes/theme_red.tres" id="4_ns8o4"]
 [ext_resource type="Shader" uid="uid://bn5mhpvfe71qe" path="res://entities/dynamic/user_interface/shaders/static.gdshader" id="6_31too"]
 [ext_resource type="Texture2D" uid="uid://cdt8nykfln7mx" path="res://entities/dynamic/user_interface/textures/you_died.png" id="6_d64fq"]
+[ext_resource type="Theme" uid="uid://cwx8s75gpvqpq" path="res://entities/dynamic/user_interface/themes/theme_orange.tres" id="7_31too"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d4d1c"]
 shader = ExtResource("6_31too")
@@ -193,6 +194,14 @@ shadow_color = Color(0, 0, 0, 0.49803922)
 shadow_size = 1
 shadow_offset = Vector2(4, 4)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d64fq"]
+bg_color = Color(0.14220001, 0.16299002, 0.18, 0.90588236)
+border_width_top = 4
+border_color = Color(0, 0, 0, 0.49803922)
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
 [node name="UserInterface" type="Control" node_paths=PackedStringArray("HUD", "MAIN_MENU", "GAME_OVER", "CHARGE_LABEL", "DELIVERY_LABEL", "GLOBAL_TIMER_LABEL", "DEATH_MESSAGE_LABEL", "TOTAL_DELIVERED_LABEL", "SIGNAL_WARNING", "BATTERY_WARNING", "WIND_WARNING", "STATIC_OVERLAY", "YOU_DIED_ANIMATION")]
 layout_mode = 3
 anchors_preset = 15
@@ -234,6 +243,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HUD" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -563,6 +573,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_ns8o4")
+theme_override_font_sizes/font_size = 48
 text = "GAME OVER"
 
 [node name="MarginContainer" type="MarginContainer" parent="GameOver/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -635,7 +646,6 @@ theme = ExtResource("4_0x5m7")
 text = "Quit"
 
 [node name="MainMenu" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -706,6 +716,121 @@ theme = ExtResource("4_0x5m7")
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 48
 text = "START"
+
+[node name="TutorialControls" type="MarginContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="MainMenu/TutorialControls"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/TutorialControls/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("7_31too")
+text = "CONTROLS"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 12
+
+[node name="HorizontalPanel" type="Panel" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("7_31too")
+
+[node name="Panel" type="PanelContainer" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d64fq")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="GridContainer" type="GridContainer" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="Label" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_ns8o4")
+text = "W/S"
+
+[node name="Label2" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "forward/backward"
+
+[node name="Label3" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_ns8o4")
+text = "A/D"
+
+[node name="Label4" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "rotate left/right"
+
+[node name="Label5" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_ns8o4")
+text = "Q/E"
+
+[node name="Label6" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "strafe left/right"
+
+[node name="Label7" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_ns8o4")
+text = "Space/Ctrl"
+
+[node name="Label8" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "up/down"
+
+[node name="Label9" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_ns8o4")
+theme_override_font_sizes/font_size = 32
+text = "Click"
+
+[node name="Label10" type="Label" parent="MainMenu/TutorialControls/PanelContainer/VBoxContainer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("4_0x5m7")
+text = "drop package"
 
 [connection signal="pressed" from="HUD/TopBar/MarginContainer/HBoxContainer/QuitButton" to="." method="quit"]
 [connection signal="toggled" from="HUD/TopBar/MarginContainer/HBoxContainer/QualityButton" to="." method="set_graphics"]
