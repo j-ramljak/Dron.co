@@ -54,7 +54,7 @@ wait_time = 121.0
 [node name="Environment" parent="." instance=ExtResource("2_jyhfs")]
 
 [node name="DroneBody3D" parent="." instance=ExtResource("1_jjgbg")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -57.519505, 9.7281, 2.809147)
+transform = Transform3D(0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.7071068, -57.576336, 5.7281, 8.027953)
 
 [node name="WindAnchor" type="Node3D" parent="." node_paths=PackedStringArray("FOLLOW_NODE")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0)

@@ -17,14 +17,14 @@ cast_shadow = 0
 extra_cull_margin = 16384.0
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5121052, 5.173116, -2.498451)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5121052, 9.173117, 2.501549)
 collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_h8bg3")
 
 [node name="PackageSpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5121052, 5.3967137, -2.498451)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5121052, 9.396713, 2.501549)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
