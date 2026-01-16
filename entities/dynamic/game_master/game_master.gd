@@ -6,12 +6,7 @@ signal delivered_changed(delivered: int)
 signal time_changed(time: float)
 
 @export var GAME_TIMER: Timer
-#@export var DRONE: DroneBody3D
-#@export var INTERFACE: UserInterface
-#@export var ENVIRONMENT: GameEnvironment
-#@export var GAME_AREA: PlayerArea3D
-#@export var SIGNAL_AREA: PlayerArea3D
-#@export var WIND_AREA: PlayerArea3D
+@export var TIME_ADD_ON_DELIVERY := 15.0
 
 var packages_delivered := 0:
 	set(value):
@@ -27,3 +22,4 @@ func _input(_event):
 
 func deliver():
 	packages_delivered += 1
+	GAME_TIMER.start(GAME_TIMER.time_left + TIME_ADD_ON_DELIVERY)
