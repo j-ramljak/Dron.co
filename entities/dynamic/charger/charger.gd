@@ -2,7 +2,7 @@
 extends Node3D
 class_name Charger
 
-@export var CHARGE_SPEED := 1
+@export var CHARGE_SPEED := 2
 
 var drone: DroneBody3D
 
