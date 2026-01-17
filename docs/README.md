@@ -40,6 +40,7 @@
 - Dokumentacija 
 	- [x] Plan projekta `[svi]`
 	- [ ] Tehnička dokumentacija `[matea]`
+    - [ ] Prezentacija `[matea]`
 </details>
 
 ---
