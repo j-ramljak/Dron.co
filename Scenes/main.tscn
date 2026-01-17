@@ -40,7 +40,7 @@ size = Vector3(400, 68, 440)
 size = Vector3(400, 40, 440)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tipki"]
-size = Vector3(360, 60, 400)
+size = Vector3(360, 53, 400)
 
 [node name="GameMaster" type="Node3D" node_paths=PackedStringArray("GAME_TIMER", "DRONE", "INTERFACE", "ENVIRONMENT", "GAME_AREA", "SIGNAL_AREA", "WIND_AREA", "HEADQUARTERS", "POINT_SPAWNER")]
 script = ExtResource("4_85g3d")
@@ -56,6 +56,7 @@ POINT_SPAWNER = NodePath("DeliveryPointSpawner")
 
 [node name="GameDurationTimer" type="Timer" parent="."]
 wait_time = 121.0
+one_shot = true
 
 [node name="UserInterface" parent="." instance=ExtResource("5_tbgi4")]
 
@@ -97,7 +98,7 @@ shape = SubResource("BoxShape3D_tefeu")
 [node name="SignalArea" parent="Areas" instance=ExtResource("7_o6xl0")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/SignalArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 27, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 23.5, 20)
 shape = SubResource("BoxShape3D_tipki")
 
 [node name="PointsOfIntrest" type="Node3D" parent="."]

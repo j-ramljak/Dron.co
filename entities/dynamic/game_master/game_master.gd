@@ -29,6 +29,9 @@ func _ready() -> void:
 	# game_master_delivered -> headquarters
 	self.connect("on_delivery", Callable(HEADQUARTERS, "delivery_state_toggle"))
 	
+	# timer -> drone_die
+	GAME_TIMER.connect("timeout", Callable(DRONE, "die").bind("You ran out of time!"))
+	
 	# drone_charge -> interface
 	DRONE.connect("charge_change", Callable(INTERFACE, "set_charge"))
 	# drone_death -> interface
@@ -46,6 +49,7 @@ func _ready() -> void:
 	
 	# point_spawner_delivered -> game_master
 	POINT_SPAWNER.connect("on_delivery", Callable(self, "deliver"))
+	
 	# headquarters -> point_spawner
 	HEADQUARTERS.connect("spawned_package", Callable(POINT_SPAWNER, "spawn_delivery_point"))
 	
