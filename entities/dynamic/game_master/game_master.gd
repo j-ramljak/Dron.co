@@ -3,7 +3,6 @@ extends Node
 class_name GameMaster
 
 signal delivered_changed(delivered: int)
-signal on_delivery()
 signal time_changed(time: float)
 var packages_delivered := 0:
 	set(value):
@@ -26,8 +25,6 @@ func _ready() -> void:
 	self.connect("time_changed", Callable(INTERFACE, "set_countdown"))
 	# game_master_delivered -> interface
 	self.connect("delivered_changed", Callable(INTERFACE, "set_delivered"))
-	# game_master_delivered -> headquarters
-	self.connect("on_delivery", Callable(HEADQUARTERS, "delivery_state_toggle"))
 	
 	# timer -> drone_die
 	GAME_TIMER.connect("timeout", Callable(DRONE, "die").bind("You ran out of time!"))
@@ -47,8 +44,10 @@ func _ready() -> void:
 	# interface_start -> drone_movement
 	INTERFACE.connect("on_start", Callable(DRONE, "start"))
 	
-	# point_spawner_delivered -> game_master
+	# point_spawner -> game_master
 	POINT_SPAWNER.connect("on_delivery", Callable(self, "deliver"))
+	# point_spawner -> headquarters
+	POINT_SPAWNER.connect("on_delivery", Callable(HEADQUARTERS, "delivery_state_toggle"))
 	
 	# headquarters -> point_spawner
 	HEADQUARTERS.connect("spawned_package", Callable(POINT_SPAWNER, "spawn_delivery_point"))
@@ -74,5 +73,4 @@ func _input(_event):
 
 func deliver():
 	packages_delivered += 1
-	on_delivery.emit()
 	GAME_TIMER.start(GAME_TIMER.time_left + TIME_ADD_ON_DELIVERY)
