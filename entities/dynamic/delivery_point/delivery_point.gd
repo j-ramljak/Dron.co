@@ -5,9 +5,10 @@ class_name DeliveryPoint3D
 signal on_delivery()
 @onready var CONFETTI = preload("res://entities/dynamic/delivery_point/CONFETTI.tscn")
 @onready var RING := $delivery_point_model/delivery_point_ring
+var tween : Tween
 
 func _ready() -> void:
-	var tween = get_tree().create_tween()
+	tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD).set_loops()
 	tween.tween_property(RING, "scale", Vector3(1.2, 1.2, 1.2), 0.5)
 	tween.chain().tween_property(RING, "scale", Vector3(1.0, 1.0, 1.0), 0.5)
@@ -23,4 +24,5 @@ func _on_body_entered(body: Node3D) -> void:
 		confetti_instance.start()
 		
 		await get_tree().create_timer(1.0).timeout
+		tween.kill()
 		queue_free()

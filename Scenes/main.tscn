@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dwcadry5m8pfg" path="res://entities/dynamic/charger/charger.tscn" id="6_21xkr"]
 [ext_resource type="PackedScene" uid="uid://dskhfpxgdfoav" path="res://entities/dynamic/headquarters/headquarters.tscn" id="7_6bp64"]
 [ext_resource type="PackedScene" uid="uid://daxervjj2enkh" path="res://entities/dynamic/player_area/player_area_3d.tscn" id="7_o6xl0"]
-[ext_resource type="Script" uid="uid://b0fpvqns8ypbj" path="res://entities/dynamic/delivery_point/delivery_spawner.gd" id="9_ynf5e"]
+[ext_resource type="Script" uid="uid://b0fpvqns8ypbj" path="res://entities/dynamic/delivery_point_spawner/delivery_spawner.gd" id="9_ynf5e"]
 [ext_resource type="Script" uid="uid://b5e3dto2xmbmw" path="res://entities/dynamic/wind/wind_follow.gd" id="11_ya4ey"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hptm8"]
@@ -42,9 +42,17 @@ size = Vector3(400, 40, 440)
 [sub_resource type="BoxShape3D" id="BoxShape3D_tipki"]
 size = Vector3(360, 60, 400)
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("GAME_TIMER")]
+[node name="GameMaster" type="Node3D" node_paths=PackedStringArray("GAME_TIMER", "DRONE", "INTERFACE", "ENVIRONMENT", "GAME_AREA", "SIGNAL_AREA", "WIND_AREA", "HEADQUARTERS", "POINT_SPAWNER")]
 script = ExtResource("4_85g3d")
 GAME_TIMER = NodePath("GameDurationTimer")
+DRONE = NodePath("DroneBody3D")
+INTERFACE = NodePath("UserInterface")
+ENVIRONMENT = NodePath("Environment")
+GAME_AREA = NodePath("Areas/GameArea")
+SIGNAL_AREA = NodePath("Areas/SignalArea")
+WIND_AREA = NodePath("Areas/WindArea")
+HEADQUARTERS = NodePath("PointsOfIntrest/Headquarters")
+POINT_SPAWNER = NodePath("DeliveryPointSpawner")
 
 [node name="GameDurationTimer" type="Timer" parent="."]
 wait_time = 121.0
@@ -121,11 +129,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.76796, 0.099998474, 114.97
 [node name="Charger8" parent="PointsOfIntrest" instance=ExtResource("6_21xkr")]
 transform = Transform3D(0.011920365, 0, 0.99992895, 0, 1, 0, -0.99992895, 0, 0.011920365, -124.542145, 0.10000229, 104.809715)
 
-[node name="DeliveryPointSpawner" type="Node3D" parent="." node_paths=PackedStringArray("GAME_MASTER", "HEADQUARTERS")]
+[node name="DeliveryPointSpawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.76796, 0.099998474, 114.97015)
 script = ExtResource("9_ynf5e")
-GAME_MASTER = NodePath("..")
-HEADQUARTERS = NodePath("../PointsOfIntrest/Headquarters")
 
 [node name="Point 1" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -139.75482, 0, -179.98538)
@@ -186,22 +192,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -189.8194, 0, -129.92549)
 
 [node name="Point 20" type="Marker3D" parent="DeliveryPointSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -159.98775, 0.2669506, -189.91183)
-
-[connection signal="delivered_changed" from="." to="UserInterface" method="set_delivered"]
-[connection signal="time_changed" from="." to="UserInterface" method="set_countdown"]
-[connection signal="timeout" from="GameDurationTimer" to="DroneBody3D" method="die" binds= ["You ran out of time!", false]]
-[connection signal="change_saturation" from="UserInterface" to="Environment" method="set_saturation"]
-[connection signal="graphics_high" from="UserInterface" to="Environment" method="set_graphics_high"]
-[connection signal="graphics_low" from="UserInterface" to="Environment" method="set_graphics_low"]
-[connection signal="on_start" from="UserInterface" to="GameDurationTimer" method="start"]
-[connection signal="on_start" from="UserInterface" to="DroneBody3D" method="start"]
-[connection signal="charge_change" from="DroneBody3D" to="UserInterface" method="set_charge"]
-[connection signal="on_death" from="DroneBody3D" to="UserInterface" method="set_death_screen"]
-[connection signal="on_player_exited" from="Areas/GameArea" to="DroneBody3D" method="die" binds= ["The drone lost its signal connection!"]]
-[connection signal="on_player_entered" from="Areas/WindArea" to="UserInterface" method="set_wind_warning" binds= [true]]
-[connection signal="on_player_entered" from="Areas/WindArea" to="DroneBody3D" method="set_windy" binds= [true]]
-[connection signal="on_player_exited" from="Areas/WindArea" to="UserInterface" method="set_wind_warning" binds= [false]]
-[connection signal="on_player_exited" from="Areas/WindArea" to="DroneBody3D" method="set_windy" binds= [false]]
-[connection signal="on_player_entered" from="Areas/SignalArea" to="UserInterface" method="set_signal_warning" binds= [false]]
-[connection signal="on_player_exited" from="Areas/SignalArea" to="UserInterface" method="set_signal_warning" binds= [true]]
-[connection signal="spawned_package" from="PointsOfIntrest/Headquarters" to="DeliveryPointSpawner" method="spawn_delivery_point"]

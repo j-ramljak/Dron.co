@@ -1,8 +1,9 @@
+@icon("./delivery_spawner.png")
 extends Node3D
+class_name DeliveryPointSpawner
 
 @onready var DELIVERY_POINT_SCENE = preload("res://entities/dynamic/delivery_point/delivery_point.tscn")
-@export var GAME_MASTER: GameMaster
-@export var HEADQUARTERS: Headquarters
+signal on_delivery()
 
 func random_location():
 	var delivery_markers = self.get_children()
@@ -15,5 +16,8 @@ func spawn_delivery_point():
 	get_tree().root.add_child(delivery_point_instance)
 
 	delivery_point_instance.global_position = spawn_marker.global_position
-	delivery_point_instance.on_delivery.connect(GAME_MASTER.deliver)
-	delivery_point_instance.on_delivery.connect(HEADQUARTERS.delivery_state_toggle)
+	#delivery_point_instance.on_delivery.connect(self.package_delivered())
+	delivery_point_instance.connect("on_delivery", Callable(self, "package_delivered"))
+	
+func package_delivered():
+	on_delivery.emit()
