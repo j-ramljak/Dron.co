@@ -72,6 +72,7 @@ HOOK_COMPONENT = NodePath("HookComponent")
 [node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("DRONE")]
 script = ExtResource("5_aw4du")
 DRONE = NodePath("..")
+can_move = false
 SPEED = 20.0
 ROTATE_SENSITIVITY = 1.5
 FRICTION = 0.98

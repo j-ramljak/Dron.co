@@ -13,6 +13,9 @@ signal on_death(death_message: String, animated: bool)
 
 func _ready():
 	add_to_group("drone")  
+	
+func start():
+	MOVEMENT_COMPONENT.can_move = true;
 
 func _on_battery_component_charge_change(charge: float) -> void:
 	charge_change.emit(charge)

@@ -194,6 +194,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -159.98775, 0.2669506, -189.9
 [connection signal="graphics_high" from="UserInterface" to="Environment" method="set_graphics_high"]
 [connection signal="graphics_low" from="UserInterface" to="Environment" method="set_graphics_low"]
 [connection signal="on_start" from="UserInterface" to="GameDurationTimer" method="start"]
+[connection signal="on_start" from="UserInterface" to="DroneBody3D" method="start"]
 [connection signal="charge_change" from="DroneBody3D" to="UserInterface" method="set_charge"]
 [connection signal="on_death" from="DroneBody3D" to="UserInterface" method="set_death_screen"]
 [connection signal="on_player_exited" from="Areas/GameArea" to="DroneBody3D" method="die" binds= ["The drone lost its signal connection!"]]
