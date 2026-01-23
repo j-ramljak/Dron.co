@@ -29,9 +29,27 @@ enum Menu { MAIN_MENU, HUD, GAME_OVER }
 @export var YOU_DIED_ANIMATION: AnimationPlayer
 @export var CONTROLS_MENU: Control
 
+@onready var click_sound = $SoundButtonClick
+@onready var click_release_sound = $SoundButtonClickRelease
+
 func _ready() -> void:
 	goto_menu(START_AT)
 	TOTAL_DELIVERED_LABEL.text = str(0)
+	connect_button_sounds(self)
+	
+func connect_button_sounds(node):
+	for child in node.get_children():		
+		if child is Button:
+			child.button_down.connect(play_click)
+			child.button_up.connect(play_release_click)
+			
+		connect_button_sounds(child)
+		
+func play_click():
+	click_sound.play()
+	
+func play_release_click():
+	click_release_sound.play()
 	
 func quit():
 	get_tree().quit()

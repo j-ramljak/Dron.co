@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://4hnmjoye7dw1"]
+[gd_scene load_steps=25 format=3 uid="uid://4hnmjoye7dw1"]
 
 [ext_resource type="Script" uid="uid://bbtbfxm835u15" path="res://entities/dynamic/user_interface/user_interface.gd" id="1_gxmva"]
 [ext_resource type="PackedScene" uid="uid://g0sieg1khaeh" path="res://entities/dynamic/user_interface/warning_panel.tscn" id="3_ldin5"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://cdt8nykfln7mx" path="res://entities/dynamic/user_interface/textures/you_died.png" id="6_d64fq"]
 [ext_resource type="Theme" uid="uid://cwx8s75gpvqpq" path="res://entities/dynamic/user_interface/themes/theme_orange.tres" id="7_31too"]
 [ext_resource type="Texture2D" uid="uid://xobkg1flsrjl" path="res://entities/dynamic/user_interface/textures/placeholder.png" id="8_ggw1y"]
+[ext_resource type="AudioStream" uid="uid://4jc7gjw5f8hh" path="res://shared/sounds/ui/buttonrollover.wav" id="9_d0h4n"]
+[ext_resource type="AudioStream" uid="uid://dq6vxegbo2f38" path="res://shared/sounds/ui/buttonclick.wav" id="9_qgb30"]
+[ext_resource type="AudioStream" uid="uid://ddwmq1lnw0jt2" path="res://shared/sounds/ui/buttonclickrelease.wav" id="10_jnk8c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d4d1c"]
 shader = ExtResource("6_31too")
@@ -903,6 +906,15 @@ theme_override_constants/outline_size = 8
 theme_override_constants/h_separation = 12
 theme_override_font_sizes/font_size = 48
 text = "START"
+
+[node name="SoundButtonRollover" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_d0h4n")
+
+[node name="SoundButtonClickRelease" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_jnk8c")
+
+[node name="SoundButtonClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_qgb30")
 
 [connection signal="animation_finished" from="YouDied/AnimationPlayer" to="." method="death_animation_finish" unbinds=1]
 [connection signal="pressed" from="HUD/TopBar/MarginContainer/HBoxContainer/QuitButton" to="." method="quit"]

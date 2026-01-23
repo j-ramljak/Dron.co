@@ -17,7 +17,7 @@
 - Efekti
     - [x] "responzivne" kontrole (smooth kamera, smooth kretanje, naginjanje pri kretanju) `[stjepan]`
     - [x] stilski efekti (post processing, nebo) `[martin]`
-    - [ ] audio efekti (dron, alarm, pokupljanje paketa...) `[stjepan]`
+    - [x] audio efekti (dron, alarm, pokupljanje paketa...) `[stjepan]`
     - [ ] efekt punjenja baterije (particles, ui animacija) `[?]`
 - Modeliranje
     - [x] podloge grada `[martin]`

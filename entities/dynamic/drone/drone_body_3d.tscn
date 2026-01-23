@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c8518p5fip7jw"]
+[gd_scene load_steps=27 format=3 uid="uid://c8518p5fip7jw"]
 
 [ext_resource type="Script" uid="uid://dxh6075hoaryl" path="res://entities/dynamic/drone/drone_body_3d.gd" id="1_3aqr0"]
 [ext_resource type="Script" uid="uid://cks2ue7muwtvh" path="res://entities/dynamic/drone/components/hook_component.gd" id="4_mny65"]
@@ -6,7 +6,14 @@
 [ext_resource type="Script" uid="uid://epe38kg0move" path="res://entities/dynamic/drone/components/death_component.gd" id="5_i2hpc"]
 [ext_resource type="Script" uid="uid://cxoc3pwns64mr" path="res://entities/dynamic/drone/components/battery_component.gd" id="6_lakys"]
 [ext_resource type="Script" uid="uid://cycf5odiyocvc" path="res://entities/dynamic/drone/components/smooth_camera_component.gd" id="6_m1reu"]
+[ext_resource type="AudioStream" uid="uid://ca56h0qye4vf8" path="res://shared/sounds/env/wind1.wav" id="8_72xr7"]
 [ext_resource type="PackedScene" uid="uid://bh6n83jlploui" path="res://entities/dynamic/drone/model.blend" id="8_m1reu"]
+[ext_resource type="AudioStream" uid="uid://cs5lp3lwt8rsw" path="res://shared/sounds/drone/charge.wav" id="9_6txih"]
+[ext_resource type="Script" uid="uid://b3a77sg1iph26" path="res://entities/dynamic/drone/components/sound_component.gd" id="9_72xr7"]
+[ext_resource type="AudioStream" uid="uid://bv8ta68dsstlu" path="res://shared/sounds/drone/attach.wav" id="10_tjftv"]
+[ext_resource type="AudioStream" uid="uid://b8h8l4d26qdkr" path="res://shared/sounds/drone/detach.wav" id="11_0dv3n"]
+[ext_resource type="AudioStream" uid="uid://brkqyfp4ywmk8" path="res://shared/sounds/drone/success.wav" id="12_0dv3n"]
+[ext_resource type="AudioStream" uid="uid://by702scn2k33e" path="res://shared/sounds/drone/propeller.wav" id="13_f1h7c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mny65"]
 size = Vector3(2.3044434, 0.4507773, 2.3084106)
@@ -60,7 +67,7 @@ size = 0.03
 sections = 3
 section_length = 0.1
 
-[node name="DroneBody3D" type="CharacterBody3D" node_paths=PackedStringArray("MOVEMENT_COMPONENT", "BATTERY_COMPONENT", "DEATH_COMPONENT", "HOOK_COMPONENT")]
+[node name="DroneBody3D" type="CharacterBody3D" node_paths=PackedStringArray("MOVEMENT_COMPONENT", "BATTERY_COMPONENT", "DEATH_COMPONENT", "HOOK_COMPONENT", "SOUND_COMPONENT")]
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_3aqr0")
@@ -68,6 +75,7 @@ MOVEMENT_COMPONENT = NodePath("MovementComponent")
 BATTERY_COMPONENT = NodePath("BatteryComponent")
 DEATH_COMPONENT = NodePath("DeathComponent")
 HOOK_COMPONENT = NodePath("HookComponent")
+SOUND_COMPONENT = NodePath("SoundComponent")
 
 [node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("DRONE")]
 script = ExtResource("5_aw4du")
@@ -99,6 +107,34 @@ MOVEMENT_COMPONENT = NodePath("../MovementComponent")
 script = ExtResource("6_m1reu")
 CAMERA_ANCHOR = NodePath("../CameraAnchor")
 MOVEMENT_COMPONENT = NodePath("../MovementComponent")
+
+[node name="SoundComponent" type="Node3D" parent="." node_paths=PackedStringArray("DRONE")]
+script = ExtResource("9_72xr7")
+DRONE = NodePath("..")
+
+[node name="SoundWindy" type="AudioStreamPlayer2D" parent="SoundComponent"]
+stream = ExtResource("8_72xr7")
+volume_db = -50.0
+autoplay = true
+
+[node name="SoundCharge" type="AudioStreamPlayer3D" parent="SoundComponent"]
+stream = ExtResource("9_6txih")
+volume_db = -10.0
+
+[node name="SoundAttach" type="AudioStreamPlayer3D" parent="SoundComponent"]
+stream = ExtResource("10_tjftv")
+
+[node name="SoundDetach" type="AudioStreamPlayer3D" parent="SoundComponent"]
+stream = ExtResource("11_0dv3n")
+
+[node name="SoundDeliver" type="AudioStreamPlayer3D" parent="SoundComponent"]
+stream = ExtResource("12_0dv3n")
+volume_db = 20.0
+
+[node name="SoundPropeller" type="AudioStreamPlayer3D" parent="SoundComponent"]
+stream = ExtResource("13_f1h7c")
+volume_db = 10.0
+autoplay = true
 
 [node name="Model" parent="." instance=ExtResource("8_m1reu")]
 transform = Transform3D(1.44, 0, 0, 0, 1.44, 0, 0, 0, 1.44, 0, -0.16902266, 0)
@@ -174,6 +210,8 @@ trail_lifetime = 0.1
 process_material = SubResource("ParticleProcessMaterial_i2hpc")
 draw_pass_1 = SubResource("RibbonTrailMesh_i2hpc")
 
+[connection signal="hook_attach" from="HookComponent" to="SoundComponent" method="_on_hook_component_hook_attach"]
+[connection signal="hook_deattach" from="HookComponent" to="SoundComponent" method="_on_hook_component_hook_deattach"]
 [connection signal="charge_change" from="BatteryComponent" to="." method="_on_battery_component_charge_change"]
 [connection signal="charge_depleted" from="BatteryComponent" to="DeathComponent" method="kill"]
 [connection signal="timeout" from="BatteryComponent/DepletionTimer" to="BatteryComponent" method="decrement_charge"]
