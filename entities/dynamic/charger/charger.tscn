@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwcadry5m8pfg"]
+[gd_scene load_steps=5 format=3 uid="uid://dwcadry5m8pfg"]
 
 [ext_resource type="PackedScene" uid="uid://bfnwsaainrw3i" path="res://entities/dynamic/charger/charger_model.glb" id="1_1lnes"]
 [ext_resource type="Script" uid="uid://doyn6fw43psie" path="res://entities/dynamic/charger/charger.gd" id="1_eaosl"]
+[ext_resource type="PackedScene" uid="uid://dcuo681k5iywd" path="res://entities/dynamic/charger/charge_particle.tscn" id="3_tdho7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eaosl"]
 size = Vector3(3, 3, 3)
@@ -22,6 +23,10 @@ collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_eaosl")
+
+[node name="GPUParticles3D" parent="." instance=ExtResource("3_tdho7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4859698, 4.8630886, -0.04893601)
+emitting = false
 
 [connection signal="timeout" from="RechargeIncrementTimer" to="." method="_on_recharge_increment_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
