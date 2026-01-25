@@ -60,6 +60,7 @@ func _ready() -> void:
 	WIND_AREA.connect("on_player_exited", Callable(INTERFACE, "set_wind_warning").bind(false))
 	# game_area -> drone_die
 	GAME_AREA.connect("on_player_exited", Callable(DRONE, "die").bind("The drone lost its signal connection!"))
+	GAME_AREA.connect("on_package_exited", Callable(DRONE, "die").bind("The drone lost its package!"))
 	# signal_area -> interface
 	SIGNAL_AREA.connect("on_player_entered", Callable(INTERFACE, "set_signal_warning").bind(false))
 	SIGNAL_AREA.connect("on_player_exited", Callable(INTERFACE, "set_signal_warning").bind(true))

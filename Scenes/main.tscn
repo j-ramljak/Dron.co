@@ -84,6 +84,7 @@ draw_pass_1 = SubResource("RibbonTrailMesh_d1ilt")
 [node name="Areas" type="Node3D" parent="."]
 
 [node name="GameArea" parent="Areas" instance=ExtResource("7_o6xl0")]
+collision_mask = 10
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/GameArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 31, 20)
