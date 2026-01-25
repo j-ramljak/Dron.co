@@ -34,7 +34,7 @@ size = 0.1
 section_length = 0.3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o6xl0"]
-size = Vector3(400, 68, 440)
+size = Vector3(400, 79.19678, 440)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tefeu"]
 size = Vector3(400, 40, 440)
@@ -87,7 +87,7 @@ draw_pass_1 = SubResource("RibbonTrailMesh_d1ilt")
 collision_mask = 10
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/GameArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 31, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 25.401611, 20)
 shape = SubResource("BoxShape3D_o6xl0")
 
 [node name="WindArea" parent="Areas" instance=ExtResource("7_o6xl0")]

@@ -23,6 +23,7 @@ func get_height():
 	return max_y - min_y
 	
 func destroy():
+	remove_from_group("Package")
 	queue_free()
 
 func _on_body_entered(body: Node) -> void:

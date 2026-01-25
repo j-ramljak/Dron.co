@@ -8,6 +8,7 @@ signal on_delivery()
 var tween : Tween
 
 func _ready() -> void:
+	print(1)
 	tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD).set_loops()
 	tween.tween_property(RING, "scale", Vector3(1.2, 1.2, 1.2), 0.5)

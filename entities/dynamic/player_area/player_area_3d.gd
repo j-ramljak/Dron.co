@@ -15,8 +15,7 @@ func player_entered(body: Node3D) -> void:
 
 	
 func player_exited(body: Node3D) -> void:
-	print(1)
 	if (body is DroneBody3D):
 		on_player_exited.emit()
-	if body is Package3D:
+	if body.is_in_group("Package"):
 		on_package_exited.emit()
