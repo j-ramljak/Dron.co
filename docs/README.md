@@ -6,6 +6,42 @@
 <details open>
 <summary>
 
+### Keyboard controls
+</summary>
+
+<table>
+    <tr>
+        <th>Key</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><kbd>W/S</kbd></td>
+        <td>move forward/backward</td>
+    </tr>
+    <tr>
+        <td><kbd>A/D</kbd></td>
+        <td>rotate left/right</td>
+    </tr>
+    <tr>
+        <td><kbd>Q/E</kbd></td>
+        <td>strafe left/right</td>
+    </tr>
+    <tr>
+        <td><kbd>Space/Ctrl</kbd></td>
+        <td>up/down</td>
+    </tr>
+    <tr>
+        <td><kbd>Click</kbd></td>
+        <td>drop package</td>
+    </tr>
+</table>
+</details>
+
+---
+
+<details open>
+<summary>
+
 ### Funkcionalnosti
 </summary>
 
@@ -51,12 +87,12 @@
 ### Literatura
 </summary>
 
-> Web-stranice
+> Research
 > - Godot Docs: https://docs.godotengine.org/en/stable/
 > - Godot Shaders: https://godotshaders.com/
-> - Alat za Gantt: https://www.mermaidchart.com/play?utm_source=mermaid_live_editor
-> - Dokumentacija za Mermaid: https://mermaid.js.org/syntax/gantt.html
-> - Alat za WBS: https://online.visual-paradigm.com/diagrams/features/work-breakdown-structure-software/
+> - Gantt tool: https://www.mermaidchart.com/play?utm_source=mermaid_live_editor
+> - Mermaid Docs: https://mermaid.js.org/syntax/gantt.html
+> - WBS tool: https://online.visual-paradigm.com/diagrams/features/work-breakdown-structure-software/
 > 
 > Assets
 > - Outline shader (MIT Lisence): https://godotshaders.com/shader/sobel-outline-shader/
