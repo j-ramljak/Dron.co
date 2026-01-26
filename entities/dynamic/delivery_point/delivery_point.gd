@@ -3,12 +3,12 @@ extends Area3D
 class_name DeliveryPoint3D
 
 signal on_delivery()
-@onready var CONFETTI = preload("res://entities/dynamic/delivery_point/CONFETTI.tscn")
+@onready var CONFETTI = preload("res://entities/dynamic/delivery_point/confetti.tscn")
 @onready var RING := $delivery_point_model/delivery_point_ring
 var tween : Tween
 
 func _ready() -> void:
-	print(1)
+	#print(1)
 	tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD).set_loops()
 	tween.tween_property(RING, "scale", Vector3(1.2, 1.2, 1.2), 0.5)

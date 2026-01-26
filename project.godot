@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="uid://bviwctregt7bn"
 config/windows_native_icon="res://shared/textures/icon.ico"
 
+[display]
+
+window/size/mode=3
+
 [editor_plugins]
 
 enabled=PackedStringArray()
@@ -24,6 +28,7 @@ enabled=PackedStringArray()
 
 folder_colors={
 "res://addons/": "purple",
+"res://builds/": "gray",
 "res://entities/": "orange",
 "res://materials/": "yellow",
 "res://models/": "orange",

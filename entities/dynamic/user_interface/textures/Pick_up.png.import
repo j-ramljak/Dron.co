@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs2hn0j1p0ovo"
-path="res://.godot/imported/Charge.png-664cf6317437c17e2378976b19eac797.ctex"
+uid="uid://b3511bf7bqov4"
+path="res://.godot/imported/Pick_up.png-41ad684dd4cef724c77770a21e7af88c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shared/GIFs/Charge.png"
-dest_files=["res://.godot/imported/Charge.png-664cf6317437c17e2378976b19eac797.ctex"]
+source_file="res://entities/dynamic/user_interface/textures/Pick_up.png"
+dest_files=["res://.godot/imported/Pick_up.png-41ad684dd4cef724c77770a21e7af88c.ctex"]
 
 [params]
 

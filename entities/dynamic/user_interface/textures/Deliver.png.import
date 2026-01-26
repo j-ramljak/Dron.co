@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqkljr6ggfug3"
-path="res://.godot/imported/Deliver.png-e4a774741b2a19677c0a498aca3684e3.ctex"
+path="res://.godot/imported/Deliver.png-6b576fcc7f3c19602fdbedfd85ea8188.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shared/GIFs/Deliver.png"
-dest_files=["res://.godot/imported/Deliver.png-e4a774741b2a19677c0a498aca3684e3.ctex"]
+source_file="res://entities/dynamic/user_interface/textures/Deliver.png"
+dest_files=["res://.godot/imported/Deliver.png-6b576fcc7f3c19602fdbedfd85ea8188.ctex"]
 
 [params]
 
