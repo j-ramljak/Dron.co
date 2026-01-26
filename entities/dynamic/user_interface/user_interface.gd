@@ -55,6 +55,7 @@ func quit():
 	get_tree().quit()
 	
 func reset() -> void:
+	get_tree().get_nodes_in_group("delivery_point")
 	get_tree().reload_current_scene()
 
 func goto_menu(menu: Menu):

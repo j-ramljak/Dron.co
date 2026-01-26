@@ -22,6 +22,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is Package3D:
 		HIGHLIGHT_MESH.visible = true
 		has_package = true
+		delivery_in_progress = false
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body is Package3D:

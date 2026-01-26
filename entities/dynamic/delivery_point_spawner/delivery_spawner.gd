@@ -13,7 +13,7 @@ func spawn_delivery_point():
 	var spawn_marker = random_location()
 	
 	var delivery_point_instance = DELIVERY_POINT_SCENE.instantiate()
-	get_tree().root.add_child(delivery_point_instance)
+	add_child(delivery_point_instance)
 
 	delivery_point_instance.global_position = spawn_marker.global_position
 	#delivery_point_instance.on_delivery.connect(self.package_delivered())

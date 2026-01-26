@@ -7,7 +7,7 @@
 height = 0.1
 radius = 2.8110352
 
-[node name="Delivery point" type="Area3D"]
+[node name="Delivery point" type="Area3D" groups=["delivery_point"]]
 collision_mask = 8
 script = ExtResource("1_j6sfe")
 

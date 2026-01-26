@@ -6,6 +6,7 @@ class_name HookComponent
 @export var JOINT: Generic6DOFJoint3D
 
 @onready var drone_collison_shape = $"../CollisionShape3D"
+@onready var arrow = $"../Arrow"
 
 
 
@@ -36,6 +37,7 @@ func attach(body: RigidBody3D):
 		
 		body.linear_damp = 2
 		body.angular_damp = 20 
+		arrow.show()
 	
 func deattach():
 	if not JOINT.node_b:
@@ -56,3 +58,4 @@ func deattach():
 	
 	body.linear_damp = 0
 	body.angular_damp = 0
+	arrow.hide()
