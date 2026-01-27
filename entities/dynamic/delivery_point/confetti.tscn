@@ -59,7 +59,18 @@ script = ExtResource("1_8yfi3")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 emitting = false
-amount = 40
+amount = 20
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_ajcye")
+draw_pass_1 = SubResource("RibbonTrailMesh_4bwnk")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+emitting = false
+amount = 20
 one_shot = true
 explosiveness = 1.0
 trail_enabled = true
@@ -69,7 +80,17 @@ draw_pass_1 = SubResource("RibbonTrailMesh_4bwnk")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
 emitting = false
-amount = 10
+amount = 5
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_ajcye")
+draw_pass_1 = SubResource("RibbonTrailMesh_4bwnk")
+
+[node name="GPUParticles3D4" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+emitting = false
+amount = 5
 one_shot = true
 explosiveness = 1.0
 trail_enabled = true

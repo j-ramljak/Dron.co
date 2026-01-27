@@ -175,7 +175,6 @@ transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 9.999
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.21569562, 0)
 node_a = NodePath("../..")
 exclude_nodes_from_collision = false
-linear_limit_z/softness = 1.0
 linear_spring_x/enabled = true
 linear_spring_x/stiffness = 200.0
 linear_spring_x/damping = 20.0
