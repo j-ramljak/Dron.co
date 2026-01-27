@@ -34,6 +34,10 @@
         <td><kbd>Click</kbd></td>
         <td>drop package</td>
     </tr>
+    <tr>
+        <td><kbd>Esc</kbd></td>
+        <td>exit</td>
+    </tr>
 </table>
 </details>
 
