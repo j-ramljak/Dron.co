@@ -1,5 +1,11 @@
 
+---
+
 ### **Dron.co**
+
+Small game made in Godot where the player's goal is to deliver packages in a town by flying a drone. Created by a team of 5 students for a university project.
+
+![screenshot](screenshot.png)
 
 ---
 
@@ -46,49 +52,7 @@
 <details open>
 <summary>
 
-### Funkcionalnosti
-</summary>
-
-- Simulacija
-	- [x] letjenje (kontroler, tipkovnica) `[leon, stjepan]`
-    - [x] kolizija `[leon, stjepan]`
-    - [x] nošenje paketa `[jakov]`
-    - [x] vjetar `[leon]`
-- Efekti
-    - [x] "responzivne" kontrole (smooth kamera, smooth kretanje, naginjanje pri kretanju) `[stjepan]`
-    - [x] stilski efekti (post processing, nebo) `[martin]`
-    - [x] audio efekti (dron, alarm, pokupljanje paketa...) `[stjepan]`
-    - [x] efekt punjenja baterije (particles, ui animacija) `[?]`
-- Modeliranje
-    - [x] podloge grada `[martin]`
-    - [x] građevine `[martin]`
-    - [x] drveća `[martin]`
-    - [x] modeli paketa `[martin]`
-    - [x] glavna postaja, punjač `[martin]`
-	- [x] oznake dostave (neki nacin da se zna kamo treba dostaviti) `[martin]`
-    - [x] ukrasni detalji (klupe, kante, vozila...) `[matea]`
-    - [x] prepreke (reklame, semafori, žice, zastave...) `[matea]`
-    - [x] model drona + rotiranje propelera `[matea]`
-    - [x] raspored grada `[matea]`
-    - [x] granica grada `[martin]`
-- Gameplay
-	- [x] dostavljanje paketa `[jakov]`
-    - [x] korisničko sučelje (title screen, baterija, death screen, ...) `[martin]`
-	- [x] baterija (pražnjenje, postaja za punjenje) `[martin]`
-	- [x] death mechanic (sudar, prazna baterija, granice mape, istek vremena) `[martin]`
-	- [x] mjerenje vremena `[leon]`
-- Dokumentacija 
-	- [x] Plan projekta `[svi]`
-	- [ ] Tehnička dokumentacija `[matea]`
-    - [ ] Prezentacija `[matea]`
-</details>
-
----
-
-<details open>
-<summary>
-
-### Literatura
+### References
 </summary>
 
 > Research
