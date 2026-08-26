@@ -8,12 +8,12 @@ enum Cell { VOID, EMPTY, ROAD, SIDEWALK, GRASS, BUILDING }
 
 @export var seed_value := 0
 @export var random_seed := true
-@export_range(4, 40) var city_size := 14
+@export_range(4, 40) var city_size := 15
 @export_range(1, 4) var road_branching := 2
-@export_range(0.0, 1.0, 0.05) var building_density := 0.85
-@export_range(0.0, 1.0, 0.05) var tall_buildings := 0.3
-@export_range(0.0, 1.0, 0.05) var park_probability := 0.35
-@export_range(0.0, 1.0, 0.05) var tree_density := 0.6
+@export_range(0.0, 1.0, 0.05) var building_density := 0.80
+@export_range(0.0, 1.0, 0.05) var tall_buildings := 0.35
+@export_range(0.0, 1.0, 0.05) var park_probability := 0.75
+@export_range(0.0, 1.0, 0.05) var tree_density := 0.65
 
 @export_group("Scene objects")
 @export var protected_objects: Array[Node3D] = []
@@ -24,6 +24,7 @@ var bend_chance := 0.45
 var lot_max_w := 4
 var lot_max_h := 3
 var building_facing := "0"
+
 const MARGIN := 2
 const DIRS := [Vector2i(0, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 0)]
 
@@ -95,7 +96,6 @@ var roads: Array = []
 var park_tiles := {}
 var protected := {}
 var required: Array = []
-var colour_of := {}
 var size := 0
 var origin := Vector2i.ZERO
 var target_low := Vector2i.ZERO
@@ -104,6 +104,7 @@ var extra_points: Array = []
 var covered: Array = []
 
 func _ready() -> void:
+	await get_tree().process_frame
 	build()
 
 func build() -> void:
@@ -187,7 +188,6 @@ func setup_grid() -> void:
 	roads.clear()
 	park_tiles.clear()
 	protected.clear()
-	colour_of.clear()
 
 	required.clear()
 	for world_pos in points:
@@ -471,10 +471,7 @@ func make_parks() -> void:
 	var tries := int(free_cells.size() * park_probability * 0.3)
 	for i in tries:
 		var anchor: Vector2i = free_cells[rng.randi() % free_cells.size()]
-		var order := ["big", "medium", "small", "right_corner"]
-		if rng.randf() < 0.5:
-			order = ["big", "medium", "right_corner", "small"]
-		for shape_name in order:
+		for shape_name in ["big", "medium", "right_corner", "small"]:
 			var shape: Array = PARKS[shape_name]
 			if park_fits(shape, anchor):
 				stamp_park(shape, anchor)
@@ -552,13 +549,11 @@ func count_sides(sides: int) -> int:
 	return n
 
 func facing(sides: int) -> float:
-	if count_sides(sides) == 1:
-		return FACE[sides]
 	if CORNER.has(sides):
 		return CORNER[sides]
-	for pair in CORNER:
-		if (sides & pair) == pair:
-			return CORNER[pair]
+	for bit in [N, E, S, W]:
+		if sides & bit:
+			return FACE[bit]
 	return FACE[E]
 
 func shape_for(sides: int, height: String) -> String:
@@ -576,35 +571,14 @@ func random_height() -> String:
 		return "tall"
 	return "straight" if rng.randf() < 0.5 else "low"
 
-func colours_with_height(height: String) -> Array:
+func plot_colour(height: String) -> String:
 	var options: Array = []
 	for colour in BUILDINGS:
-		var list: Array = BUILDINGS[colour].get(height, [])
-		if list.size() > 0:
+		if BUILDINGS[colour].get(height, []).size() > 0:
 			options.append(colour)
-	return options
-
-func plot_colour(plot: Rect2i, height: String) -> String:
-	var options := colours_with_height(height)
 	if options.size() == 0:
 		options = BUILDINGS.keys()
-
-	var taken := {}
-	for dx in range(-1, plot.size.x + 1):
-		for dz in range(-1, plot.size.y + 1):
-			if dx >= 0 and dx < plot.size.x and dz >= 0 and dz < plot.size.y:
-				continue
-			var c: Vector2i = plot.position + Vector2i(dx, dz)
-			if colour_of.has(c):
-				taken[colour_of[c]] = true
-
-	var free_colours: Array = []
-	for colour in options:
-		if not taken.has(colour):
-			free_colours.append(colour)
-	if free_colours.size() == 0:
-		free_colours = options
-	return free_colours[rng.randi() % free_colours.size()]
+	return options[rng.randi() % options.size()]
 
 func pick_building(colour: String, shape: String) -> String:
 	var set_for_colour: Dictionary = BUILDINGS.get(colour, {})
@@ -625,7 +599,7 @@ func plan_lots() -> void:
 				continue
 
 			var height := random_height()
-			var colour := plot_colour(plot, height)
+			var colour := plot_colour(height)
 
 			for dx in plot.size.x:
 				for dz in plot.size.y:
@@ -640,7 +614,6 @@ func plan_lots() -> void:
 					building_grid_map.set_cell_item(to_gridmap(p), id,
 						rotation_index(building_grid_map,
 							-(facing(sides) + float(building_facing))))
-					colour_of[p] = colour
 					grid[p.x][p.y] = Cell.BUILDING
 
 	for x in size:

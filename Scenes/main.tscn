@@ -84,9 +84,6 @@ draw_pass_1 = SubResource("RibbonTrailMesh_d1ilt")
 
 [node name="Town" parent="." instance=ExtResource("2_0wfyh")]
 
-[node name="CityGenerator" parent="Town" index="3" node_paths=PackedStringArray("protected_objects")]
-protected_objects = [NodePath("../../PointsOfIntrest/Charger2"), NodePath("../../PointsOfIntrest/Charger3"), NodePath("../../PointsOfIntrest/Charger4"), NodePath("../../PointsOfIntrest/Charger5"), NodePath("../../PointsOfIntrest/Charger6"), NodePath("../../PointsOfIntrest/Charger7"), NodePath("../../PointsOfIntrest/Charger8"), NodePath("../../DeliveryPointSpawner/Point 1"), NodePath("../../DeliveryPointSpawner/Point 2"), NodePath("../../DeliveryPointSpawner/Point 3"), NodePath("../../DeliveryPointSpawner/Point 4"), NodePath("../../DeliveryPointSpawner/Point 5"), NodePath("../../DeliveryPointSpawner/Point 6"), NodePath("../../DeliveryPointSpawner/Point 7"), NodePath("../../DeliveryPointSpawner/Point 8"), NodePath("../../DeliveryPointSpawner/Point 9"), NodePath("../../DeliveryPointSpawner/Point 10"), NodePath("../../DeliveryPointSpawner/Point 11"), NodePath("../../DeliveryPointSpawner/Point 12"), NodePath("../../DeliveryPointSpawner/Point 13"), NodePath("../../DeliveryPointSpawner/Point 14"), NodePath("../../DeliveryPointSpawner/Point 15"), NodePath("../../DeliveryPointSpawner/Point 16"), NodePath("../../DeliveryPointSpawner/Point 17"), NodePath("../../DeliveryPointSpawner/Point 18"), NodePath("../../DeliveryPointSpawner/Point 19"), NodePath("../../DeliveryPointSpawner/Point 20"), NodePath("../../DeliveryPointSpawner"), NodePath("../../PointsOfIntrest/Headquarters")]
-
 [node name="Areas" type="Node3D" parent="."]
 
 [node name="GameArea" parent="Areas" instance=ExtResource("7_o6xl0")]
