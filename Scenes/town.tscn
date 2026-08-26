@@ -1,22 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://2qydddknolyo"]
 
 [ext_resource type="MeshLibrary" uid="uid://ltwn0egw2emn" path="res://entities/static/mesh_library/prop_mesh_library.tres" id="3_ms2es"]
+[ext_resource type="Script" uid="uid://5rm8gron0kic" path="res://Scenes/city_generator.gd" id="4_ckvn4"]
 [ext_resource type="MeshLibrary" uid="uid://jm8koq3bc4ac" path="res://entities/static/mesh_library/building_mesh_library.tres" id="43_me5gh"]
 [ext_resource type="MeshLibrary" uid="uid://shb3s2x2xvvn" path="res://entities/static/mesh_library/floor_mesh_library.tres" id="44_212ta"]
-
-[sub_resource type="GDScript" id="GDScript_28ev0"]
-script/source = "extends Node3D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
 
 [node name="Town" type="Node3D"]
 
@@ -51,4 +38,4 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="CityGenerator" type="Node3D" parent="."]
-script = SubResource("GDScript_28ev0")
+script = ExtResource("4_ckvn4")
