@@ -20,8 +20,6 @@ enum Cell { VOID, EMPTY, ROAD, SIDEWALK, GRASS, BUILDING }
 
 var max_run := 8
 var bend_chance := 0.45
-var lot_max_w := 4
-var lot_max_h := 3
 var building_facing := "0"
 
 const MARGIN := 2
@@ -392,31 +390,6 @@ func protect_cells() -> void:
 					grid[q.x][q.y] = Cell.EMPTY
 				protected[q] = true
 
-func find_blocks(state: int) -> Array:
-	var seen := {}
-	var blocks: Array = []
-	for x in size:
-		for z in size:
-			var start := Vector2i(x, z)
-			if seen.has(start) or grid[x][z] != state:
-				continue
-			var block: Array = []
-			var to_visit: Array = [start]
-			seen[start] = true
-			while to_visit.size() > 0:
-				var p: Vector2i = to_visit.pop_back()
-				block.append(p)
-				for d in DIRS:
-					var n: Vector2i = p + d
-					if n.x < 0 or n.y < 0 or n.x >= size or n.y >= size:
-						continue
-					if seen.has(n) or grid[n.x][n.y] != state:
-						continue
-					seen[n] = true
-					to_visit.append(n)
-			blocks.append(block)
-	return blocks
-
 func park_fits(shape: Array, corner_cell: Vector2i) -> bool:
 	var rows := shape.size()
 	var cols: int = shape[0].size()
@@ -461,61 +434,6 @@ func make_parks() -> void:
 				stamp_park(shape, anchor)
 				break
 
-func space_for(corner_cell: Vector2i, free: Dictionary, limit: int,
-		step: Vector2i, width: int) -> int:
-	var n := 0
-	while n < limit:
-		for i in width:
-			var across := Vector2i(step.y, step.x)
-			if not free.has(corner_cell + step * n + across * i):
-				return n
-		n += 1
-	return n
-
-func split_into_plots(block: Array) -> Array:
-	var free := {}
-	for c in block:
-		free[c] = true
-
-	var ordered := block.duplicate()
-	ordered.sort_custom(func(a, b): return a.y < b.y if a.y != b.y else a.x < b.x)
-
-	var plots: Array = []
-	for entry in ordered:
-		var corner_cell: Vector2i = entry
-		if not free.has(corner_cell):
-			continue
-
-		var room_across := space_for(corner_cell, free, lot_max_w + 1, Vector2i(1, 0), 1)
-		var w: int = mini(rng.randi_range(1, lot_max_w), room_across)
-		if room_across - w == 1:
-			w = room_across
-		w = maxi(w, 1)
-
-		var room_down := space_for(corner_cell, free, lot_max_h + 1, Vector2i(0, 1), w)
-		var h: int = mini(rng.randi_range(1, lot_max_h), room_down)
-		if room_down - h == 1:
-			h = room_down
-		h = maxi(h, 1)
-
-		for dx in w:
-			for dz in h:
-				free.erase(corner_cell + Vector2i(dx, dz))
-		plots.append(Rect2i(corner_cell, Vector2i(w, h)))
-	return plots
-
-func plot_sides(p: Vector2i, plot: Rect2i) -> int:
-	var sides := 0
-	if p.y == plot.position.y:
-		sides |= N
-	if p.x == plot.position.x + plot.size.x - 1:
-		sides |= E
-	if p.y == plot.position.y + plot.size.y - 1:
-		sides |= S
-	if p.x == plot.position.x:
-		sides |= W
-	return sides
-
 func facing(sides: int) -> float:
 	if CORNER.has(sides):
 		return CORNER[sides]
@@ -527,10 +445,11 @@ func facing(sides: int) -> float:
 func plan_lots() -> void:
 	var library := building_grid_map.mesh_library
 
-	for b in find_blocks(Cell.EMPTY):
-		for entry in split_into_plots(b):
-			var plot: Rect2i = entry
-
+	for x in size:
+		for z in size:
+			var p := Vector2i(x, z)
+			if grid[x][z] != Cell.EMPTY or protected.has(p):
+				continue
 			if rng.randf() > building_density:
 				continue
 
@@ -539,15 +458,11 @@ func plan_lots() -> void:
 			if id == -1:
 				continue
 
-			for dx in plot.size.x:
-				for dz in plot.size.y:
-					var p: Vector2i = plot.position + Vector2i(dx, dz)
-					if grid[p.x][p.y] != Cell.EMPTY or protected.has(p):
-						continue
-					building_grid_map.set_cell_item(to_gridmap(p), id,
-						rotation_index(building_grid_map,
-							-(facing(plot_sides(p, plot)) + float(building_facing))))
-					grid[p.x][p.y] = Cell.BUILDING
+			var sides := road_sides(p)
+			var degrees := facing(sides) if sides != 0 else rng.randi_range(0, 3) * 90.0
+			building_grid_map.set_cell_item(to_gridmap(p), id,
+				rotation_index(building_grid_map, -(degrees + float(building_facing))))
+			grid[p.x][p.y] = Cell.BUILDING
 
 	for x in size:
 		for z in size:
