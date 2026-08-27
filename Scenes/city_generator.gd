@@ -11,7 +11,6 @@ enum Cell { VOID, EMPTY, ROAD, SIDEWALK, GRASS, BUILDING }
 @export_range(4, 40) var city_size := 15
 @export_range(1, 4) var road_branching := 2
 @export_range(0.0, 1.0, 0.05) var building_density := 0.80
-@export_range(0.0, 1.0, 0.05) var tall_buildings := 0.35
 @export_range(0.0, 1.0, 0.05) var park_probability := 0.75
 @export_range(0.0, 1.0, 0.05) var tree_density := 0.65
 
@@ -44,30 +43,15 @@ const TREE_TILES := ["01_green_large", "02_green_medium", "03_green_small", "04_
 	"09_blue_large", "10_blue_medium", "11_blue_small", "12_blue_tiny"]
 const LAMP_TILES := ["32_lamp", "33_lamp", "34_lamp"]
 
-const BUILDINGS := {
-	"blue":   {"corner": ["01_blue_corner"], "straight": ["03_blue_straight"],
-		"low": ["02_blue_short"], "tall": ["04_blue_tall"]},
-	"brown":  {"corner": ["05_brown_corner"], "straight": ["07_brown_straight"],
-		"low": ["06_brown_half"], "tall": ["08_brown_tall"]},
-	"gray":   {"corner": ["09_gray_corner", "11_gray_half_corner"], "straight": ["12_gray_straight"],
-		"low": ["10_gray_half"], "tall": []},
-	"green":  {"corner": [], "straight": ["15_green_straight"],
-		"low": ["13_green_half", "14_green_short"], "tall": ["16_green_tall"]},
-	"orange": {"corner": ["17_orange_corner"], "straight": ["19_orange_straight"],
-		"low": ["18_orange_inset"], "tall": ["20_orange_tall"]},
-	"red":    {"corner": ["21_red_corner"], "straight": [],
-		"low": ["22_red_half", "23_red_short"], "tall": ["24_red_tall"]},
-	"yellow": {"corner": ["25_yellow_corner"], "straight": ["28_yellow_straight"],
-		"low": ["27_yellow_half"], "tall": [], "deadend": ["26_yellow_deadend"]},
-}
-
-const FALLBACK := {
-	"corner": ["corner", "straight", "low", "tall"],
-	"straight": ["straight", "low", "tall", "corner"],
-	"low": ["low", "straight", "tall", "corner"],
-	"tall": ["tall", "straight", "low", "corner"],
-	"deadend": ["deadend", "corner", "low", "straight"],
-}
+const BUILDING_TILES := [
+	"01_blue_corner", "02_blue_short", "03_blue_straight", "04_blue_tall",
+	"05_brown_corner", "06_brown_half", "07_brown_straight", "08_brown_tall",
+	"09_gray_corner", "10_gray_half", "12_gray_straight",
+	"13_green_half", "14_green_short", "15_green_straight", "16_green_tall",
+	"17_orange_corner", "18_orange_inset", "19_orange_straight", "20_orange_tall",
+	"21_red_corner", "22_red_half", "23_red_short", "24_red_tall",
+	"25_yellow_corner", "27_yellow_half", "28_yellow_straight",
+]
 
 const PARKS := {
 	"small": [
@@ -520,15 +504,6 @@ func split_into_plots(block: Array) -> Array:
 		plots.append(Rect2i(corner_cell, Vector2i(w, h)))
 	return plots
 
-func plot_faces_road(plot: Rect2i) -> bool:
-	for dx in range(-1, plot.size.x + 1):
-		for dz in range(-1, plot.size.y + 1):
-			if dx >= 0 and dx < plot.size.x and dz >= 0 and dz < plot.size.y:
-				continue
-			if is_road(plot.position + Vector2i(dx, dz)):
-				return true
-	return false
-
 func plot_sides(p: Vector2i, plot: Rect2i) -> int:
 	var sides := 0
 	if p.y == plot.position.y:
@@ -541,13 +516,6 @@ func plot_sides(p: Vector2i, plot: Rect2i) -> int:
 		sides |= W
 	return sides
 
-func count_sides(sides: int) -> int:
-	var n := 0
-	for bit in [N, E, S, W]:
-		if sides & bit:
-			n += 1
-	return n
-
 func facing(sides: int) -> float:
 	if CORNER.has(sides):
 		return CORNER[sides]
@@ -556,38 +524,6 @@ func facing(sides: int) -> float:
 			return FACE[bit]
 	return FACE[E]
 
-func shape_for(sides: int, height: String) -> String:
-	var n := count_sides(sides)
-	if n == 4:
-		return "deadend"
-	if n == 3 or (n == 2 and CORNER.has(sides)):
-		return "corner"
-	if n == 0:
-		return "tall"
-	return height
-
-func random_height() -> String:
-	if rng.randf() < tall_buildings:
-		return "tall"
-	return "straight" if rng.randf() < 0.5 else "low"
-
-func plot_colour(height: String) -> String:
-	var options: Array = []
-	for colour in BUILDINGS:
-		if BUILDINGS[colour].get(height, []).size() > 0:
-			options.append(colour)
-	if options.size() == 0:
-		options = BUILDINGS.keys()
-	return options[rng.randi() % options.size()]
-
-func pick_building(colour: String, shape: String) -> String:
-	var set_for_colour: Dictionary = BUILDINGS.get(colour, {})
-	for option in FALLBACK.get(shape, [shape]):
-		var list: Array = set_for_colour.get(option, [])
-		if list.size() > 0:
-			return list[rng.randi() % list.size()]
-	return ""
-
 func plan_lots() -> void:
 	var library := building_grid_map.mesh_library
 
@@ -595,25 +531,22 @@ func plan_lots() -> void:
 		for entry in split_into_plots(b):
 			var plot: Rect2i = entry
 
-			if not plot_faces_road(plot) or rng.randf() > building_density:
+			if rng.randf() > building_density:
 				continue
 
-			var height := random_height()
-			var colour := plot_colour(height)
+			var tile_name: String = BUILDING_TILES[rng.randi() % BUILDING_TILES.size()]
+			var id := tile_id(library, tile_name)
+			if id == -1:
+				continue
 
 			for dx in plot.size.x:
 				for dz in plot.size.y:
 					var p: Vector2i = plot.position + Vector2i(dx, dz)
 					if grid[p.x][p.y] != Cell.EMPTY or protected.has(p):
 						continue
-					var sides := plot_sides(p, plot)
-					var tile_name := pick_building(colour, shape_for(sides, height))
-					var id := tile_id(library, tile_name)
-					if id == -1:
-						continue
 					building_grid_map.set_cell_item(to_gridmap(p), id,
 						rotation_index(building_grid_map,
-							-(facing(sides) + float(building_facing))))
+							-(facing(plot_sides(p, plot)) + float(building_facing))))
 					grid[p.x][p.y] = Cell.BUILDING
 
 	for x in size:

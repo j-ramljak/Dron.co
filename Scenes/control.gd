@@ -6,7 +6,6 @@ const PARAMS = [
 	["City size", "city_size", 4, 40, 1],
 	["Road branching", "road_branching", 1, 4, 1],
 	["Building density", "building_density", 0.0, 1.0, 0.05],
-	["Tall buildings", "tall_buildings", 0.0, 1.0, 0.05],
 	["Park probability", "park_probability", 0.0, 1.0, 0.05],
 	["Tree density", "tree_density", 0.0, 1.0, 0.05],
 ]
@@ -14,18 +13,20 @@ const PARAMS = [
 var labels := {}
 var seed_box: SpinBox
 var random_box: CheckBox
-
-var panel: PanelContainer
-var toggle_btn: Button
+var status: Label
 
 func _ready() -> void:
-	panel = PanelContainer.new()
-	panel.position = Vector2(20, 80)
+	var panel := PanelContainer.new()
+	panel.position = Vector2(20, 20)
 	panel.custom_minimum_size = Vector2(300, 0)
 	add_child(panel)
 
 	var column := VBoxContainer.new()
 	panel.add_child(column)
+
+	var title := Label.new()
+	title.text = "City settings"
+	column.add_child(title)
 
 	random_box = CheckBox.new()
 	random_box.text = "Random seed"
@@ -63,23 +64,8 @@ func _ready() -> void:
 	button.pressed.connect(generate)
 	column.add_child(button)
 
-	toggle_btn = Button.new()
-	toggle_btn.text = "▲ Controls"
-	add_child(toggle_btn)
-	toggle_btn.pressed.connect(on_toggle_pressed)
-	await get_tree().process_frame
-	update_toggle_position()
-
-func update_toggle_position() -> void:
-	if panel.visible:
-		toggle_btn.position = Vector2(20, panel.position.y + panel.size.y + 8)
-	else:
-		toggle_btn.position = Vector2(20, 80)
-
-func on_toggle_pressed() -> void:
-	panel.visible = not panel.visible
-	toggle_btn.text = "▲ Controls" if panel.visible else "▼ Controls"
-	update_toggle_position()
+	status = Label.new()
+	column.add_child(status)
 
 func show_value(property_name: String, value: float, whole: bool) -> void:
 	var label: Label = labels[property_name]
@@ -97,8 +83,16 @@ func on_random_toggled(pressed: bool) -> void:
 		generator.random_seed = pressed
 
 func generate() -> void:
+	if generator == null:
+		status.text = "No generator assigned."
+		return
 	if not random_box.button_pressed:
 		generator.seed_value = int(seed_box.value)
 	generator.random_seed = random_box.button_pressed
 	generator.build()
 	seed_box.set_value_no_signal(generator.seed_value)
+	status.text = "Seed " + str(generator.seed_value)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
+		visible = not visible
